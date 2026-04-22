@@ -1,0 +1,23 @@
+/* ==========================================================================
+   @thedevrealm/neo-css — Keyboard Shortcut Badges
+   ========================================================================== */
+
+.neo-kbd {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.2rem 0.45rem;
+  font-family: var(--neo-font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--neo-white);
+  background: var(--neo-surface);
+  border: 2px solid var(--neo-border-color);
+  border-bottom-width: 4px;
+  border-radius: var(--neo-radius);
+  box-shadow: 0 2px 0 var(--neo-border-color);
+  vertical-align: middle;
+  white-space: nowrap;
+  line-height: 1.4;
+  user-select: none;
+}

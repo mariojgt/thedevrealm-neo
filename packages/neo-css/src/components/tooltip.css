@@ -1,0 +1,38 @@
+/* ==========================================================================
+   @thedevrealm/neo-css — Tooltip
+   Pure-CSS tooltip via data-tip attribute.
+   ========================================================================== */
+
+[data-tip] {
+  position: relative;
+  cursor: default;
+}
+
+[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  background: var(--neo-surface-lighter);
+  color: var(--neo-white);
+  font-family: var(--neo-font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.35rem 0.75rem;
+  border: 2px solid var(--neo-border-color);
+  border-radius: var(--neo-radius);
+  box-shadow: 3px 3px 0 var(--neo-black);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 120ms ease, transform 120ms ease;
+  z-index: 200;
+}
+
+[data-tip]:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}

@@ -1,0 +1,115 @@
+/* ==========================================================================
+   @thedevrealm/neo-css — Rarity Item Cards & Leaderboard
+   Gaming-specific components.
+   ========================================================================== */
+
+/* ── Rarity item card ────────────────────────────────────────────────────── */
+.neo-rarity { --rarity-color: var(--neo-border-color); }
+.neo-rarity-common    { --rarity-color: #6b7280; }
+.neo-rarity-uncommon  { --rarity-color: #22c55e; }
+.neo-rarity-rare      { --rarity-color: #3b82f6; }
+.neo-rarity-epic      { --rarity-color: #a855f7; }
+.neo-rarity-legendary { --rarity-color: #f59e0b; }
+
+.neo-item-card {
+  background: var(--neo-surface-light);
+  border: 3px solid var(--rarity-color);
+  border-top-width: 5px;
+  border-radius: var(--neo-radius);
+  box-shadow: 5px 5px 0 var(--neo-black);
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.neo-item-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--rarity-color) 12%, transparent), transparent 70%);
+  pointer-events: none;
+}
+
+.neo-item-card:hover {
+  transform: translate(-2px, -3px);
+  box-shadow: 7px 8px 0 var(--neo-black);
+}
+
+.neo-item-icon {
+  font-size: 2.25rem;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 0 8px var(--rarity-color));
+}
+
+.neo-item-name {
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--neo-white);
+  margin: 0 0 0.25rem;
+}
+
+.neo-item-rarity {
+  font-size: 0.6rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--rarity-color);
+}
+
+/* ── Leaderboard ─────────────────────────────────────────────────────────── */
+.neo-leaderboard {
+  border: var(--neo-border);
+  border-radius: var(--neo-radius);
+  overflow: hidden;
+  box-shadow: var(--neo-shadow-sm);
+}
+
+.neo-lb-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 1rem;
+  background: var(--neo-surface);
+  border-bottom: var(--neo-border);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--neo-muted);
+}
+
+.neo-lb-row {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.75rem 1rem;
+  background: var(--neo-surface-light);
+  border-bottom: 1px solid rgba(58, 80, 110, 0.25);
+  transition: background 100ms;
+}
+
+.neo-lb-row:last-child { border-bottom: none; }
+.neo-lb-row:hover { background: var(--neo-surface-lighter); }
+
+.neo-lb-rank {
+  font-size: 0.875rem;
+  font-weight: 900;
+  font-family: var(--neo-font-mono);
+  color: var(--neo-subtle);
+  width: 1.75rem;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.neo-lb-rank-1 { color: #f59e0b; }
+.neo-lb-rank-2 { color: #9ca3af; }
+.neo-lb-rank-3 { color: #b45309; }
+
+.neo-lb-name  { flex: 1; font-size: 0.875rem; font-weight: 700; color: var(--neo-white); }
+.neo-lb-score { font-family: var(--neo-font-mono); font-size: 0.875rem; font-weight: 700; color: var(--neo-brand-light); }

@@ -22,13 +22,25 @@ const FILES = [
   'components/toggle.css',
   'components/alerts.css',
   'components/decorative.css',
+  // New components
+  'components/kbd.css',
+  'components/tooltip.css',
+  'components/skeleton.css',
+  'components/avatar.css',
+  'components/accordion.css',
+  'components/modal.css',
+  'components/command-palette.css',
+  'components/gaming.css',
   'animations.css',
 ]
+
+// components.css includes base.css so .neo-text-* and .neo-noise helpers are available
+const COMPONENT_FILES = FILES.slice(1, -1) // base.css through gaming.css, no tokens or animations
 
 const BUNDLES = {
   'neo.css':        FILES,
   'tokens.css':     ['tokens.css'],
-  'components.css': FILES.slice(2, -1),  // everything between base and animations
+  'components.css': COMPONENT_FILES,
   'animations.css': ['animations.css'],
 }
 

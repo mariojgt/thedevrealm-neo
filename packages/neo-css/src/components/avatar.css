@@ -1,0 +1,61 @@
+/* ==========================================================================
+   @thedevrealm/neo-css — Avatar
+   ========================================================================== */
+
+.neo-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--neo-border-color);
+  border-radius: 50%;
+  box-shadow: 3px 3px 0 var(--neo-black);
+  overflow: hidden;
+  flex-shrink: 0;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--neo-surface-light);
+  color: var(--neo-white);
+  font-family: var(--neo-font-sans);
+  position: relative;
+}
+
+.neo-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Sizes ── */
+.neo-avatar-sm  { width: 32px;  height: 32px;  font-size: 0.7rem; }
+.neo-avatar-md  { width: 44px;  height: 44px;  font-size: 0.875rem; }
+.neo-avatar-lg  { width: 60px;  height: 60px;  font-size: 1.125rem; }
+.neo-avatar-xl  { width: 80px;  height: 80px;  font-size: 1.5rem; }
+
+/* ── Color variants ── */
+.neo-avatar-brand  { border-color: var(--neo-brand);  box-shadow: 3px 3px 0 var(--neo-brand-dark); }
+.neo-avatar-accent { border-color: var(--neo-accent); box-shadow: 3px 3px 0 var(--neo-accent-dark); }
+
+/* ── Online indicator ── */
+.neo-avatar-online::after {
+  content: '';
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--neo-brand);
+  border: 2px solid var(--neo-surface);
+}
+
+/* ── Avatar group ── */
+.neo-avatar-group { display: flex; }
+
+.neo-avatar-group .neo-avatar {
+  margin-left: -10px;
+  transition: transform 120ms ease;
+}
+
+.neo-avatar-group .neo-avatar:first-child { margin-left: 0; }
+.neo-avatar-group .neo-avatar:hover { transform: translateY(-4px); z-index: 10; }

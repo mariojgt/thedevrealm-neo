@@ -1,0 +1,88 @@
+/* ==========================================================================
+   @thedevrealm/neo-css — Modal / Dialog
+   ========================================================================== */
+
+.neo-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+.neo-modal-backdrop.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.neo-modal {
+  background: var(--neo-surface-light);
+  border: var(--neo-border);
+  border-radius: var(--neo-radius);
+  box-shadow: 8px 8px 0 var(--neo-black);
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: translateY(20px) scale(0.97);
+  transition: transform 200ms cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+
+.neo-modal-backdrop.open .neo-modal {
+  transform: translateY(0) scale(1);
+}
+
+.neo-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: var(--neo-border);
+  background: var(--neo-surface);
+}
+
+.neo-modal-title {
+  font-size: 0.875rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--neo-white);
+  margin: 0;
+}
+
+.neo-modal-close {
+  background: none;
+  border: none;
+  color: var(--neo-muted);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 120ms, transform 120ms;
+}
+
+.neo-modal-close:hover {
+  color: var(--neo-white);
+  transform: rotate(90deg);
+}
+
+.neo-modal-body {
+  padding: 1.25rem;
+  font-size: 0.875rem;
+  color: var(--neo-muted);
+  line-height: 1.65;
+}
+
+.neo-modal-footer {
+  padding: 0.875rem 1.25rem;
+  border-top: var(--neo-border);
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}

@@ -1,0 +1,27 @@
+/* ==========================================================================
+   @thedevrealm/neo-css — Skeleton Loader
+   ========================================================================== */
+
+@keyframes neo-skeleton-shimmer {
+  from { background-position: -400px 0; }
+  to   { background-position:  400px 0; }
+}
+
+.neo-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--neo-surface) 25%,
+    var(--neo-surface-lighter) 50%,
+    var(--neo-surface) 75%
+  );
+  background-size: 800px 100%;
+  animation: neo-skeleton-shimmer 1.4s infinite linear;
+  border-radius: var(--neo-radius);
+  border: 2px solid var(--neo-border-color);
+}
+
+.neo-skeleton-text   { height: 0.875rem; margin-bottom: 0.5rem; }
+.neo-skeleton-title  { height: 1.25rem;  margin-bottom: 0.75rem; width: 60%; }
+.neo-skeleton-avatar { width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0; }
+.neo-skeleton-thumb  { height: 140px; width: 100%; margin-bottom: 0.75rem; }
+.neo-skeleton-btn    { height: 38px; width: 110px; }
