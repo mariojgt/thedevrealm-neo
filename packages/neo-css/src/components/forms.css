@@ -1,0 +1,110 @@
+/* ==========================================================================
+   @thedevrealm/neo-css — Forms (inputs, selects, textareas)
+   ========================================================================== */
+
+/* ── Input & Textarea ── */
+.neo-input {
+  display: block;
+  width: 100%;
+  background-color: var(--neo-surface);
+  border: var(--neo-border);
+  border-radius: var(--neo-radius);
+  color: var(--neo-white);
+  font-family: var(--neo-font-sans);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.neo-input::placeholder {
+  color: var(--neo-subtle);
+}
+
+.neo-input:focus {
+  border-color: var(--neo-brand);
+  box-shadow: 0 0 0 3px rgba(13, 150, 104, 0.2);
+}
+
+.neo-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Select ── */
+.neo-select {
+  display: block;
+  width: 100%;
+  background-color: var(--neo-surface);
+  border: var(--neo-border);
+  border-radius: var(--neo-radius);
+  color: var(--neo-white);
+  font-family: var(--neo-font-sans);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  /* Custom chevron */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238594b0' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.875rem center;
+  padding-right: 2.5rem;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.neo-select option {
+  background-color: var(--neo-surface-light);
+  color: var(--neo-white);
+}
+
+.neo-select:focus {
+  border-color: var(--neo-brand);
+  box-shadow: 0 0 0 3px rgba(13, 150, 104, 0.2);
+}
+
+.neo-select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Label ── */
+.neo-label {
+  display: block;
+  font-family: var(--neo-font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.075em;
+  color: var(--neo-muted);
+  margin-bottom: 0.375rem;
+}
+
+/* ── Field wrapper (label + input stacked) ── */
+.neo-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+/* ── Input icon wrapper ── */
+.neo-input-icon {
+  position: relative;
+  display: block;
+}
+
+.neo-input-icon .neo-input {
+  padding-left: 2.5rem;
+}
+
+.neo-input-icon__icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--neo-subtle);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}

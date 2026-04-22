@@ -1,0 +1,83 @@
+/* ==========================================================================
+   @thedevrealm/neo-css — Toggle & Tab Navigation
+   ========================================================================== */
+
+/* ── Toggle Group ── */
+.neo-toggle {
+  display: inline-flex;
+  border: var(--neo-border);
+  border-radius: var(--neo-radius);
+  overflow: hidden;
+  box-shadow: var(--neo-shadow-sm);
+}
+
+.neo-toggle-btn {
+  padding: 0.5rem 1rem;
+  font-family: var(--neo-font-sans);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: var(--neo-surface-light);
+  color: var(--neo-muted);
+  border: none;
+  border-right: 2px solid var(--neo-border-color);
+  cursor: pointer;
+  transition: background-color 120ms ease, color 120ms ease;
+  line-height: 1;
+}
+
+.neo-toggle-btn:last-child {
+  border-right: none;
+}
+
+.neo-toggle-btn:hover {
+  color: var(--neo-white);
+  background-color: var(--neo-surface-lighter);
+}
+
+.neo-toggle-btn-active,
+.neo-toggle-btn[aria-pressed="true"],
+.neo-toggle-btn[data-state="active"] {
+  background-color: var(--neo-brand);
+  color: var(--neo-white);
+}
+
+.neo-toggle-btn-active:hover,
+.neo-toggle-btn[aria-pressed="true"]:hover {
+  background-color: var(--neo-brand-light);
+}
+
+/* ── Tab Bar ── */
+.neo-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: var(--neo-border);
+}
+
+.neo-tab {
+  padding: 0.5rem 1rem;
+  font-family: var(--neo-font-sans);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--neo-muted);
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -3px;
+  cursor: pointer;
+  transition: color 120ms ease, border-color 120ms ease;
+}
+
+.neo-tab:hover {
+  color: var(--neo-white);
+}
+
+.neo-tab-active,
+.neo-tab[aria-selected="true"],
+.neo-tab[data-state="active"] {
+  color: var(--neo-brand);
+  border-bottom-color: var(--neo-brand);
+}

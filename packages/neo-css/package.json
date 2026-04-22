@@ -1,0 +1,30 @@
+{
+  "name": "@thedevrealm/neo-css",
+  "version": "1.0.0",
+  "description": "The Dev Realm Neo-Brutalist CSS Kit — design tokens, component classes, animations.",
+  "keywords": ["neo-brutalism", "css", "design-system", "thedevrealm", "ui"],
+  "license": "MIT",
+  "author": "The Dev Realm",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thedevrealm/neo"
+  },
+  "main": "dist/neo.css",
+  "exports": {
+    ".": "./dist/neo.css",
+    "./tokens": "./dist/tokens.css",
+    "./components": "./dist/components.css",
+    "./animations": "./dist/animations.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node scripts/build.js",
+    "dev": "node scripts/build.js --watch",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "lightningcss": "^1.24.1"
+  }
+}

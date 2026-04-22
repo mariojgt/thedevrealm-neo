@@ -1,0 +1,15 @@
+{
+  "name": "thedevrealm-neo",
+  "private": true,
+  "version": "0.0.0",
+  "description": "The Dev Realm Neo-Brutalist Design System — monorepo root",
+  "scripts": {
+    "build": "pnpm -r run build",
+    "dev": "pnpm -r run dev",
+    "lint": "pnpm -r run lint",
+    "clean": "pnpm -r run clean"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

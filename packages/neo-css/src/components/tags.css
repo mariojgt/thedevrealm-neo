@@ -1,0 +1,81 @@
+/* ==========================================================================
+   @thedevrealm/neo-css — Tags & Badges
+   ========================================================================== */
+
+/* ── Base Tag ── */
+.neo-tag {
+  display: inline-block;
+  padding: 0.25rem 0.625rem;
+  font-family: var(--neo-font-sans);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  border-radius: var(--neo-radius);
+  border-width: 2px;
+  border-style: solid;
+  vertical-align: middle;
+}
+
+/* ── Tag Variants ── */
+.neo-tag-brand {
+  background-color: rgba(13, 150, 104, 0.1);
+  border-color: var(--neo-brand);
+  color: var(--neo-brand-light);
+}
+
+.neo-tag-accent {
+  background-color: rgba(230, 147, 10, 0.1);
+  border-color: var(--neo-accent);
+  color: var(--neo-accent);
+}
+
+.neo-tag-ghost {
+  background-color: transparent;
+  border-color: var(--neo-border-color);
+  color: var(--neo-muted);
+}
+
+/* ── Rotation Modifier ── */
+.neo-tag-rotate {
+  transform: rotate(-1deg);
+}
+
+/* ── Inline Badge (no rotation, slightly larger) ── */
+.neo-badge {
+  display: inline-block;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: var(--neo-radius);
+  border-width: 2px;
+  border-style: solid;
+  vertical-align: middle;
+}
+
+.neo-badge-default {
+  background-color: var(--neo-surface-light);
+  border-color: var(--neo-border-color);
+  color: var(--neo-muted);
+}
+
+.neo-badge-success {
+  background-color: rgba(13, 150, 104, 0.1);
+  border-color: var(--neo-brand);
+  color: var(--neo-brand-light);
+}
+
+.neo-badge-warning {
+  background-color: rgba(230, 147, 10, 0.1);
+  border-color: var(--neo-accent);
+  color: var(--neo-accent);
+}
+
+.neo-badge-error {
+  background-color: rgba(239, 68, 68, 0.1);
+  border-color: var(--neo-danger);
+  color: #f87171;
+}

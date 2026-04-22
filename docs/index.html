@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Dev Realm — Neo-Brutalist UI Kit</title>
+  <meta name="description" content="A framework-agnostic neo-brutalist design system for React, Vue, Svelte and pure CSS." />
+  <meta property="og:title"       content="The Dev Realm — Neo-Brutalist UI Kit" />
+  <meta property="og:description" content="Bold 3px borders. Hard offset shadows. Uppercase everything. Zero blur, zero apologies." />
+  <meta property="og:url"         content="https://mariojgt.github.io/thedevrealm-neo" />
+
+  <!-- Load the CSS kit directly from unpkg once published.
+       For now we inline the styles so the showcase works before npm publish. -->
+  <style>
+    /* ── Tokens ──────────────────────────────────────────────────────── */
+    :root {
+      --neo-brand:          #0d9668;
+      --neo-brand-light:    #2bb885;
+      --neo-brand-dark:     #047857;
+      --neo-surface:          #0c1222;
+      --neo-surface-light:    #131d33;
+      --neo-surface-lighter:  #1a2742;
+      --neo-body-bg:          #080d19;
+      --neo-accent:       #e6930a;
+      --neo-accent-dark:  #c27706;
+      --neo-border-color: #3a506e;
+      --neo-muted:        #8594b0;
+      --neo-subtle:       #4b5c7a;
+      --neo-white:        #ffffff;
+      --neo-black:        #000000;
+      --neo-danger:       #ef4444;
+      --neo-danger-dark:  #b91c1c;
+      --neo-border-width: 3px;
+      --neo-border:       3px solid #3a506e;
+      --neo-radius:       0.375rem;
+      --neo-shadow-xs:    2px 2px 0 #000;
+      --neo-shadow-sm:    4px 4px 0 #000;
+      --neo-shadow:       5px 5px 0 #000;
+      --neo-shadow-lg:    6px 6px 0 #000;
+      --neo-font-sans:    ui-sans-serif, system-ui, -apple-system, sans-serif;
+      --neo-font-mono:    ui-monospace, 'SFMono-Regular', Consolas, monospace;
+    }
+
+    /* ── Reset ───────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: var(--neo-font-sans);
+      background-color: var(--neo-body-bg);
+      color: var(--neo-muted);
+      background-image:
+        linear-gradient(rgba(58,80,110,.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(58,80,110,.15) 1px, transparent 1px);
+      background-size: 32px 32px;
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Buttons ─────────────────────────────────────────────────────── */
+    .neo-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: .5rem; font-family: var(--neo-font-sans); font-weight: 800;
+      font-size: .875rem; line-height: 1; text-transform: uppercase;
+      letter-spacing: .05em; padding: .625rem 1.25rem;
+      border-width: 3px; border-style: solid;
+      border-radius: var(--neo-radius); cursor: pointer;
+      text-decoration: none; transition: transform 100ms ease, box-shadow 100ms ease;
+      user-select: none; white-space: nowrap;
+    }
+    .neo-btn:hover  { transform: translate(-2px,-2px); }
+    .neo-btn:active { transform: translate(1px,1px); }
+    .neo-btn-primary { background: var(--neo-brand); border-color: var(--neo-brand-dark); color: #fff; box-shadow: 4px 4px 0 var(--neo-brand-dark); }
+    .neo-btn-primary:hover  { box-shadow: 6px 6px 0 var(--neo-brand-dark); }
+    .neo-btn-primary:active { box-shadow: 2px 2px 0 var(--neo-brand-dark); }
+    .neo-btn-accent  { background: var(--neo-accent); border-color: var(--neo-accent-dark); color: #fff; box-shadow: 4px 4px 0 var(--neo-accent-dark); }
+    .neo-btn-accent:hover  { box-shadow: 6px 6px 0 var(--neo-accent-dark); }
+    .neo-btn-ghost   { background: transparent; border-color: var(--neo-border-color); color: var(--neo-muted); box-shadow: var(--neo-shadow-sm); }
+    .neo-btn-ghost:hover   { color: #fff; border-color: var(--neo-muted); box-shadow: 6px 6px 0 #000; }
+    .neo-btn-danger  { background: var(--neo-danger); border-color: var(--neo-danger-dark); color: #fff; box-shadow: 4px 4px 0 var(--neo-danger-dark); }
+    .neo-btn-danger:hover  { box-shadow: 6px 6px 0 var(--neo-danger-dark); }
+    .neo-btn-sm { font-size: .75rem;  padding: .375rem .75rem; }
+    .neo-btn-md { font-size: .875rem; padding: .625rem 1.25rem; }
+    .neo-btn-lg { font-size: 1rem;    padding: .875rem 1.75rem; }
+
+    /* ── Cards ───────────────────────────────────────────────────────── */
+    .neo-card {
+      background: var(--neo-surface-light); border: var(--neo-border);
+      border-radius: var(--neo-radius); box-shadow: var(--neo-shadow);
+      position: relative; transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+    .neo-card:hover  { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 #000; }
+    .neo-card:active { transform: translate(1px,1px);   box-shadow: 3px 3px 0 #000; }
+    .neo-card-brand {
+      background: var(--neo-surface-light); border: var(--neo-border);
+      border-top: 4px solid var(--neo-brand); border-radius: var(--neo-radius);
+      box-shadow: var(--neo-shadow); position: relative;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+    .neo-card-brand:hover { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 #000; }
+    .neo-stat-card  {
+      background: var(--neo-surface-light); border: var(--neo-border);
+      border-radius: var(--neo-radius); box-shadow: var(--neo-shadow); padding: 1.25rem;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+    .neo-stat-card:hover { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 #000; }
+    .neo-star::after {
+      content: '★'; position: absolute; top: .75rem; right: .75rem;
+      font-size: 1rem; color: var(--neo-accent); pointer-events: none;
+    }
+    .neo-card-pattern:hover {
+      background-image:
+        linear-gradient(rgba(58,80,110,.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(58,80,110,.12) 1px, transparent 1px);
+      background-size: 16px 16px;
+    }
+
+    /* ── Tags / Badges ───────────────────────────────────────────────── */
+    .neo-tag {
+      display: inline-block; padding: .25rem .625rem;
+      font-size: .6875rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: .1em; line-height: 1.4; border-radius: var(--neo-radius);
+      border-width: 2px; border-style: solid; vertical-align: middle;
+    }
+    .neo-tag-brand  { background: rgba(13,150,104,.1);  border-color: var(--neo-brand);        color: var(--neo-brand-light); }
+    .neo-tag-accent { background: rgba(230,147,10,.1);  border-color: var(--neo-accent);       color: var(--neo-accent); }
+    .neo-tag-ghost  { background: transparent;           border-color: var(--neo-border-color); color: var(--neo-muted); }
+    .neo-tag-rotate { transform: rotate(-1deg); }
+    .neo-badge {
+      display: inline-block; padding: .25rem .625rem;
+      font-size: .75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .05em; border-radius: var(--neo-radius);
+      border-width: 2px; border-style: solid; vertical-align: middle;
+    }
+    .neo-badge-success { background: rgba(13,150,104,.1); border-color: var(--neo-brand);   color: var(--neo-brand-light); }
+    .neo-badge-warning { background: rgba(230,147,10,.1); border-color: var(--neo-accent);  color: var(--neo-accent); }
+    .neo-badge-error   { background: rgba(239,68,68,.1);  border-color: var(--neo-danger);   color: #f87171; }
+    .neo-badge-default { background: var(--neo-surface-light); border-color: var(--neo-border-color); color: var(--neo-muted); }
+
+    /* ── Forms ───────────────────────────────────────────────────────── */
+    .neo-input {
+      display: block; width: 100%; background: var(--neo-surface); border: var(--neo-border);
+      border-radius: var(--neo-radius); color: #fff; font-family: var(--neo-font-sans);
+      font-size: .875rem; outline: none;
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+      padding: .75rem 1rem;
+    }
+    .neo-input::placeholder { color: var(--neo-subtle); }
+    .neo-input:focus { border-color: var(--neo-brand); box-shadow: 0 0 0 3px rgba(13,150,104,.2); }
+    .neo-select {
+      display: block; width: 100%; background: var(--neo-surface); border: var(--neo-border);
+      border-radius: var(--neo-radius); color: #fff; font-family: var(--neo-font-sans);
+      font-size: .875rem; cursor: pointer; outline: none; appearance: none;
+      padding: .75rem 2.5rem .75rem 1rem;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238594b0' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right .875rem center;
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+    }
+    .neo-select option { background: var(--neo-surface-light); color: #fff; }
+    .neo-select:focus { border-color: var(--neo-brand); box-shadow: 0 0 0 3px rgba(13,150,104,.2); }
+    .neo-label { display: block; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .075em; color: var(--neo-muted); margin-bottom: .375rem; }
+    .neo-field { display: flex; flex-direction: column; gap: .375rem; }
+
+    /* ── Table ───────────────────────────────────────────────────────── */
+    .neo-table { width: 100%; border-collapse: separate; border-spacing: 0; border: var(--neo-border); border-radius: var(--neo-radius); overflow: hidden; box-shadow: var(--neo-shadow-sm); font-family: var(--neo-font-sans); }
+    .neo-table thead { background: var(--neo-surface); }
+    .neo-table th { padding: .75rem 1rem; text-align: left; font-size: .6875rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--neo-muted); border-bottom: var(--neo-border); white-space: nowrap; }
+    .neo-table td { background: var(--neo-surface-light); padding: .75rem 1rem; font-size: .875rem; color: var(--neo-muted); border-bottom: 1px solid rgba(58,80,110,.3); transition: background 100ms ease; }
+    .neo-table tbody tr:last-child td { border-bottom: none; }
+    .neo-table tbody tr:hover td { background: var(--neo-surface-lighter); }
+
+    /* ── Toggle ──────────────────────────────────────────────────────── */
+    .neo-toggle { display: inline-flex; border: var(--neo-border); border-radius: var(--neo-radius); overflow: hidden; box-shadow: var(--neo-shadow-sm); }
+    .neo-toggle-btn { padding: .5rem 1rem; font-family: var(--neo-font-sans); font-size: .75rem; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; background: var(--neo-surface-light); color: var(--neo-muted); border: none; border-right: 2px solid var(--neo-border-color); cursor: pointer; transition: background 120ms ease, color 120ms ease; line-height: 1; }
+    .neo-toggle-btn:last-child { border-right: none; }
+    .neo-toggle-btn:hover { color: #fff; background: var(--neo-surface-lighter); }
+    .neo-toggle-btn-active { background: var(--neo-brand) !important; color: #fff !important; }
+
+    /* ── Tabs ────────────────────────────────────────────────────────── */
+    .neo-tabs { display: flex; border-bottom: var(--neo-border); }
+    .neo-tab { padding: .5rem 1rem; font-family: var(--neo-font-sans); font-size: .875rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--neo-muted); background: transparent; border: none; border-bottom: 3px solid transparent; margin-bottom: -3px; cursor: pointer; transition: color 120ms,border-color 120ms; }
+    .neo-tab:hover { color: #fff; }
+    .neo-tab-active { color: var(--neo-brand) !important; border-bottom-color: var(--neo-brand) !important; }
+
+    /* ── Alerts ──────────────────────────────────────────────────────── */
+    .neo-alert { display: flex; align-items: flex-start; gap: .75rem; border-radius: var(--neo-radius); border-width: 3px; border-style: solid; padding: 1rem; box-shadow: var(--neo-shadow-sm); font-size: .875rem; color: #fff; }
+    .neo-alert-success { border-color: var(--neo-brand);        background: rgba(13,150,104,.05); }
+    .neo-alert-warning { border-color: var(--neo-accent);       background: rgba(230,147,10,.05); }
+    .neo-alert-error   { border-color: var(--neo-danger);       background: rgba(239,68,68,.05); }
+    .neo-alert-info    { border-color: var(--neo-border-color); background: var(--neo-surface); }
+
+    /* ── Decorative ──────────────────────────────────────────────────── */
+    .neo-header-bar { display: flex; align-items: center; justify-content: space-between; padding: .625rem 1rem; background: var(--neo-brand); background-image: repeating-linear-gradient(45deg,transparent,transparent 4px,rgba(0,0,0,.15) 4px,rgba(0,0,0,.15) 8px); font-size: .75rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: #fff; gap: .5rem; }
+    .neo-divider { border: none; border-top: 2px dashed var(--neo-border-color); position: relative; margin: 1rem 0; }
+    .neo-divider::after { content: '✂'; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); background: var(--neo-surface-light); padding: 0 .5rem; font-size: .75rem; color: var(--neo-subtle); }
+    .neo-price { font-size: 2.25rem; font-weight: 900; line-height: 1; color: #fff; text-decoration-line: underline; text-decoration-color: var(--neo-accent); text-decoration-thickness: 3px; text-underline-offset: 4px; }
+    .neo-text-gradient { background: linear-gradient(135deg,var(--neo-brand-light),var(--neo-brand)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    /* ── Animations ──────────────────────────────────────────────────── */
+    @keyframes neo-fade-in-up { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes neo-float      { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    @keyframes neo-ping-slow  { 0%{transform:scale(1);opacity:1} 100%{transform:scale(2.5);opacity:0} }
+    @keyframes neo-gradient-shift { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+    .animate-neo-fade-in-up  { animation: neo-fade-in-up .4s ease forwards; }
+    .animate-neo-float       { animation: neo-float 3s ease-in-out infinite; }
+    .animate-neo-ping-slow   { animation: neo-ping-slow 2s ease-out infinite; }
+    .animate-neo-gradient-shift {
+      background: linear-gradient(270deg,var(--neo-brand-light),var(--neo-accent),var(--neo-brand));
+      background-size: 300% 300%;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      animation: neo-gradient-shift 4s ease infinite;
+    }
+
+    /* ── Hero ────────────────────────────────────────────────────────── */
+    .neo-hero { position: relative; overflow: hidden; background: var(--neo-surface-light); background-image: linear-gradient(rgba(58,80,110,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(58,80,110,.15) 1px,transparent 1px); background-size: 32px 32px; border: var(--neo-border); border-radius: var(--neo-radius); box-shadow: var(--neo-shadow-lg); }
+    .neo-hero::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(13,150,104,.08) 0%,transparent 60%); pointer-events:none; }
+
+    /* ── Page chrome ─────────────────────────────────────────────────── */
+    .page-wrap  { max-width: 1100px; margin: 0 auto; padding: 3rem 1.5rem; }
+    .section    { margin-bottom: 5rem; }
+    .section-title {
+      font-size: 1.25rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: .08em; color: #fff; margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: .75rem;
+    }
+    .section-title::before { content:''; display:inline-block; width:.5rem; height:1.5rem; background:var(--neo-brand); border-radius:2px; flex-shrink:0; }
+
+    .grid-2 { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); }
+    .grid-3 { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); }
+    .grid-4 { display: grid; gap: 1rem;    grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); }
+
+    .label-micro { font-size: .625rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--neo-subtle); margin-bottom: .75rem; display: block; }
+    .flex-wrap   { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+    .p-6 { padding: 1.5rem; }
+    .space-y > * + * { margin-top: 1rem; }
+
+    /* code block */
+    .code-block {
+      background: var(--neo-surface); border: var(--neo-border); border-radius: var(--neo-radius);
+      box-shadow: var(--neo-shadow-sm); overflow-x: auto; margin-top: .75rem;
+    }
+    .code-block pre {
+      margin: 0; padding: 1.25rem; font-family: var(--neo-font-mono);
+      font-size: .8125rem; line-height: 1.65; color: var(--neo-muted);
+    }
+    .code-block .kw  { color: var(--neo-brand-light); }
+    .code-block .str { color: var(--neo-accent); }
+    .code-block .cm  { color: var(--neo-subtle); font-style: italic; }
+    .code-block .cl  { color: #7dd3fc; }
+    .code-block .px  { color: #e879f9; }
+
+    /* install box */
+    .install-row { display: flex; gap: .5rem; align-items: stretch; flex-wrap: wrap; }
+    .install-cmd {
+      flex: 1; min-width: 220px; background: var(--neo-surface);
+      border: var(--neo-border); border-radius: var(--neo-radius);
+      padding: .75rem 1rem; font-family: var(--neo-font-mono);
+      font-size: .875rem; color: var(--neo-brand-light);
+      box-shadow: var(--neo-shadow-sm); display: flex; align-items: center; gap: .5rem;
+    }
+    .install-cmd span { color: var(--neo-subtle); }
+
+    /* nav */
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(8,13,25,.92); backdrop-filter: blur(8px); border-bottom: var(--neo-border); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; padding: .75rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .nav-brand { font-size: .875rem; font-weight: 900; text-transform: uppercase; letter-spacing: .1em; color: #fff; text-decoration: none; display: flex; align-items: center; gap: .5rem; }
+    .nav-brand-dot { width: 8px; height: 8px; background: var(--neo-brand); border-radius: 50%; display: inline-block; }
+    .nav-links { display: flex; gap: 1.25rem; align-items: center; flex-wrap: wrap; }
+    .nav-links a { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--neo-muted); text-decoration: none; transition: color 120ms; }
+    .nav-links a:hover { color: #fff; }
+
+    /* footer */
+    footer { border-top: var(--neo-border); padding: 2.5rem 1.5rem; margin-top: 5rem; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+
+    /* hero layout */
+    .hero-inner { position: relative; z-index: 10; padding: 4rem 2rem; text-align: center; }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">
+      <span class="nav-brand-dot"></span>
+      The Dev Realm
+    </a>
+    <div class="nav-links">
+      <a href="#install">Install</a>
+      <a href="#buttons">Buttons</a>
+      <a href="#cards">Cards</a>
+      <a href="#forms">Forms</a>
+      <a href="#alerts">Alerts</a>
+      <a href="#animations">Animations</a>
+      <a href="#frameworks">Frameworks</a>
+      <a href="https://github.com/mariojgt/thedevrealm-neo" target="_blank" rel="noopener">
+        GitHub ↗
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- ═══ HERO ═══ -->
+  <section class="section" style="margin-bottom:4rem">
+    <div class="neo-hero animate-neo-fade-in-up">
+      <div class="hero-inner">
+        <span class="neo-tag neo-tag-accent neo-tag-rotate" style="margin-bottom:1rem;display:inline-block">Open Source</span>
+        <h1 style="font-size:clamp(2rem,6vw,3.5rem);font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:#fff;margin:.75rem 0">
+          Neo-Brutalist<br/>
+          <span class="animate-neo-gradient-shift">Design System</span>
+        </h1>
+        <p style="font-size:1.125rem;color:var(--neo-muted);max-width:560px;margin:0 auto 2rem">
+          Bold 3px borders. Hard offset shadows. Uppercase everything.
+          Squared corners. Zero blur, zero apologies.
+        </p>
+        <div class="flex-wrap" style="justify-content:center">
+          <a href="#install" class="neo-btn neo-btn-primary neo-btn-lg">Get Started</a>
+          <a href="https://github.com/mariojgt/thedevrealm-neo" target="_blank" rel="noopener" class="neo-btn neo-btn-ghost neo-btn-lg">View on GitHub ↗</a>
+        </div>
+        <p style="margin-top:1.5rem;font-size:.75rem;color:var(--neo-subtle)">
+          Works with React · Vue 3 · Svelte · Pure CSS · Tailwind CSS
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ INSTALL ═══ -->
+  <section class="section" id="install">
+    <div class="section-title">Install</div>
+
+    <div class="grid-2" style="margin-bottom:1.5rem">
+      <div>
+        <span class="label-micro">CSS only (any framework)</span>
+        <div class="install-row">
+          <div class="install-cmd"><span>$</span> npm i @thedevrealm/neo-css</div>
+        </div>
+      </div>
+      <div>
+        <span class="label-micro">React</span>
+        <div class="install-row">
+          <div class="install-cmd"><span>$</span> npm i @thedevrealm/neo-css @thedevrealm/neo-react</div>
+        </div>
+      </div>
+      <div>
+        <span class="label-micro">Vue 3</span>
+        <div class="install-row">
+          <div class="install-cmd"><span>$</span> npm i @thedevrealm/neo-css @thedevrealm/neo-vue</div>
+        </div>
+      </div>
+      <div>
+        <span class="label-micro">Svelte</span>
+        <div class="install-row">
+          <div class="install-cmd"><span>$</span> npm i @thedevrealm/neo-css @thedevrealm/neo-svelte</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <pre><span class="cm">// Import the CSS once in your entry file</span>
+<span class="kw">import</span> <span class="str">'@thedevrealm/neo-css/dist/neo.css'</span>
+
+<span class="cm">// React — named imports, fully tree-shakeable</span>
+<span class="kw">import</span> { <span class="cl">NeoButton</span>, <span class="cl">NeoCard</span>, <span class="cl">NeoAlert</span>, <span class="cl">NeoTag</span> } <span class="kw">from</span> <span class="str">'@thedevrealm/neo-react'</span>
+
+<span class="cm">// Vue 3 — global plugin or individual imports</span>
+<span class="kw">import</span> <span class="cl">NeoVue</span> <span class="kw">from</span> <span class="str">'@thedevrealm/neo-vue'</span>
+createApp(App).<span class="px">use</span>(NeoVue).mount(<span class="str">'#app'</span>)
+
+<span class="cm">// Svelte — individual component imports</span>
+<span class="kw">import</span> { <span class="cl">NeoButton</span>, <span class="cl">NeoCard</span> } <span class="kw">from</span> <span class="str">'@thedevrealm/neo-svelte'</span>
+
+<span class="cm">// Tailwind preset</span>
+<span class="cm">// tailwind.config.js</span>
+module.exports = { presets: [<span class="px">require</span>(<span class="str">'@thedevrealm/neo-css/tailwind-preset'</span>)] }</pre>
+    </div>
+  </section>
+
+  <!-- ═══ BUTTONS ═══ -->
+  <section class="section" id="buttons">
+    <div class="section-title">Buttons</div>
+    <div class="neo-card p-6 space-y">
+
+      <span class="label-micro">Variants</span>
+      <div class="flex-wrap" style="margin-bottom:1.25rem">
+        <button class="neo-btn neo-btn-primary">Primary</button>
+        <button class="neo-btn neo-btn-accent">Accent</button>
+        <button class="neo-btn neo-btn-ghost">Ghost</button>
+        <button class="neo-btn neo-btn-danger">Danger</button>
+      </div>
+
+      <span class="label-micro">Sizes</span>
+      <div class="flex-wrap" style="margin-bottom:1.25rem">
+        <button class="neo-btn neo-btn-primary neo-btn-sm">Small</button>
+        <button class="neo-btn neo-btn-primary neo-btn-md">Medium</button>
+        <button class="neo-btn neo-btn-primary neo-btn-lg">Large</button>
+      </div>
+
+      <div class="code-block">
+        <pre><span class="cm">/* CSS */</span>
+&lt;<span class="cl">button</span> <span class="kw">class</span>=<span class="str">"neo-btn neo-btn-primary neo-btn-md"</span>&gt;Primary&lt;/button&gt;
+
+<span class="cm">// React</span>
+&lt;<span class="cl">NeoButton</span> <span class="px">variant</span>=<span class="str">"primary"</span> <span class="px">size</span>=<span class="str">"md"</span>&gt;Primary&lt;/<span class="cl">NeoButton</span>&gt;
+
+<span class="cm">// Vue</span>
+&lt;<span class="cl">NeoButton</span> <span class="px">variant</span>=<span class="str">"accent"</span> <span class="px">size</span>=<span class="str">"lg"</span>&gt;Accent&lt;/<span class="cl">NeoButton</span>&gt;
+
+<span class="cm">// Svelte</span>
+&lt;<span class="cl">NeoButton</span> <span class="px">variant</span>=<span class="str">"ghost"</span> <span class="px">on:click</span>={handler}&gt;Ghost&lt;/<span class="cl">NeoButton</span>&gt;</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TAGS ═══ -->
+  <section class="section" id="tags">
+    <div class="section-title">Tags &amp; Badges</div>
+    <div class="neo-card p-6 space-y">
+      <span class="label-micro">Tags</span>
+      <div class="flex-wrap" style="margin-bottom:1rem">
+        <span class="neo-tag neo-tag-brand">Brand</span>
+        <span class="neo-tag neo-tag-accent">Accent</span>
+        <span class="neo-tag neo-tag-ghost">Ghost</span>
+        <span class="neo-tag neo-tag-brand neo-tag-rotate">Premium</span>
+        <span class="neo-tag neo-tag-accent neo-tag-rotate">Hot</span>
+      </div>
+      <span class="label-micro">Badges</span>
+      <div class="flex-wrap">
+        <span class="neo-badge neo-badge-default">Default</span>
+        <span class="neo-badge neo-badge-success">Published</span>
+        <span class="neo-badge neo-badge-warning">Draft</span>
+        <span class="neo-badge neo-badge-error">Archived</span>
+      </div>
+      <div class="code-block">
+        <pre>&lt;<span class="cl">span</span> <span class="kw">class</span>=<span class="str">"neo-tag neo-tag-accent neo-tag-rotate"</span>&gt;Hot&lt;/span&gt;
+&lt;<span class="cl">span</span> <span class="kw">class</span>=<span class="str">"neo-badge neo-badge-success"</span>&gt;Published&lt;/span&gt;
+
+<span class="cm">// React</span>
+&lt;<span class="cl">NeoTag</span> <span class="px">variant</span>=<span class="str">"accent"</span> <span class="px">rotated</span>&gt;Hot&lt;/<span class="cl">NeoTag</span>&gt;
+&lt;<span class="cl">NeoBadge</span> <span class="px">variant</span>=<span class="str">"success"</span>&gt;Published&lt;/<span class="cl">NeoBadge</span>&gt;</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CARDS ═══ -->
+  <section class="section" id="cards">
+    <div class="section-title">Cards</div>
+    <div class="grid-3" style="margin-bottom:1.25rem">
+      <div class="neo-card p-6">
+        <h3 style="font-size:.875rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#fff;margin:0 0 .5rem">.neo-card</h3>
+        <p style="font-size:.75rem;color:var(--neo-muted);margin:0">Standard card. 3px border, 5px shadow. Hover to lift.</p>
+      </div>
+      <div class="neo-card-brand p-6">
+        <h3 style="font-size:.875rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#fff;margin:0 0 .5rem">.neo-card-brand</h3>
+        <p style="font-size:.75rem;color:var(--neo-muted);margin:0">Green top accent bar.</p>
+      </div>
+      <div class="neo-card neo-star p-6">
+        <h3 style="font-size:.875rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#fff;margin:0 0 .5rem">.neo-star</h3>
+        <p style="font-size:.75rem;color:var(--neo-muted);margin:0">Adds a ★ in the top-right corner.</p>
+      </div>
+      <div class="neo-card neo-card-pattern p-6">
+        <h3 style="font-size:.875rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#fff;margin:0 0 .5rem">.neo-card-pattern</h3>
+        <p style="font-size:.75rem;color:var(--neo-muted);margin:0">Micro-grid pattern on hover.</p>
+      </div>
+      <div class="neo-stat-card">
+        <p style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--neo-muted);margin:0 0 .25rem">.neo-stat-card</p>
+        <p style="font-size:1.5rem;font-weight:900;color:#fff;margin:0">12,847</p>
+        <p style="font-size:.75rem;color:var(--neo-brand);margin:.25rem 0 0">+23% this month</p>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre>&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-card"</span>&gt;Standard&lt;/div&gt;
+&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-card-brand"</span>&gt;Brand&lt;/div&gt;
+&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-card neo-star"</span>&gt;Starred&lt;/div&gt;
+
+<span class="cm">// React</span>
+&lt;<span class="cl">NeoCard</span> <span class="px">variant</span>=<span class="str">"brand"</span> <span class="px">pattern</span>&gt;Content&lt;/<span class="cl">NeoCard</span>&gt;
+&lt;<span class="cl">NeoCard</span> <span class="px">variant</span>=<span class="str">"stat"</span>&gt;12,847&lt;/<span class="cl">NeoCard</span>&gt;</pre>
+    </div>
+  </section>
+
+  <!-- ═══ FORMS ═══ -->
+  <section class="section" id="forms">
+    <div class="section-title">Form Controls</div>
+    <div class="neo-card p-6 space-y">
+      <div class="neo-field">
+        <label class="neo-label">Text Input</label>
+        <input class="neo-input" placeholder="Enter your name..." />
+      </div>
+      <div class="neo-field">
+        <label class="neo-label">Select</label>
+        <select class="neo-select">
+          <option>Choose a level...</option>
+          <option>Beginner</option>
+          <option>Intermediate</option>
+          <option>Advanced</option>
+        </select>
+      </div>
+      <div class="neo-field">
+        <label class="neo-label">Textarea</label>
+        <textarea class="neo-input" style="resize:none;height:7rem" placeholder="Write your message..."></textarea>
+      </div>
+      <div class="flex-wrap">
+        <button class="neo-btn neo-btn-primary">Submit</button>
+        <button class="neo-btn neo-btn-ghost">Cancel</button>
+      </div>
+      <div class="code-block">
+        <pre><span class="cm">/* CSS classes */</span>
+&lt;<span class="cl">input</span>    <span class="kw">class</span>=<span class="str">"neo-input"</span> /&gt;
+&lt;<span class="cl">select</span>   <span class="kw">class</span>=<span class="str">"neo-select"</span>&gt;...&lt;/select&gt;
+&lt;<span class="cl">textarea</span> <span class="kw">class</span>=<span class="str">"neo-input"</span>&gt;&lt;/textarea&gt;
+
+<span class="cm">// React</span>
+&lt;<span class="cl">NeoInput</span>    <span class="px">label</span>=<span class="str">"Name"</span>  <span class="px">placeholder</span>=<span class="str">"Your name..."</span> /&gt;
+&lt;<span class="cl">NeoTextarea</span> <span class="px">label</span>=<span class="str">"Bio"</span>   <span class="px">placeholder</span>=<span class="str">"About you..."</span> /&gt;
+&lt;<span class="cl">NeoSelect</span>   <span class="px">label</span>=<span class="str">"Level"</span> <span class="px">:options</span>=<span class="str">"opts"</span> /&gt;</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TABLE ═══ -->
+  <section class="section" id="table">
+    <div class="section-title">Table</div>
+    <div style="overflow-x:auto;margin-bottom:1.25rem">
+      <table class="neo-table">
+        <thead>
+          <tr><th>Course</th><th>Students</th><th>Rating</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:600;color:#fff">React Mastery</td>
+            <td>2,431</td>
+            <td><span style="color:var(--neo-accent);font-weight:700">★ 4.9</span></td>
+            <td><span class="neo-badge neo-badge-success">Published</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:#fff">Node.js Deep Dive</td>
+            <td>1,847</td>
+            <td><span style="color:var(--neo-accent);font-weight:700">★ 4.7</span></td>
+            <td><span class="neo-badge neo-badge-success">Published</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;color:#fff">TypeScript Pro</td>
+            <td>963</td>
+            <td><span style="color:var(--neo-accent);font-weight:700">★ 4.8</span></td>
+            <td><span class="neo-badge neo-badge-warning">Draft</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="code-block">
+      <pre><span class="cm">/* CSS */</span>
+&lt;<span class="cl">table</span> <span class="kw">class</span>=<span class="str">"neo-table"</span>&gt;
+  &lt;<span class="cl">thead</span>&gt;&lt;<span class="cl">tr</span>&gt;&lt;<span class="cl">th</span>&gt;Course&lt;/th&gt;...&lt;/tr&gt;&lt;/<span class="cl">thead</span>&gt;
+  &lt;<span class="cl">tbody</span>&gt;&lt;<span class="cl">tr</span>&gt;&lt;<span class="cl">td</span>&gt;React Mastery&lt;/td&gt;...&lt;/tr&gt;&lt;/<span class="cl">tbody</span>&gt;
+&lt;/<span class="cl">table</span>&gt;
+
+<span class="cm">// React — generic typed component</span>
+&lt;<span class="cl">NeoTable</span>
+  <span class="px">rowKey</span>=<span class="str">"id"</span>
+  <span class="px">columns</span>={[{ <span class="px">key</span>: <span class="str">'name'</span>, <span class="px">header</span>: <span class="str">'Course'</span> }]}
+  <span class="px">data</span>={courses}
+/&gt;</pre>
+    </div>
+  </section>
+
+  <!-- ═══ TOGGLE / TABS ═══ -->
+  <section class="section" id="toggle">
+    <div class="section-title">Toggle &amp; Tabs</div>
+    <div class="neo-card p-6 space-y">
+      <span class="label-micro">Toggle Group</span>
+      <div class="neo-toggle" role="group" style="margin-bottom:1.25rem" id="toggle-demo">
+        <button class="neo-toggle-btn neo-toggle-btn-active" onclick="toggleActive(this)">Grid</button>
+        <button class="neo-toggle-btn" onclick="toggleActive(this)">List</button>
+        <button class="neo-toggle-btn" onclick="toggleActive(this)">Table</button>
+      </div>
+
+      <span class="label-micro">Tab Bar</span>
+      <div class="neo-tabs" id="tab-demo">
+        <button class="neo-tab neo-tab-active" onclick="tabActive(this)">Details</button>
+        <button class="neo-tab" onclick="tabActive(this)">Media</button>
+        <button class="neo-tab" onclick="tabActive(this)">Settings</button>
+      </div>
+
+      <div class="code-block">
+        <pre><span class="cm">// React</span>
+<span class="kw">const</span> [view, setView] = React.<span class="px">useState</span>(<span class="str">'grid'</span>)
+
+&lt;<span class="cl">NeoToggleGroup</span> <span class="px">value</span>={view} <span class="px">onChange</span>={setView}&gt;
+  &lt;<span class="cl">NeoToggleItem</span> <span class="px">value</span>=<span class="str">"grid"</span>&gt;Grid&lt;/<span class="cl">NeoToggleItem</span>&gt;
+  &lt;<span class="cl">NeoToggleItem</span> <span class="px">value</span>=<span class="str">"list"</span>&gt;List&lt;/<span class="cl">NeoToggleItem</span>&gt;
+&lt;/<span class="cl">NeoToggleGroup</span>&gt;
+
+&lt;<span class="cl">NeoTabBar</span> <span class="px">value</span>={tab} <span class="px">onChange</span>={setTab}&gt;
+  &lt;<span class="cl">NeoTab</span> <span class="px">value</span>=<span class="str">"details"</span>&gt;Details&lt;/<span class="cl">NeoTab</span>&gt;
+  &lt;<span class="cl">NeoTab</span> <span class="px">value</span>=<span class="str">"media"</span>&gt;Media&lt;/<span class="cl">NeoTab</span>&gt;
+&lt;/<span class="cl">NeoTabBar</span>&gt;</pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ALERTS ═══ -->
+  <section class="section" id="alerts">
+    <div class="section-title">Alerts</div>
+    <div class="space-y" style="margin-bottom:1.25rem">
+      <div class="neo-alert neo-alert-success">
+        <span style="font-size:1.1rem;flex-shrink:0">✓</span>
+        <p style="margin:0"><strong style="text-transform:uppercase;letter-spacing:.05em">Success</strong> — Your changes have been saved.</p>
+      </div>
+      <div class="neo-alert neo-alert-warning">
+        <span style="font-size:1.1rem;flex-shrink:0">⚠</span>
+        <p style="margin:0"><strong style="text-transform:uppercase;letter-spacing:.05em">Warning</strong> — Your subscription expires in 3 days.</p>
+      </div>
+      <div class="neo-alert neo-alert-error">
+        <span style="font-size:1.1rem;flex-shrink:0">✕</span>
+        <p style="margin:0"><strong style="text-transform:uppercase;letter-spacing:.05em">Error</strong> — Something went wrong. Please try again.</p>
+      </div>
+      <div class="neo-alert neo-alert-info">
+        <span style="font-size:1.1rem;flex-shrink:0">ℹ</span>
+        <p style="margin:0"><strong style="text-transform:uppercase;letter-spacing:.05em">Info</strong> — New courses drop every week.</p>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre>&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-alert neo-alert-success"</span>&gt;...&lt;/div&gt;
+
+<span class="cm">// React</span>
+&lt;<span class="cl">NeoAlert</span> <span class="px">variant</span>=<span class="str">"success"</span> <span class="px">title</span>=<span class="str">"Saved"</span> <span class="px">icon</span>={&lt;<span class="cl">CheckIcon</span>/&gt;}&gt;
+  Your changes have been saved.
+&lt;/<span class="cl">NeoAlert</span>&gt;
+
+<span class="cm">// Vue</span>
+&lt;<span class="cl">NeoAlert</span> <span class="px">variant</span>=<span class="str">"warning"</span> <span class="px">title</span>=<span class="str">"Heads up"</span>&gt;
+  &lt;<span class="cl">template</span> <span class="px">#icon</span>&gt;&lt;<span class="cl">WarningIcon</span>/&gt;&lt;/<span class="cl">template</span>&gt;
+  Expires soon.
+&lt;/<span class="cl">NeoAlert</span>&gt;</pre>
+    </div>
+  </section>
+
+  <!-- ═══ DECORATIVE ═══ -->
+  <section class="section" id="decorative">
+    <div class="section-title">Decorative Elements</div>
+    <div class="grid-2" style="margin-bottom:1.25rem">
+      <div style="border:var(--neo-border);border-radius:var(--neo-radius);overflow:hidden;box-shadow:var(--neo-shadow-sm)">
+        <div class="neo-header-bar">
+          <span>Header Bar</span><span class="neo-tag neo-tag-accent" style="font-size:.65rem">Premium</span>
+        </div>
+        <div class="p-6" style="background:var(--neo-surface)">
+          <p style="font-size:.75rem;color:var(--neo-muted);margin:0">Branded diagonal-stripe header strip for cards and modals.</p>
+          <code style="font-size:.65rem;color:var(--neo-subtle);display:block;margin-top:.5rem;font-family:var(--neo-font-mono)">.neo-header-bar</code>
+        </div>
+      </div>
+
+      <div style="border:var(--neo-border);border-radius:var(--neo-radius);background:var(--neo-surface);padding:1.5rem;box-shadow:var(--neo-shadow-sm)">
+        <p style="font-size:.75rem;color:var(--neo-muted);margin:0 0 .75rem">Dashed divider with scissors:</p>
+        <hr class="neo-divider">
+        <p style="font-size:.75rem;color:var(--neo-muted);margin:.75rem 0 0">Content below the cut.</p>
+        <code style="font-size:.65rem;color:var(--neo-subtle);display:block;margin-top:.5rem;font-family:var(--neo-font-mono)">.neo-divider</code>
+      </div>
+
+      <div style="border:var(--neo-border);border-radius:var(--neo-radius);background:var(--neo-surface);padding:1.5rem;box-shadow:var(--neo-shadow-sm)">
+        <p style="font-size:.625rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--neo-muted);margin:0 0 .75rem">Price Display</p>
+        <span class="neo-price">$49<span style="font-size:1.25rem">.99</span></span>
+        <code style="font-size:.65rem;color:var(--neo-subtle);display:block;margin-top:.75rem;font-family:var(--neo-font-mono)">.neo-price</code>
+      </div>
+
+      <div style="border:var(--neo-border);border-radius:var(--neo-radius);background:var(--neo-surface);padding:1.5rem;box-shadow:var(--neo-shadow-sm)">
+        <p style="font-size:.625rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--neo-muted);margin:0 0 .75rem">Gradient Text</p>
+        <p class="neo-text-gradient" style="font-size:1.5rem;font-weight:900;margin:0">Emerald Gradient</p>
+        <code style="font-size:.65rem;color:var(--neo-subtle);display:block;margin-top:.75rem;font-family:var(--neo-font-mono)">.neo-text-gradient</code>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ANIMATIONS ═══ -->
+  <section class="section" id="animations">
+    <div class="section-title">Animations</div>
+    <div class="grid-3" style="margin-bottom:1.25rem">
+      <div class="neo-card p-6 animate-neo-fade-in-up">
+        <p style="font-size:.8rem;font-weight:800;text-transform:uppercase;color:#fff;margin:0 0 .25rem">Fade In Up</p>
+        <code style="font-size:.65rem;color:var(--neo-muted);font-family:var(--neo-font-mono)">.animate-neo-fade-in-up</code>
+      </div>
+      <div class="neo-card p-6" style="display:flex;align-items:center;gap:1rem">
+        <span class="animate-neo-float" style="font-size:2rem">★</span>
+        <div>
+          <p style="font-size:.8rem;font-weight:800;text-transform:uppercase;color:#fff;margin:0 0 .25rem">Float</p>
+          <code style="font-size:.65rem;color:var(--neo-muted);font-family:var(--neo-font-mono)">.animate-neo-float</code>
+        </div>
+      </div>
+      <div class="neo-card p-6">
+        <div style="position:relative;display:inline-block;margin-bottom:.75rem">
+          <span style="font-size:1.5rem">🔔</span>
+          <span style="position:absolute;top:0;right:0;width:10px;height:10px;border-radius:50%;background:#ef4444"></span>
+          <span class="animate-neo-ping-slow" style="position:absolute;top:0;right:0;width:10px;height:10px;border-radius:50%;background:#ef4444"></span>
+        </div>
+        <p style="font-size:.8rem;font-weight:800;text-transform:uppercase;color:#fff;margin:0 0 .25rem">Ping Slow</p>
+        <code style="font-size:.65rem;color:var(--neo-muted);font-family:var(--neo-font-mono)">.animate-neo-ping-slow</code>
+      </div>
+      <div class="neo-card p-6">
+        <p class="animate-neo-gradient-shift" style="font-size:1.25rem;font-weight:900;margin:0 0 .5rem">Gradient Shift</p>
+        <code style="font-size:.65rem;color:var(--neo-muted);font-family:var(--neo-font-mono)">.animate-neo-gradient-shift</code>
+      </div>
+    </div>
+    <div class="code-block">
+      <pre>&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"animate-neo-fade-in-up"</span>&gt;Fades in on load&lt;/div&gt;
+&lt;<span class="cl">span</span> <span class="kw">class</span>=<span class="str">"animate-neo-float"</span>&gt;★&lt;/span&gt;
+&lt;<span class="cl">span</span> <span class="kw">class</span>=<span class="str">"animate-neo-ping-slow"</span>&gt;&lt;/span&gt;
+&lt;<span class="cl">h1</span>   <span class="kw">class</span>=<span class="str">"animate-neo-gradient-shift"</span>&gt;Gradient&lt;/h1&gt;</pre>
+    </div>
+  </section>
+
+  <!-- ═══ FRAMEWORKS ═══ -->
+  <section class="section" id="frameworks">
+    <div class="section-title">Framework Examples</div>
+    <div class="grid-2">
+
+      <!-- React -->
+      <div class="neo-card-brand" style="overflow:hidden">
+        <div class="neo-header-bar"><span>React</span><span class="neo-tag neo-tag-ghost" style="font-size:.65rem">TypeScript</span></div>
+        <div class="code-block" style="border:none;border-radius:0;box-shadow:none">
+          <pre><span class="kw">import</span> { <span class="cl">NeoButton</span>, <span class="cl">NeoCard</span>, <span class="cl">NeoAlert</span> }
+  <span class="kw">from</span> <span class="str">'@thedevrealm/neo-react'</span>
+
+<span class="kw">export default function</span> <span class="cl">Demo</span>() {
+  <span class="kw">return</span> (
+    &lt;<span class="cl">NeoCard</span> <span class="px">variant</span>=<span class="str">"brand"</span> <span class="px">style</span>={{padding:<span class="str">'1.5rem'</span>}}&gt;
+      &lt;<span class="cl">NeoAlert</span> <span class="px">variant</span>=<span class="str">"success"</span> <span class="px">title</span>=<span class="str">"Done"</span>&gt;
+        Changes saved.
+      &lt;/<span class="cl">NeoAlert</span>&gt;
+      &lt;<span class="cl">NeoButton</span> <span class="px">variant</span>=<span class="str">"primary"</span>&gt;
+        Get Started
+      &lt;/<span class="cl">NeoButton</span>&gt;
+    &lt;/<span class="cl">NeoCard</span>&gt;
+  )
+}</pre>
+        </div>
+      </div>
+
+      <!-- Vue -->
+      <div class="neo-card-brand" style="overflow:hidden">
+        <div class="neo-header-bar"><span>Vue 3</span><span class="neo-tag neo-tag-ghost" style="font-size:.65rem">Composition API</span></div>
+        <div class="code-block" style="border:none;border-radius:0;box-shadow:none">
+          <pre><span class="cm">&lt;!-- main.ts --&gt;</span>
+<span class="kw">import</span> <span class="cl">NeoVue</span> <span class="kw">from</span> <span class="str">'@thedevrealm/neo-vue'</span>
+createApp(App).<span class="px">use</span>(NeoVue).mount(<span class="str">'#app'</span>)
+
+<span class="cm">&lt;!-- Component.vue --&gt;</span>
+&lt;<span class="cl">template</span>&gt;
+  &lt;<span class="cl">NeoCard</span> <span class="px">variant</span>=<span class="str">"brand"</span>&gt;
+    &lt;<span class="cl">NeoButton</span>
+      <span class="px">variant</span>=<span class="str">"primary"</span>
+      @<span class="px">click</span>=<span class="str">"handleClick"</span>
+    &gt;
+      Click me
+    &lt;/<span class="cl">NeoButton</span>&gt;
+  &lt;/<span class="cl">NeoCard</span>&gt;
+&lt;/<span class="cl">template</span>&gt;</pre>
+        </div>
+      </div>
+
+      <!-- Svelte -->
+      <div class="neo-card-brand" style="overflow:hidden">
+        <div class="neo-header-bar"><span>Svelte 4</span><span class="neo-tag neo-tag-ghost" style="font-size:.65rem">SFC</span></div>
+        <div class="code-block" style="border:none;border-radius:0;box-shadow:none">
+          <pre><span class="cm">&lt;!-- App.svelte --&gt;</span>
+&lt;<span class="cl">script</span>&gt;
+  <span class="kw">import</span> { <span class="cl">NeoButton</span>, <span class="cl">NeoCard</span> }
+    <span class="kw">from</span> <span class="str">'@thedevrealm/neo-svelte'</span>
+  <span class="kw">let</span> count = <span class="str">0</span>
+&lt;/<span class="cl">script</span>&gt;
+
+&lt;<span class="cl">NeoCard</span> <span class="px">variant</span>=<span class="str">"brand"</span>&gt;
+  &lt;<span class="cl">NeoButton</span>
+    <span class="px">variant</span>=<span class="str">"accent"</span>
+    <span class="px">on:click</span>={() =&gt; count++}
+  &gt;
+    Clicked {count}×
+  &lt;/<span class="cl">NeoButton</span>&gt;
+&lt;/<span class="cl">NeoCard</span>&gt;</pre>
+        </div>
+      </div>
+
+      <!-- CSS only -->
+      <div class="neo-card-brand" style="overflow:hidden">
+        <div class="neo-header-bar"><span>Pure CSS</span><span class="neo-tag neo-tag-ghost" style="font-size:.65rem">Any framework</span></div>
+        <div class="code-block" style="border:none;border-radius:0;box-shadow:none">
+          <pre><span class="cm">&lt;!-- HTML --&gt;</span>
+&lt;<span class="cl">link</span> <span class="px">rel</span>=<span class="str">"stylesheet"</span>
+  <span class="px">href</span>=<span class="str">"https://unpkg.com/@thedevrealm/neo-css/dist/neo.css"</span>&gt;
+
+&lt;<span class="cl">button</span> <span class="kw">class</span>=<span class="str">"neo-btn neo-btn-primary"</span>&gt;
+  Primary
+&lt;/<span class="cl">button</span>&gt;
+
+&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-card neo-star"</span>
+     <span class="px">style</span>=<span class="str">"padding:1.5rem"</span>&gt;
+  Featured Card
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FULL EXAMPLE ═══ -->
+  <section class="section" id="example">
+    <div class="section-title">Full Example Card</div>
+    <div style="max-width:420px;margin:0 auto">
+      <div class="neo-card-brand neo-card-pattern" style="overflow:hidden">
+        <div class="neo-header-bar">
+          <span>Creative Studio</span>
+          <span class="neo-tag neo-tag-accent" style="font-size:.65rem">Premium</span>
+        </div>
+        <div class="p-6">
+          <p style="font-size:.875rem;color:var(--neo-muted);margin:0 0 1rem">
+            Award-winning design studio crafting bold brands and cutting-edge digital experiences.
+          </p>
+          <div class="flex-wrap" style="margin-bottom:1.25rem">
+            <span class="neo-tag neo-tag-ghost">UI/UX</span>
+            <span class="neo-tag neo-tag-ghost">Dev</span>
+            <span class="neo-tag neo-tag-ghost">Brand</span>
+          </div>
+          <hr class="neo-divider">
+          <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-top:1.25rem">
+            <div>
+              <span class="neo-price" style="font-size:2rem">$899</span>
+              <p style="font-size:.75rem;color:var(--neo-muted);margin:.25rem 0 0">per project</p>
+            </div>
+            <button class="neo-btn neo-btn-primary">Get Started →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-inner">
+    <p style="margin:0;font-size:.75rem;color:var(--neo-subtle)">
+      © 2026 The Dev Realm — MIT License
+    </p>
+    <div class="flex-wrap">
+      <a href="https://github.com/mariojgt/thedevrealm-neo" target="_blank" rel="noopener"
+         style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--neo-muted);text-decoration:none">
+        GitHub ↗
+      </a>
+      <a href="https://www.npmjs.com/search?q=%40thedevrealm" target="_blank" rel="noopener"
+         style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--neo-muted);text-decoration:none">
+        npm ↗
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Toggle group demo
+  function toggleActive(btn) {
+    const group = btn.closest('#toggle-demo')
+    group.querySelectorAll('.neo-toggle-btn').forEach(b => b.classList.remove('neo-toggle-btn-active'))
+    btn.classList.add('neo-toggle-btn-active')
+  }
+  // Tab demo
+  function tabActive(btn) {
+    const group = btn.closest('#tab-demo')
+    group.querySelectorAll('.neo-tab').forEach(b => b.classList.remove('neo-tab-active'))
+    btn.classList.add('neo-tab-active')
+  }
+</script>
+</body>
+</html>

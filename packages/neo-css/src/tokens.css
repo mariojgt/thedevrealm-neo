@@ -1,0 +1,63 @@
+/* ==========================================================================
+   @thedevrealm/neo-css — Design Tokens
+   All CSS custom properties for the Neo-Brutalist design system.
+   ========================================================================== */
+
+:root {
+  /* ── Brand Colors ── */
+  --neo-brand:          #0d9668;
+  --neo-brand-light:    #2bb885;
+  --neo-brand-dark:     #047857;
+
+  /* ── Surface / Background Colors ── */
+  --neo-surface:          #0c1222;
+  --neo-surface-light:    #131d33;
+  --neo-surface-lighter:  #1a2742;
+  --neo-body-bg:          #080d19;
+
+  /* ── Accent Colors ── */
+  --neo-accent:       #e6930a;
+  --neo-accent-dark:  #c27706;
+
+  /* ── Neutral Colors ── */
+  --neo-border-color: #3a506e;
+  --neo-muted:        #8594b0;
+  --neo-subtle:       #4b5c7a;
+  --neo-white:        #ffffff;
+  --neo-black:        #000000;
+
+  /* ── Semantic Colors ── */
+  --neo-success:          #0d9668;
+  --neo-success-bg:       rgba(13, 150, 104, 0.05);
+  --neo-warning:          #e6930a;
+  --neo-warning-bg:       rgba(230, 147, 10, 0.05);
+  --neo-danger:           #ef4444;
+  --neo-danger-dark:      #b91c1c;
+  --neo-danger-bg:        rgba(239, 68, 68, 0.05);
+  --neo-info-bg:          var(--neo-surface);
+
+  /* ── Border ── */
+  --neo-border-width:  3px;
+  --neo-border:        var(--neo-border-width) solid var(--neo-border-color);
+  --neo-radius:        0.375rem;   /* rounded-md */
+
+  /* ── Shadows (hard offset, zero blur) ── */
+  --neo-shadow-xs: 2px 2px 0 var(--neo-black);
+  --neo-shadow-sm: 4px 4px 0 var(--neo-black);
+  --neo-shadow:    5px 5px 0 var(--neo-black);
+  --neo-shadow-lg: 6px 6px 0 var(--neo-black);
+  --neo-shadow-xl: 8px 8px 0 var(--neo-black);
+
+  /* ── Typography ── */
+  --neo-font-sans: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --neo-font-mono: ui-monospace, 'SFMono-Regular', Consolas, monospace;
+
+  /* ── Spacing Scale ── */
+  --neo-space-1: 0.25rem;
+  --neo-space-2: 0.5rem;
+  --neo-space-3: 0.75rem;
+  --neo-space-4: 1rem;
+  --neo-space-5: 1.25rem;
+  --neo-space-6: 1.5rem;
+  --neo-space-8: 2rem;
+}

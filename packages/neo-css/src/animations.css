@@ -1,0 +1,93 @@
+/* ==========================================================================
+   @thedevrealm/neo-css — Animations
+   ========================================================================== */
+
+/* ── Keyframes ── */
+
+@keyframes neo-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes neo-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes neo-float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes neo-bounce-gentle {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
+}
+
+@keyframes neo-ping-slow {
+  0%   { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+@keyframes neo-gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%       { background-position: 100% 50%; }
+}
+
+@keyframes neo-pulse-border {
+  0%, 100% { border-color: var(--neo-border-color); }
+  50%       { border-color: var(--neo-brand); }
+}
+
+/* ── Animation Utility Classes ── */
+
+.animate-neo-fade-in-up {
+  animation: neo-fade-in-up 0.4s ease forwards;
+}
+
+.animate-neo-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--neo-surface-light)   0%,
+    var(--neo-surface-lighter) 50%,
+    var(--neo-surface-light)   100%
+  );
+  background-size: 200% 100%;
+  animation: neo-shimmer 2s linear infinite;
+}
+
+.animate-neo-float {
+  animation: neo-float 3s ease-in-out infinite;
+}
+
+.animate-neo-bounce-gentle {
+  animation: neo-bounce-gentle 2s ease-in-out infinite;
+}
+
+.animate-neo-ping-slow {
+  animation: neo-ping-slow 2s ease-out infinite;
+}
+
+.animate-neo-gradient-shift {
+  background: linear-gradient(
+    270deg,
+    var(--neo-brand-light),
+    var(--neo-accent),
+    var(--neo-brand)
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: neo-gradient-shift 4s ease infinite;
+}
+
+.animate-neo-pulse-border {
+  animation: neo-pulse-border 2s ease-in-out infinite;
+}

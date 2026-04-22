@@ -1,0 +1,48 @@
+/* ==========================================================================
+   @thedevrealm/neo-css — Base / Reset
+   Applies the body background, grid texture, and noise overlay globally.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--neo-font-sans);
+  background-color: var(--neo-body-bg);
+  color: var(--neo-muted);
+  /* Squared-grid texture — fixed so it doesn't scroll */
+  background-image:
+    linear-gradient(rgba(58, 80, 110, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(58, 80, 110, 0.15) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Noise overlay — applied via a fixed pseudo-element at <body> level.
+   Add class="neo-noise" to <body> to activate. */
+.neo-noise::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  opacity: 1;
+}
+
+/* Utility color helpers */
+.neo-text-white   { color: var(--neo-white); }
+.neo-text-muted   { color: var(--neo-muted); }
+.neo-text-subtle  { color: var(--neo-subtle); }
+.neo-text-brand   { color: var(--neo-brand); }
+.neo-text-accent  { color: var(--neo-accent); }

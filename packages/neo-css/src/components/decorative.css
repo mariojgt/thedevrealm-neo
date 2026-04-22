@@ -1,0 +1,109 @@
+/* ==========================================================================
+   @thedevrealm/neo-css — Decorative & Hero Elements
+   ========================================================================== */
+
+/* ── Hero Section ── */
+.neo-hero {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--neo-surface-light);
+  background-image:
+    linear-gradient(rgba(58, 80, 110, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(58, 80, 110, 0.15) 1px, transparent 1px);
+  background-size: 32px 32px;
+  border: var(--neo-border);
+  border-radius: var(--neo-radius);
+  box-shadow: var(--neo-shadow-lg);
+}
+
+.neo-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(13, 150, 104, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ── Header Bar (branded diagonal stripe strip) ── */
+.neo-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.625rem 1rem;
+  background-color: var(--neo-brand);
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 4px,
+    rgba(0, 0, 0, 0.15) 4px,
+    rgba(0, 0, 0, 0.15) 8px
+  );
+  font-family: var(--neo-font-sans);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--neo-white);
+  gap: 0.5rem;
+}
+
+/* ── Divider (dashed + scissors icon) ── */
+.neo-divider {
+  border: none;
+  border-top: 2px dashed var(--neo-border-color);
+  position: relative;
+  margin: 1rem 0;
+  background: none;
+}
+
+.neo-divider::after {
+  content: '✂';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--neo-surface-light);
+  padding: 0 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1;
+  color: var(--neo-subtle);
+}
+
+/* ── Stripe Pattern overlay ── */
+.neo-stripe-pattern {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 4px,
+    rgba(58, 80, 110, 0.08) 4px,
+    rgba(58, 80, 110, 0.08) 8px
+  );
+}
+
+/* ── Price Display ── */
+.neo-price {
+  font-family: var(--neo-font-sans);
+  font-size: 2.25rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--neo-white);
+  text-decoration-line: underline;
+  text-decoration-color: var(--neo-accent);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+}
+
+/* ── Gradient Text ── */
+.neo-text-gradient {
+  background: linear-gradient(135deg, var(--neo-brand-light), var(--neo-brand));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.neo-text-gradient-hero {
+  background: linear-gradient(135deg, var(--neo-brand-light), var(--neo-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

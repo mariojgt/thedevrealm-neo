@@ -1,0 +1,39 @@
+{
+  "name": "@thedevrealm/neo-vue",
+  "version": "1.0.0",
+  "description": "The Dev Realm Neo-Brutalist Vue 3 component library.",
+  "keywords": ["neo-brutalism", "vue", "vue3", "components", "design-system", "thedevrealm"],
+  "license": "MIT",
+  "author": "The Dev Realm",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thedevrealm/neo"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import":  "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types":   "./dist/index.d.ts"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "vite build",
+    "dev":   "vite build --watch",
+    "clean": "rm -rf dist"
+  },
+  "peerDependencies": {
+    "vue": ">=3.3.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "typescript": "^5.4.5",
+    "vite": "^5.3.1",
+    "vue": "^3.4.29",
+    "vue-tsc": "^2.0.21"
+  }
+}
