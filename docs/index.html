@@ -353,6 +353,151 @@
     .neo-theme-preview-body   { background: var(--neo-surface-light); padding: .875rem 1rem; }
     .neo-theme-preview-name   { font-size: .75rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: #fff; margin: 0 0 .2rem; }
     .neo-theme-preview-desc   { font-size: .6875rem; color: var(--neo-muted); margin: 0; }
+
+    /* ══════════════════════════════════════════════════════════════════
+       GAMING UTILITIES
+       ══════════════════════════════════════════════════════════════════ */
+
+    /* ── Camera Shake ─────────────────────────────────────────────── */
+    @keyframes neo-shake-sm { 0%,100%{transform:translate(0,0) rotate(0)} 20%{transform:translate(-4px,3px) rotate(-.5deg)} 40%{transform:translate(4px,-3px) rotate(.5deg)} 60%{transform:translate(-3px,4px) rotate(-.25deg)} 80%{transform:translate(3px,-2px) rotate(.25deg)} }
+    @keyframes neo-shake-md { 0%,100%{transform:translate(0,0) rotate(0)} 15%{transform:translate(-8px,6px) rotate(-1deg)} 30%{transform:translate(8px,-6px) rotate(1deg)} 50%{transform:translate(-6px,8px) rotate(-.75deg)} 70%{transform:translate(7px,-5px) rotate(.75deg)} 85%{transform:translate(-4px,4px) rotate(-.5deg)} }
+    @keyframes neo-shake-lg { 0%,100%{transform:translate(0,0) rotate(0)} 10%{transform:translate(-14px,10px) rotate(-2deg)} 25%{transform:translate(14px,-10px) rotate(2deg)} 40%{transform:translate(-10px,14px) rotate(-1.5deg)} 55%{transform:translate(12px,-8px) rotate(1.5deg)} 70%{transform:translate(-8px,10px) rotate(-1deg)} 85%{transform:translate(8px,-6px) rotate(1deg)} }
+    .neo-shake-sm { animation: neo-shake-sm .35s ease both; }
+    .neo-shake-md { animation: neo-shake-md .45s ease both; }
+    .neo-shake-lg { animation: neo-shake-lg .55s ease both; }
+
+    /* ── Glitch Text ──────────────────────────────────────────────── */
+    @keyframes neo-glitch-clip1 { 0%{clip-path:inset(20% 0 60% 0)} 20%{clip-path:inset(60% 0 10% 0)} 40%{clip-path:inset(40% 0 40% 0)} 60%{clip-path:inset(10% 0 70% 0)} 80%{clip-path:inset(70% 0 5% 0)} 100%{clip-path:inset(20% 0 60% 0)} }
+    @keyframes neo-glitch-clip2 { 0%{clip-path:inset(50% 0 30% 0)} 25%{clip-path:inset(15% 0 65% 0)} 50%{clip-path:inset(75% 0 5% 0)} 75%{clip-path:inset(30% 0 45% 0)} 100%{clip-path:inset(50% 0 30% 0)} }
+    .neo-glitch {
+      position: relative; display: inline-block;
+      color: #fff; font-weight: 900; text-transform: uppercase;
+    }
+    .neo-glitch::before,
+    .neo-glitch::after {
+      content: attr(data-text); position: absolute; inset: 0;
+      font-weight: inherit; text-transform: inherit; font-size: inherit;
+      white-space: nowrap; overflow: hidden;
+    }
+    .neo-glitch::before {
+      left: 2px; color: var(--neo-brand);
+      animation: neo-glitch-clip1 2.4s infinite linear;
+    }
+    .neo-glitch::after {
+      left: -2px; color: var(--neo-accent);
+      animation: neo-glitch-clip2 2.8s infinite linear;
+    }
+    .neo-glitch-pause::before,
+    .neo-glitch-pause::after { animation-play-state: paused; }
+
+    /* ── Scanlines overlay ────────────────────────────────────────── */
+    .neo-scanlines {
+      position: relative; overflow: hidden;
+    }
+    .neo-scanlines::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 10;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.18) 2px, rgba(0,0,0,.18) 4px);
+    }
+
+    /* ── XP / HP Progress Bar ─────────────────────────────────────── */
+    .neo-xp-bar { width: 100%; }
+    .neo-xp-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: .35rem; }
+    .neo-xp-label-text { font-size: .6875rem; font-weight: 800; text-transform: uppercase; letter-spacing: .09em; color: var(--neo-muted); }
+    .neo-xp-label-val  { font-size: .6875rem; font-weight: 700; font-family: var(--neo-font-mono); color: #fff; }
+    .neo-xp-track {
+      height: 18px; background: var(--neo-surface); border: 3px solid var(--neo-border-color);
+      border-radius: var(--neo-radius); overflow: hidden; box-shadow: inset 2px 2px 0 rgba(0,0,0,.4);
+      position: relative;
+    }
+    .neo-xp-fill {
+      height: 100%; background: linear-gradient(90deg, var(--neo-brand-dark), var(--neo-brand-light));
+      border-radius: 2px; position: relative; overflow: hidden;
+      transition: width .6s cubic-bezier(.34,1.2,.64,1);
+    }
+    .neo-xp-fill::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.25) 50%, transparent 100%);
+      animation: neo-xp-sheen 1.6s infinite;
+    }
+    @keyframes neo-xp-sheen { from{transform:translateX(-100%)} to{transform:translateX(200%)} }
+    .neo-hp-fill  { background: linear-gradient(90deg, #b91c1c, #ef4444); }
+    .neo-mp-fill  { background: linear-gradient(90deg, #1d4ed8, #60a5fa); }
+    .neo-xp-track-sm   { height: 10px; border-width: 2px; }
+    .neo-xp-track-lg   { height: 26px; border-width: 3px; }
+    .neo-xp-track[data-striped] .neo-xp-fill {
+      background-image: repeating-linear-gradient(45deg, transparent, transparent 6px, rgba(0,0,0,.15) 6px, rgba(0,0,0,.15) 12px),
+                        linear-gradient(90deg, var(--neo-brand-dark), var(--neo-brand-light));
+    }
+
+    /* ── Achievement Toast (special) ──────────────────────────────── */
+    .neo-achievement {
+      display: flex; align-items: center; gap: .875rem;
+      min-width: 300px; max-width: 400px;
+      background: var(--neo-surface-light);
+      border: 3px solid var(--neo-accent); border-top: 5px solid var(--neo-accent);
+      border-radius: var(--neo-radius); padding: .875rem 1rem;
+      box-shadow: 6px 6px 0 #000;
+      font-family: var(--neo-font-sans); pointer-events: all;
+      animation: neo-achieve-in .35s cubic-bezier(.34,1.56,.64,1) forwards;
+    }
+    .neo-achievement.neo-toast-out { animation: neo-toast-out .2s ease-in forwards; }
+    @keyframes neo-achieve-in { from{opacity:0;transform:translateX(24px) scale(.9)} to{opacity:1;transform:translateX(0) scale(1)} }
+    .neo-achieve-icon { font-size: 2rem; flex-shrink: 0; line-height: 1; filter: drop-shadow(0 0 6px var(--neo-accent)); }
+    .neo-achieve-body { flex: 1; }
+    .neo-achieve-eyebrow { font-size: .6rem; font-weight: 800; text-transform: uppercase; letter-spacing: .15em; color: var(--neo-accent); margin-bottom: .15rem; }
+    .neo-achieve-title   { font-size: .875rem; font-weight: 900; text-transform: uppercase; letter-spacing: .05em; color: #fff; }
+    .neo-achieve-desc    { font-size: .75rem; color: var(--neo-muted); margin-top: .15rem; }
+    .neo-achieve-close { background: none; border: none; cursor: pointer; color: var(--neo-subtle); font-size: 1rem; padding: 0; transition: color 100ms; }
+    .neo-achieve-close:hover { color: #fff; }
+
+    /* ── Combo counter ────────────────────────────────────────────── */
+    @keyframes neo-combo-pop  { 0%{transform:scale(.6);opacity:0} 60%{transform:scale(1.25)} 100%{transform:scale(1);opacity:1} }
+    @keyframes neo-combo-fade { 0%{opacity:1;transform:translateY(0)} 100%{opacity:0;transform:translateY(-28px)} }
+    .neo-combo {
+      display: inline-flex; flex-direction: column; align-items: center;
+      font-family: var(--neo-font-sans); user-select: none;
+    }
+    .neo-combo-count { font-size: 3rem; font-weight: 900; line-height: 1; color: #fff; text-shadow: 3px 3px 0 var(--neo-brand-dark); }
+    .neo-combo-label { font-size: .625rem; font-weight: 800; text-transform: uppercase; letter-spacing: .2em; color: var(--neo-accent); }
+    .neo-combo-pop   { animation: neo-combo-pop .2s cubic-bezier(.34,1.56,.64,1) forwards; }
+
+    /* ── Particle burst ───────────────────────────────────────────── */
+    .neo-particle {
+      position: fixed; pointer-events: none; z-index: 9998;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--neo-brand-light);
+      animation: neo-particle-burst .5s ease-out forwards;
+    }
+    @keyframes neo-particle-burst { to { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0); } }
+
+    /* ── Screen flash ─────────────────────────────────────────────── */
+    #neo-screen-flash {
+      position: fixed; inset: 0; pointer-events: none; z-index: 9997;
+      opacity: 0; background: #fff;
+    }
+    @keyframes neo-flash { 0%{opacity:.55} 100%{opacity:0} }
+    .neo-flash-active { animation: neo-flash .25s ease-out forwards; }
+
+    /* ── Typewriter ───────────────────────────────────────────────── */
+    .neo-typewriter {
+      overflow: hidden; white-space: nowrap;
+      border-right: 3px solid var(--neo-brand);
+      animation: neo-type-cursor .7s step-end infinite;
+    }
+    .neo-typewriter-done { border-right-color: transparent; }
+    @keyframes neo-type-cursor { 50%{border-right-color:transparent} }
+
+    /* ── Hover-charged button ─────────────────────────────────────── */
+    .neo-btn-charge {
+      position: relative; overflow: hidden;
+    }
+    .neo-btn-charge::before {
+      content: ''; position: absolute; bottom: 0; left: 0; height: 4px; width: 0;
+      background: rgba(255,255,255,.5);
+      transition: width 1.4s linear;
+    }
+    .neo-btn-charge:hover::before  { width: 100%; }
+    .neo-btn-charge:not(:hover)::before { width: 0; transition: none; }
   </style>
 </head>
 <body>
@@ -379,6 +524,7 @@
       <a href="#animations">Animations</a>
       <a href="#toast">Toast</a>
       <a href="#themes">Themes</a>
+      <a href="#gaming">Gaming ⚡</a>
       <a href="#frameworks">Frameworks</a>
       <a href="https://github.com/mariojgt/thedevrealm-neo" target="_blank" rel="noopener">
         GitHub ↗
@@ -1033,6 +1179,211 @@ createApp(App).<span class="px">use</span>(NeoVue).mount(<span class="str">'#app
 
 </div>
 
+<!-- ═══ GAMING SECTION ═══ -->
+<div class="page-wrap" style="padding-top:0">
+  <section class="section" id="gaming">
+    <div class="section-title">Gaming Utilities</div>
+    <p style="font-size:.875rem;color:var(--neo-muted);margin:0 0 2rem">Drop-in classes and JS helpers designed for game UIs, dashboards, and anything that needs some <em>impact</em>.</p>
+
+    <!-- Camera Shake -->
+    <div class="section-title" style="font-size:1rem;margin-bottom:1rem">Camera Shake</div>
+    <div class="neo-card p-6" style="margin-bottom:2rem">
+      <span class="label-micro">Click to trigger</span>
+      <div class="flex-wrap" style="margin-bottom:1.25rem">
+        <button class="neo-btn neo-btn-ghost" onclick="neoShake('sm')">Shake SM</button>
+        <button class="neo-btn neo-btn-accent" onclick="neoShake('md')">Shake MD</button>
+        <button class="neo-btn neo-btn-danger" onclick="neoShake('lg')">Shake LG</button>
+      </div>
+      <div class="code-block">
+        <pre><span class="cm">// JS — shake the whole page</span>
+<span class="px">neoShake</span>(<span class="str">'sm'</span>)   <span class="cm">// subtle</span>
+<span class="px">neoShake</span>(<span class="str">'md'</span>)   <span class="cm">// noticeable</span>
+<span class="px">neoShake</span>(<span class="str">'lg'</span>)   <span class="cm">// earthquake</span>
+<span class="px">neoShake</span>(<span class="str">'md'</span>, el) <span class="cm">// shake a specific element</span>
+
+<span class="cm">/* CSS classes */</span>
+&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-shake-md"</span>&gt;Shakes on mount&lt;/div&gt;</pre>
+      </div>
+    </div>
+
+    <!-- Glitch Text -->
+    <div class="section-title" style="font-size:1rem;margin-bottom:1rem">Glitch Text</div>
+    <div class="neo-card p-6" style="margin-bottom:2rem">
+      <div style="padding:1.5rem 0;text-align:center;margin-bottom:1.25rem">
+        <span class="neo-glitch" data-text="GAME OVER" style="font-size:clamp(2rem,6vw,3.5rem);letter-spacing:.08em">GAME OVER</span>
+      </div>
+      <div class="flex-wrap" style="margin-bottom:1.25rem">
+        <button class="neo-btn neo-btn-ghost" id="glitch-pause-btn" onclick="toggleGlitch()">Pause Glitch</button>
+      </div>
+      <div class="code-block">
+        <pre><span class="cm">&lt;!-- data-text must match inner text --&gt;</span>
+&lt;<span class="cl">span</span> <span class="kw">class</span>=<span class="str">"neo-glitch"</span> <span class="px">data-text</span>=<span class="str">"GAME OVER"</span>&gt;
+  GAME OVER
+&lt;/span&gt;
+
+<span class="cm">// Toggle off</span>
+el.classList.<span class="px">toggle</span>(<span class="str">'neo-glitch-pause'</span>)</pre>
+      </div>
+    </div>
+
+    <!-- XP / HP Bars -->
+    <div class="section-title" style="font-size:1rem;margin-bottom:1rem">XP · HP · MP Bars</div>
+    <div class="neo-card p-6" style="margin-bottom:2rem">
+      <div style="display:flex;flex-direction:column;gap:1rem;margin-bottom:1.5rem">
+
+        <div class="neo-xp-bar">
+          <div class="neo-xp-label">
+            <span class="neo-xp-label-text">⚡ XP — Level 14</span>
+            <span class="neo-xp-label-val" id="xp-val">6,240 / 10,000</span>
+          </div>
+          <div class="neo-xp-track" data-striped>
+            <div class="neo-xp-fill" id="xp-fill" style="width:62%"></div>
+          </div>
+        </div>
+
+        <div class="neo-xp-bar">
+          <div class="neo-xp-label">
+            <span class="neo-xp-label-text" style="color:#f87171">♥ HP</span>
+            <span class="neo-xp-label-val">340 / 500</span>
+          </div>
+          <div class="neo-xp-track">
+            <div class="neo-xp-fill neo-hp-fill" style="width:68%"></div>
+          </div>
+        </div>
+
+        <div class="neo-xp-bar">
+          <div class="neo-xp-label">
+            <span class="neo-xp-label-text" style="color:#60a5fa">✦ MP</span>
+            <span class="neo-xp-label-val">80 / 200</span>
+          </div>
+          <div class="neo-xp-track neo-xp-track-sm">
+            <div class="neo-xp-fill neo-mp-fill" style="width:40%"></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="flex-wrap" style="margin-bottom:1.25rem">
+        <button class="neo-btn neo-btn-primary" onclick="neoXpBurst()">+XP Burst</button>
+        <button class="neo-btn neo-btn-ghost" onclick="neoXpReset()">Reset</button>
+      </div>
+      <div class="code-block">
+        <pre><span class="cm">&lt;!-- HTML structure --&gt;</span>
+&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-xp-bar"</span>&gt;
+  &lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-xp-label"</span>&gt;
+    &lt;<span class="cl">span</span> <span class="kw">class</span>=<span class="str">"neo-xp-label-text"</span>&gt;⚡ XP&lt;/span&gt;
+    &lt;<span class="cl">span</span> <span class="kw">class</span>=<span class="str">"neo-xp-label-val"</span>&gt;6,240 / 10,000&lt;/span&gt;
+  &lt;/<span class="cl">div</span>&gt;
+  &lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-xp-track"</span> <span class="px">data-striped</span>&gt;
+    &lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-xp-fill"</span> <span class="px">style</span>=<span class="str">"width:62%"</span>&gt;&lt;/div&gt;
+  &lt;/<span class="cl">div</span>&gt;
+&lt;/<span class="cl">div</span>&gt;
+
+<span class="cm">// Variants</span>
+<span class="str">"neo-xp-fill"</span>              <span class="cm">// green XP</span>
+<span class="str">"neo-xp-fill neo-hp-fill"</span>  <span class="cm">// red HP</span>
+<span class="str">"neo-xp-fill neo-mp-fill"</span>  <span class="cm">// blue MP</span>
+<span class="str">"neo-xp-track-sm"</span>          <span class="cm">// slim variant</span>
+<span class="str">"neo-xp-track-lg"</span>          <span class="cm">// chunky variant</span></pre>
+      </div>
+    </div>
+
+    <!-- Achievement Toast -->
+    <div class="section-title" style="font-size:1rem;margin-bottom:1rem">Achievement Unlocked</div>
+    <div class="neo-card p-6" style="margin-bottom:2rem">
+      <div class="flex-wrap" style="margin-bottom:1.25rem">
+        <button class="neo-btn neo-btn-accent" onclick="neoAchievement('🏆','First Blood','You landed your first hit.')">🏆 First Blood</button>
+        <button class="neo-btn neo-btn-accent" onclick="neoAchievement('⚡','Speedrunner','Completed in under 5 minutes.')">⚡ Speedrunner</button>
+        <button class="neo-btn neo-btn-accent" onclick="neoAchievement('💎','Legend','Reached Rank S on all stages.')">💎 Legend</button>
+      </div>
+      <div class="code-block">
+        <pre><span class="cm">// neoAchievement(icon, title, description)</span>
+<span class="px">neoAchievement</span>(<span class="str">'🏆'</span>, <span class="str">'First Blood'</span>, <span class="str">'You landed your first hit.'</span>)
+<span class="px">neoAchievement</span>(<span class="str">'⚡'</span>, <span class="str">'Speedrunner'</span>, <span class="str">'Under 5 min.'</span>)
+<span class="px">neoAchievement</span>(<span class="str">'💎'</span>, <span class="str">'Legend'</span>,      <span class="str">'Rank S on all stages.'</span>)</pre>
+      </div>
+    </div>
+
+    <!-- Combo Counter -->
+    <div class="section-title" style="font-size:1rem;margin-bottom:1rem">Combo Counter</div>
+    <div class="neo-card p-6" style="margin-bottom:2rem">
+      <div style="text-align:center;padding:1.5rem 0;margin-bottom:1.25rem">
+        <div class="neo-combo">
+          <span class="neo-combo-count" id="combo-count">0</span>
+          <span class="neo-combo-label">COMBO</span>
+        </div>
+      </div>
+      <div class="flex-wrap" style="margin-bottom:1.25rem">
+        <button class="neo-btn neo-btn-primary neo-btn-lg" onclick="neoComboHit()" style="flex:1;max-width:200px">HIT!</button>
+        <button class="neo-btn neo-btn-ghost" onclick="neoComboReset()">Reset</button>
+      </div>
+      <div class="code-block">
+        <pre><span class="cm">// JS counter helpers</span>
+<span class="px">neoComboHit</span>()    <span class="cm">// increment + animate</span>
+<span class="px">neoComboReset</span>()  <span class="cm">// reset to 0</span>
+
+<span class="cm">&lt;!-- HTML --&gt;</span>
+&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-combo"</span>&gt;
+  &lt;<span class="cl">span</span> <span class="kw">class</span>=<span class="str">"neo-combo-count"</span>&gt;12&lt;/span&gt;
+  &lt;<span class="cl">span</span> <span class="kw">class</span>=<span class="str">"neo-combo-label"</span>&gt;COMBO&lt;/span&gt;
+&lt;/<span class="cl">div</span>&gt;</pre>
+      </div>
+    </div>
+
+    <!-- Particle Burst + Screen Flash + Typewriter -->
+    <div class="section-title" style="font-size:1rem;margin-bottom:1rem">More FX</div>
+    <div class="neo-card p-6" style="margin-bottom:2rem">
+      <div class="flex-wrap" style="margin-bottom:1.25rem">
+        <button class="neo-btn neo-btn-primary neo-btn-charge" onclick="neoParticles(event)">
+          Particle Burst (hold &amp; click)
+        </button>
+        <button class="neo-btn neo-btn-danger" onclick="neoFlash()">Screen Flash</button>
+        <button class="neo-btn neo-btn-ghost" onclick="neoTypeDemo()">Typewriter</button>
+      </div>
+      <div id="typewriter-out" style="min-height:1.5rem;font-family:var(--neo-font-mono);font-size:.875rem;color:var(--neo-brand-light);margin-bottom:1.25rem"></div>
+      <div class="neo-scanlines neo-card" style="padding:1rem;border:var(--neo-border)">
+        <p style="margin:0;font-size:.75rem;color:var(--neo-muted)">Add <code style="font-size:.8em;color:var(--neo-brand-light);font-family:var(--neo-font-mono)">.neo-scanlines</code> to any element for a CRT effect.</p>
+      </div>
+      <div class="code-block" style="margin-top:1rem">
+        <pre><span class="cm">// Particle burst at cursor position</span>
+btn.addEventListener(<span class="str">'click'</span>, e => <span class="px">neoParticles</span>(e))
+
+<span class="cm">// Screen flash (hit feedback)</span>
+<span class="px">neoFlash</span>()
+
+<span class="cm">// Typewriter</span>
+<span class="px">neoTypewriter</span>(element, <span class="str">'INSERT COIN TO CONTINUE_'</span>, 55)
+
+<span class="cm">/* CRT scanlines */</span>
+&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-scanlines"</span>&gt;...&lt;/div&gt;</pre>
+      </div>
+    </div>
+
+    <!-- Charged button -->
+    <div class="section-title" style="font-size:1rem;margin-bottom:1rem">Charge Button</div>
+    <div class="neo-card p-6">
+      <p style="font-size:.8rem;color:var(--neo-muted);margin:0 0 1rem">Hold the cursor over the button — a power bar charges, then fires when full.</p>
+      <div class="flex-wrap" style="margin-bottom:1.25rem">
+        <button class="neo-btn neo-btn-primary neo-btn-charge neo-btn-lg"
+          onmouseenter="startCharge(this)" onmouseleave="cancelCharge(this)"
+          style="min-width:200px">
+          ⚡ Hold to Charge
+        </button>
+      </div>
+      <div class="code-block">
+        <pre><span class="cm">/* CSS charge bar */</span>
+&lt;<span class="cl">button</span> <span class="kw">class</span>=<span class="str">"neo-btn neo-btn-primary neo-btn-charge"</span>&gt;
+  Hold to Charge
+&lt;/button&gt;
+
+<span class="cm">// JS — fire after 1.4 s hover</span>
+<span class="px">startCharge</span>(el)   <span class="cm">// bind to mouseenter</span>
+<span class="px">cancelCharge</span>(el)  <span class="cm">// bind to mouseleave</span></pre>
+      </div>
+    </div>
+
+  </section>
+</div>
+
 <!-- ═══ FOOTER ═══ -->
 <footer>
   <div class="footer-inner">
@@ -1186,6 +1537,184 @@ createApp(App).<span class="px">use</span>(NeoVue).mount(<span class="str">'#app
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#39;')
   }
+
+  // ══════════════════════════════════════════════════════════════════
+  // GAMING HELPERS
+  // ══════════════════════════════════════════════════════════════════
+
+  // ── Camera Shake ────────────────────────────────────────────────
+  // neoShake(size, element?)
+  //   size    : 'sm' | 'md' | 'lg'
+  //   element : DOM node to shake (default = document.body)
+  function neoShake(size, el) {
+    const target = el || document.body
+    const cls = 'neo-shake-' + (size || 'md')
+    target.classList.remove('neo-shake-sm', 'neo-shake-md', 'neo-shake-lg')
+    // Force reflow so re-triggering works
+    void target.offsetWidth
+    target.classList.add(cls)
+    target.addEventListener('animationend', () => target.classList.remove(cls), { once: true })
+  }
+
+  // ── Glitch toggle ────────────────────────────────────────────────
+  function toggleGlitch() {
+    const glitches = document.querySelectorAll('.neo-glitch')
+    const paused   = glitches[0] && glitches[0].classList.contains('neo-glitch-pause')
+    glitches.forEach(el => el.classList.toggle('neo-glitch-pause', !paused))
+    const btn = document.getElementById('glitch-pause-btn')
+    if (btn) btn.textContent = paused ? 'Pause Glitch' : 'Resume Glitch'
+  }
+
+  // ── XP burst demo ────────────────────────────────────────────────
+  let _xp = 62
+  function neoXpBurst() {
+    _xp = Math.min(100, _xp + Math.floor(Math.random() * 18) + 5)
+    const fill = document.getElementById('xp-fill')
+    const val  = document.getElementById('xp-val')
+    if (fill) fill.style.width = _xp + '%'
+    if (val)  val.textContent  = Math.round(_xp * 100) + ' / 10,000'
+    neoShake('sm')
+    neoParticles({ clientX: window.innerWidth / 2, clientY: window.innerHeight / 2 })
+    if (_xp >= 100) neoAchievement('⚡', 'Level Up!', 'You reached the next level!')
+  }
+  function neoXpReset() {
+    _xp = 0
+    const fill = document.getElementById('xp-fill')
+    const val  = document.getElementById('xp-val')
+    if (fill) fill.style.width = '0%'
+    if (val)  val.textContent  = '0 / 10,000'
+  }
+
+  // ── Achievement toast ────────────────────────────────────────────
+  // neoAchievement(icon, title, description, duration?)
+  function neoAchievement(icon, title, desc, duration) {
+    if (typeof duration === 'undefined') duration = 5000
+    const container = document.getElementById('neo-toast-container')
+    const el = document.createElement('div')
+    el.className = 'neo-achievement'
+    el.setAttribute('role', 'alert')
+    const closeId = 'neo-ach-close-' + Date.now()
+    el.innerHTML =
+      '<span class="neo-achieve-icon" aria-hidden="true">' + _neoEscape(icon) + '</span>' +
+      '<div class="neo-achieve-body">' +
+        '<div class="neo-achieve-eyebrow">Achievement Unlocked</div>' +
+        '<div class="neo-achieve-title">' + _neoEscape(title) + '</div>' +
+        '<div class="neo-achieve-desc">'  + _neoEscape(desc)  + '</div>' +
+      '</div>' +
+      '<button class="neo-achieve-close" id="' + closeId + '" aria-label="Dismiss">✕</button>'
+    container.appendChild(el)
+    function dismiss() {
+      el.classList.add('neo-toast-out')
+      el.addEventListener('animationend', () => el.remove(), { once: true })
+    }
+    document.getElementById(closeId).addEventListener('click', dismiss)
+    if (duration > 0) setTimeout(dismiss, duration)
+    neoFlash()
+    neoShake('sm')
+  }
+
+  // ── Combo counter ────────────────────────────────────────────────
+  let _combo = 0, _comboTimer = null
+  function neoComboHit() {
+    clearTimeout(_comboTimer)
+    _combo++
+    const el = document.getElementById('combo-count')
+    if (el) {
+      el.textContent = _combo
+      el.classList.remove('neo-combo-pop')
+      void el.offsetWidth
+      el.classList.add('neo-combo-pop')
+    }
+    neoParticles({ clientX: window.innerWidth / 2, clientY: window.innerHeight * .35 })
+    if (_combo === 10) neoAchievement('🔥', 'On Fire!',    '10 hit combo!')
+    if (_combo === 25) neoAchievement('💥', 'Unstoppable', '25 hit combo!')
+    if (_combo === 50) neoAchievement('🌟', 'Godlike',     '50 hit combo!')
+    // Auto-reset after 1.8 s of inactivity
+    _comboTimer = setTimeout(neoComboReset, 1800)
+  }
+  function neoComboReset() {
+    _combo = 0
+    const el = document.getElementById('combo-count')
+    if (el) el.textContent = '0'
+  }
+
+  // ── Particle burst ───────────────────────────────────────────────
+  // neoParticles(event, count?, colors?)
+  function neoParticles(event, count, colors) {
+    count  = count  || 14
+    colors = colors || [
+      'var(--neo-brand-light)', 'var(--neo-accent)',
+      '#fff', 'var(--neo-brand)', 'var(--neo-accent-dark)'
+    ]
+    const x = event.clientX, y = event.clientY
+    for (let i = 0; i < count; i++) {
+      const p    = document.createElement('div')
+      const angle = (Math.PI * 2 / count) * i + (Math.random() - .5)
+      const dist  = 55 + Math.random() * 70
+      const color = colors[Math.floor(Math.random() * colors.length)]
+      const size  = 5 + Math.random() * 7
+      p.className = 'neo-particle'
+      p.style.cssText =
+        'left:' + (x - size / 2) + 'px;top:' + (y - size / 2) + 'px;' +
+        'width:' + size + 'px;height:' + size + 'px;' +
+        'background:' + color + ';' +
+        '--tx:' + Math.round(Math.cos(angle) * dist) + 'px;' +
+        '--ty:' + Math.round(Math.sin(angle) * dist) + 'px;' +
+        'animation-duration:' + (.35 + Math.random() * .3) + 's;' +
+        'border-radius:' + (Math.random() > .4 ? '50%' : '2px') + ';'
+      document.body.appendChild(p)
+      p.addEventListener('animationend', () => p.remove(), { once: true })
+    }
+  }
+
+  // ── Screen flash ─────────────────────────────────────────────────
+  function neoFlash(color) {
+    const el = document.getElementById('neo-screen-flash')
+    if (!el) return
+    el.style.background = color || '#fff'
+    el.classList.remove('neo-flash-active')
+    void el.offsetWidth
+    el.classList.add('neo-flash-active')
+    el.addEventListener('animationend', () => el.classList.remove('neo-flash-active'), { once: true })
+  }
+
+  // ── Typewriter ───────────────────────────────────────────────────
+  // neoTypewriter(element, text, speed?)
+  function neoTypewriter(el, text, speed) {
+    speed = speed || 55
+    el.textContent = ''
+    el.classList.add('neo-typewriter')
+    el.classList.remove('neo-typewriter-done')
+    let i = 0
+    function tick() {
+      if (i < text.length) {
+        el.textContent += text[i++]
+        setTimeout(tick, speed + Math.random() * 20)
+      } else {
+        el.classList.add('neo-typewriter-done')
+      }
+    }
+    tick()
+  }
+  function neoTypeDemo() {
+    const el = document.getElementById('typewriter-out')
+    if (el) neoTypewriter(el, '> INSERT COIN TO CONTINUE_')
+  }
+
+  // ── Charge button ────────────────────────────────────────────────
+  let _chargeTimer = null
+  function startCharge(btn) {
+    _chargeTimer = setTimeout(() => {
+      neoParticles({ clientX: btn.getBoundingClientRect().left + btn.offsetWidth / 2,
+                    clientY: btn.getBoundingClientRect().top  + btn.offsetHeight / 2 })
+      neoShake('md')
+      neoToast('success', 'FULLY CHARGED', 'Power released!', 2000)
+    }, 1400)
+  }
+  function cancelCharge(btn) {
+    clearTimeout(_chargeTimer)
+  }
 </script>
+<div id="neo-screen-flash"></div>
 </body>
 </html>
