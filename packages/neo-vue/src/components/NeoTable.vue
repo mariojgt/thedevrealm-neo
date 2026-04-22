@@ -1,5 +1,5 @@
 <script setup lang="ts" generic="T extends Record<string, unknown>">
-interface Column {
+export interface Column {
   key: string
   header: string
 }

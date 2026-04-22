@@ -1,4 +1,4 @@
-<script lang="ts">
+<script context="module" lang="ts">
   export type Variant = 'primary' | 'accent' | 'ghost' | 'danger'
   export type Size    = 'sm' | 'md' | 'lg'
 </script>

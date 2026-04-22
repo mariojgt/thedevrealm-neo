@@ -1475,6 +1475,13 @@ toast.<span class="px">warning</span>(<span class="str">'Watch out'</span>, <spa
   <!-- ═══ FRAMEWORKS ═══ -->
   <section class="section" id="frameworks">
     <div class="section-title">Framework Examples</div>
+    <p style="font-size:.875rem;color:var(--neo-muted);margin:0 0 1rem">Available on npm — fully typed, tree-shakeable, zero extra dependencies beyond the CSS theme.</p>
+    <div class="flex-wrap" style="margin-bottom:2rem;gap:.5rem">
+      <a href="https://www.npmjs.com/package/@mariojgt/neo-react"  class="neo-tag neo-tag-ghost" target="_blank" rel="noopener">⚛ @mariojgt/neo-react</a>
+      <a href="https://www.npmjs.com/package/@mariojgt/neo-vue"    class="neo-tag neo-tag-ghost" target="_blank" rel="noopener">💚 @mariojgt/neo-vue</a>
+      <a href="https://www.npmjs.com/package/@mariojgt/neo-svelte" class="neo-tag neo-tag-ghost" target="_blank" rel="noopener">🧡 @mariojgt/neo-svelte</a>
+      <a href="https://www.npmjs.com/package/@mariojgt/neo-css"    class="neo-tag neo-tag-ghost" target="_blank" rel="noopener">🎨 @mariojgt/neo-css</a>
+    </div>
     <div class="grid-2">
 
       <!-- React -->
@@ -1562,6 +1569,96 @@ createApp(App).<span class="px">use</span>(NeoVue).mount(<span class="str">'#app
         </div>
       </div>
     </div>
+
+    <!-- Second row: new components -->
+    <div class="grid-2" style="margin-top:1.5rem">
+
+      <!-- React: Modal + Accordion -->
+      <div class="neo-card-brand" style="overflow:hidden">
+        <div class="neo-header-bar"><span>React</span><span class="neo-tag neo-tag-ghost" style="font-size:.65rem">Modal &amp; Accordion</span></div>
+        <div class="code-block" style="border:none;border-radius:0;box-shadow:none">
+          <pre><span class="kw">import</span> { <span class="cl">NeoModal</span>, <span class="cl">NeoAccordion</span>, <span class="cl">NeoButton</span> }
+  <span class="kw">from</span> <span class="str">'@mariojgt/neo-react'</span>
+
+<span class="kw">const</span> faq = [
+  { id: <span class="str">'q1'</span>, trigger: <span class="str">'Is it free?'</span>,
+    content: <span class="str">'MIT licensed.'</span> },
+]
+<span class="kw">const</span> [open, setOpen] = useState(<span class="kw">false</span>)
+
+&lt;&gt;
+  &lt;<span class="cl">NeoAccordion</span> <span class="px">items</span>={faq} <span class="px">defaultOpen</span>={[<span class="str">'q1'</span>]} /&gt;
+  &lt;<span class="cl">NeoButton</span> <span class="px">onClick</span>={() =&gt; setOpen(<span class="kw">true</span>)}&gt;Help&lt;/<span class="cl">NeoButton</span>&gt;
+  &lt;<span class="cl">NeoModal</span> <span class="px">open</span>={open} <span class="px">title</span>=<span class="str">"FAQ"</span>
+    <span class="px">onClose</span>={() =&gt; setOpen(<span class="kw">false</span>)}&gt;
+    Full details here.
+  &lt;/<span class="cl">NeoModal</span>&gt;
+&lt;/&gt;</pre>
+        </div>
+      </div>
+
+      <!-- Vue: Tooltip + Avatar -->
+      <div class="neo-card-brand" style="overflow:hidden">
+        <div class="neo-header-bar"><span>Vue 3</span><span class="neo-tag neo-tag-ghost" style="font-size:.65rem">Tooltip &amp; Avatar</span></div>
+        <div class="code-block" style="border:none;border-radius:0;box-shadow:none">
+          <pre><span class="cm">&lt;!-- main.ts --&gt;</span>
+<span class="kw">import</span> <span class="cl">NeoVue</span> <span class="kw">from</span> <span class="str">'@mariojgt/neo-vue'</span>
+createApp(App).<span class="px">use</span>(NeoVue).mount(<span class="str">'#app'</span>)
+
+<span class="cm">&lt;!-- Profile.vue --&gt;</span>
+&lt;<span class="cl">NeoTooltip</span> <span class="px">tip</span>=<span class="str">"Online"</span>&gt;
+  &lt;<span class="cl">NeoAvatar</span> <span class="px">size</span>=<span class="str">"md"</span> <span class="px">color</span>=<span class="str">"brand"</span>
+    <span class="px">status</span>=<span class="str">"online"</span>&gt;MJ&lt;/<span class="cl">NeoAvatar</span>&gt;
+&lt;/<span class="cl">NeoTooltip</span>&gt;
+
+&lt;<span class="cl">NeoAvatarGroup</span>&gt;
+  &lt;<span class="cl">NeoAvatar</span> <span class="px">size</span>=<span class="str">"md"</span>&gt;A&lt;/<span class="cl">NeoAvatar</span>&gt;
+  &lt;<span class="cl">NeoAvatar</span> <span class="px">size</span>=<span class="str">"md"</span>&gt;B&lt;/<span class="cl">NeoAvatar</span>&gt;
+  &lt;<span class="cl">NeoAvatar</span> <span class="px">size</span>=<span class="str">"md"</span>&gt;+4&lt;/<span class="cl">NeoAvatar</span>&gt;
+&lt;/<span class="cl">NeoAvatarGroup</span>&gt;</pre>
+        </div>
+      </div>
+
+      <!-- Svelte: Leaderboard + ProgressBar -->
+      <div class="neo-card-brand" style="overflow:hidden">
+        <div class="neo-header-bar"><span>Svelte 4</span><span class="neo-tag neo-tag-ghost" style="font-size:.65rem">Gaming UI</span></div>
+        <div class="code-block" style="border:none;border-radius:0;box-shadow:none">
+          <pre>&lt;<span class="cl">script</span>&gt;
+  <span class="kw">import</span> { <span class="cl">NeoLeaderboard</span>, <span class="cl">NeoProgressBar</span> }
+    <span class="kw">from</span> <span class="str">'@mariojgt/neo-svelte'</span>
+  <span class="kw">let</span> xp = <span class="str">62</span>, hp = <span class="str">80</span>
+  <span class="kw">const</span> entries = [
+    { rank: 1, name: <span class="str">'mariojgt'</span>, score: <span class="str">'142,830'</span> },
+  ]
+&lt;/<span class="cl">script</span>&gt;
+
+&lt;<span class="cl">NeoLeaderboard</span> <span class="px">entries</span>={entries} /&gt;
+&lt;<span class="cl">NeoProgressBar</span> <span class="px">variant</span>=<span class="str">"xp"</span>
+  <span class="px">value</span>={xp} <span class="px">label</span>=<span class="str">"⚡ XP"</span> <span class="px">striped</span> /&gt;
+&lt;<span class="cl">NeoProgressBar</span> <span class="px">variant</span>=<span class="str">"hp"</span>
+  <span class="px">value</span>={hp} <span class="px">label</span>=<span class="str">"♥ HP"</span> /&gt;</pre>
+        </div>
+      </div>
+
+      <!-- CSS Rarity + Skeleton + Kbd -->
+      <div class="neo-card-brand" style="overflow:hidden">
+        <div class="neo-header-bar"><span>Pure CSS</span><span class="neo-tag neo-tag-ghost" style="font-size:.65rem">Rarity &amp; Skeleton</span></div>
+        <div class="code-block" style="border:none;border-radius:0;box-shadow:none">
+          <pre><span class="cm">&lt;!-- Rarity cards --&gt;</span>
+&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-item-card neo-rarity
+  neo-rarity-legendary"</span>&gt;
+  &lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-item-icon"</span>&gt;👑&lt;/div&gt;
+  &lt;<span class="cl">p</span> <span class="kw">class</span>=<span class="str">"neo-item-name"</span>&gt;Crown&lt;/p&gt;
+  &lt;<span class="cl">p</span> <span class="kw">class</span>=<span class="str">"neo-item-rarity"</span>&gt;Legendary&lt;/p&gt;
+&lt;/div&gt;
+
+<span class="cm">&lt;!-- Skeleton loader --&gt;</span>
+&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-skeleton neo-skeleton-title"</span>&gt;&lt;/div&gt;
+<span class="cm">&lt;!-- Keyboard badge --&gt;</span>
+&lt;<span class="cl">span</span> <span class="kw">class</span>=<span class="str">"neo-kbd"</span>&gt;⌘ K&lt;/span&gt;</pre>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ═══ FULL EXAMPLE ═══ -->
@@ -1619,7 +1716,15 @@ createApp(App).<span class="px">use</span>(NeoVue).mount(<span class="str">'#app
       <div class="code-block">
         <pre>&lt;<span class="cl">span</span> <span class="kw">class</span>=<span class="str">"neo-kbd"</span>&gt;⌘ K&lt;/span&gt;
 &lt;<span class="cl">span</span> <span class="kw">class</span>=<span class="str">"neo-kbd"</span>&gt;⌃ ⇧ P&lt;/span&gt;
-&lt;<span class="cl">span</span> <span class="kw">class</span>=<span class="str">"neo-kbd"</span>&gt;Esc&lt;/span&gt;</pre>
+&lt;<span class="cl">span</span> <span class="kw">class</span>=<span class="str">"neo-kbd"</span>&gt;Esc&lt;/span&gt;
+
+<span class="cm">// React</span>
+<span class="kw">import</span> { <span class="cl">NeoKbd</span> } <span class="kw">from</span> <span class="str">'@mariojgt/neo-react'</span>
+&lt;<span class="cl">NeoKbd</span>&gt;⌘ K&lt;/<span class="cl">NeoKbd</span>&gt;
+
+<span class="cm">// Vue / Svelte (same API)</span>
+<span class="kw">import</span> { <span class="cl">NeoKbd</span> } <span class="kw">from</span> <span class="str">'@mariojgt/neo-vue'</span>
+&lt;<span class="cl">NeoKbd</span>&gt;⌘ K&lt;/<span class="cl">NeoKbd</span>&gt;</pre>
       </div>
     </div>
 
@@ -1637,7 +1742,24 @@ createApp(App).<span class="px">use</span>(NeoVue).mount(<span class="str">'#app
 &lt;<span class="cl">button</span> <span class="kw">class</span>=<span class="str">"neo-btn neo-btn-primary"</span>
   <span class="px">data-tip</span>=<span class="str">"Creates a new project"</span>&gt;
   New Project
-&lt;/button&gt;</pre>
+&lt;/button&gt;
+
+<span class="cm">// React</span>
+<span class="kw">import</span> { <span class="cl">NeoTooltip</span>, <span class="cl">NeoButton</span> } <span class="kw">from</span> <span class="str">'@mariojgt/neo-react'</span>
+&lt;<span class="cl">NeoTooltip</span> <span class="px">tip</span>=<span class="str">"Creates a new project"</span>&gt;
+  &lt;<span class="cl">NeoButton</span>&gt;New Project&lt;/<span class="cl">NeoButton</span>&gt;
+&lt;/<span class="cl">NeoTooltip</span>&gt;
+
+<span class="cm">// Vue</span>
+&lt;<span class="cl">NeoTooltip</span> <span class="px">tip</span>=<span class="str">"Creates a new project"</span>&gt;
+  &lt;<span class="cl">NeoButton</span>&gt;New Project&lt;/<span class="cl">NeoButton</span>&gt;
+&lt;/<span class="cl">NeoTooltip</span>&gt;
+
+<span class="cm">// Svelte</span>
+<span class="kw">import</span> { <span class="cl">NeoTooltip</span> } <span class="kw">from</span> <span class="str">'@mariojgt/neo-svelte'</span>
+&lt;<span class="cl">NeoTooltip</span> <span class="px">tip</span>=<span class="str">"Creates a new project"</span>&gt;
+  &lt;<span class="cl">NeoButton</span>&gt;New Project&lt;/<span class="cl">NeoButton</span>&gt;
+&lt;/<span class="cl">NeoTooltip</span>&gt;</pre>
       </div>
     </div>
 
@@ -1668,6 +1790,17 @@ createApp(App).<span class="px">use</span>(NeoVue).mount(<span class="str">'#app
                 <div class="neo-skeleton neo-skeleton-text" style="width:55%"></div>
                 <div class="neo-skeleton neo-skeleton-text" style="width:80%;margin-bottom:0"></div>
               </div>
+
+<span class="cm">// React</span>
+<span class="kw">import</span> { <span class="cl">NeoSkeleton</span> } <span class="kw">from</span> <span class="str">'@mariojgt/neo-react'</span>
+&lt;<span class="cl">NeoSkeleton</span> <span class="px">variant</span>=<span class="str">"thumb"</span> /&gt;
+&lt;<span class="cl">NeoSkeleton</span> <span class="px">variant</span>=<span class="str">"title"</span> /&gt;
+&lt;<span class="cl">NeoSkeleton</span> <span class="px">variant</span>=<span class="str">"text"</span>  /&gt;
+&lt;<span class="cl">NeoSkeleton</span> <span class="px">variant</span>=<span class="str">"avatar"</span>/&gt;
+&lt;<span class="cl">NeoSkeleton</span> <span class="px">variant</span>=<span class="str">"btn"</span>  /&gt;
+
+<span class="cm">// Vue / Svelte — same API</span>
+&lt;<span class="cl">NeoSkeleton</span> <span class="px">variant</span>=<span class="str">"thumb"</span> /&gt;
             </div>
             <div style="display:flex;align-items:center;gap:.75rem">
               <div class="neo-skeleton neo-skeleton-avatar"></div>
@@ -1692,7 +1825,18 @@ createApp(App).<span class="px">use</span>(NeoVue).mount(<span class="str">'#app
 &lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-skeleton neo-skeleton-title"</span>&gt;&lt;/div&gt;
 &lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-skeleton neo-skeleton-text"</span>&gt;&lt;/div&gt;
 &lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-skeleton neo-skeleton-avatar"</span>&gt;&lt;/div&gt;
-&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-skeleton neo-skeleton-btn"</span>&gt;&lt;/div&gt;</pre>
+&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-skeleton neo-skeleton-btn"</span>&gt;&lt;/div&gt;
+
+<span class="cm">// React</span>
+<span class="kw">import</span> { <span class="cl">NeoSkeleton</span> } <span class="kw">from</span> <span class="str">'@mariojgt/neo-react'</span>
+&lt;<span class="cl">NeoSkeleton</span> <span class="px">variant</span>=<span class="str">"thumb"</span> /&gt;
+&lt;<span class="cl">NeoSkeleton</span> <span class="px">variant</span>=<span class="str">"title"</span> /&gt;
+&lt;<span class="cl">NeoSkeleton</span> <span class="px">variant</span>=<span class="str">"text"</span>  /&gt;
+&lt;<span class="cl">NeoSkeleton</span> <span class="px">variant</span>=<span class="str">"avatar"</span>/&gt;
+&lt;<span class="cl">NeoSkeleton</span> <span class="px">variant</span>=<span class="str">"btn"</span>  /&gt;
+
+<span class="cm">// Vue / Svelte — same API</span>
+&lt;<span class="cl">NeoSkeleton</span> <span class="px">variant</span>=<span class="str">"thumb"</span> /&gt;</pre>
       </div>
     </div>
 
@@ -1721,7 +1865,20 @@ createApp(App).<span class="px">use</span>(NeoVue).mount(<span class="str">'#app
   &lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-avatar neo-avatar-md"</span>&gt;MJ&lt;/div&gt;
   &lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-avatar neo-avatar-md"</span>&gt;AB&lt;/div&gt;
   &lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-avatar neo-avatar-md"</span>&gt;+4&lt;/div&gt;
-&lt;/div&gt;</pre>
+&lt;/div&gt;
+
+<span class="cm">// React</span>
+<span class="kw">import</span> { <span class="cl">NeoAvatar</span>, <span class="cl">NeoAvatarGroup</span> } <span class="kw">from</span> <span class="str">'@mariojgt/neo-react'</span>
+&lt;<span class="cl">NeoAvatar</span> <span class="px">size</span>=<span class="str">"md"</span> <span class="px">color</span>=<span class="str">"brand"</span> <span class="px">status</span>=<span class="str">"online"</span>&gt;MJ&lt;/<span class="cl">NeoAvatar</span>&gt;
+
+&lt;<span class="cl">NeoAvatarGroup</span>&gt;
+  &lt;<span class="cl">NeoAvatar</span> <span class="px">size</span>=<span class="str">"md"</span>&gt;MJ&lt;/<span class="cl">NeoAvatar</span>&gt;
+  &lt;<span class="cl">NeoAvatar</span> <span class="px">size</span>=<span class="str">"md"</span>&gt;AB&lt;/<span class="cl">NeoAvatar</span>&gt;
+  &lt;<span class="cl">NeoAvatar</span> <span class="px">size</span>=<span class="str">"md"</span>&gt;+4&lt;/<span class="cl">NeoAvatar</span>&gt;
+&lt;/<span class="cl">NeoAvatarGroup</span>&gt;
+
+<span class="cm">// Vue / Svelte — same props</span>
+&lt;<span class="cl">NeoAvatar</span> <span class="px">size</span>=<span class="str">"lg"</span> <span class="px">color</span>=<span class="str">"accent"</span>&gt;AB&lt;/<span class="cl">NeoAvatar</span>&gt;</pre>
       </div>
     </div>
 
@@ -1765,7 +1922,22 @@ createApp(App).<span class="px">use</span>(NeoVue).mount(<span class="str">'#app
     &lt;/<span class="cl">button</span>&gt;
     &lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-accordion-body"</span>&gt;Content here.&lt;/div&gt;
   &lt;/<span class="cl">div</span>&gt;
-&lt;/<span class="cl">div</span>&gt;</pre>
+&lt;/<span class="cl">div</span>&gt;
+
+<span class="cm">// React</span>
+<span class="kw">import</span> { <span class="cl">NeoAccordion</span> } <span class="kw">from</span> <span class="str">'@mariojgt/neo-react'</span>
+<span class="kw">const</span> items = [
+  { id: <span class="str">'a'</span>, trigger: <span class="str">'What is Neo UI?'</span>, content: <span class="str">'A neo-brutalist design system.'</span> },
+  { id: <span class="str">'b'</span>, trigger: <span class="str">'Free?'</span>,           content: <span class="str">'100% MIT licensed.'</span> },
+]
+&lt;<span class="cl">NeoAccordion</span> <span class="px">items</span>={items} <span class="px">defaultOpen</span>={[<span class="str">'a'</span>]} /&gt;
+
+<span class="cm">// Vue</span>
+&lt;<span class="cl">NeoAccordion</span> <span class="px">:items</span>=<span class="str">"items"</span> <span class="px">:default-open</span>=<span class="str">"['a']"</span> /&gt;
+
+<span class="cm">// Svelte</span>
+<span class="kw">import</span> { <span class="cl">NeoAccordion</span> } <span class="kw">from</span> <span class="str">'@mariojgt/neo-svelte'</span>
+&lt;<span class="cl">NeoAccordion</span> <span class="px">items</span>={items} <span class="px">defaultOpen</span>={[<span class="str">'a'</span>]} /&gt;</pre>
       </div>
     </div>
 
@@ -1797,7 +1969,30 @@ createApp(App).<span class="px">use</span>(NeoVue).mount(<span class="str">'#app
 
 <span class="cm">// JS</span>
 <span class="px">neoModalOpen</span>(<span class="str">'my-modal'</span>)
-<span class="px">neoModalClose</span>(<span class="str">'my-modal'</span>)</pre>
+<span class="px">neoModalClose</span>(<span class="str">'my-modal'</span>)
+
+<span class="cm">// React</span>
+<span class="kw">import</span> { <span class="cl">NeoModal</span>, <span class="cl">NeoButton</span> } <span class="kw">from</span> <span class="str">'@mariojgt/neo-react'</span>
+<span class="kw">const</span> [open, setOpen] = React.<span class="px">useState</span>(<span class="kw">false</span>)
+
+&lt;<span class="cl">NeoModal</span> <span class="px">open</span>={open} <span class="px">title</span>=<span class="str">"Confirm Action"</span>
+  <span class="px">onClose</span>={() => setOpen(<span class="kw">false</span>)}&gt;
+  Body text here.
+&lt;/<span class="cl">NeoModal</span>&gt;
+
+<span class="cm">// Vue</span>
+&lt;<span class="cl">NeoModal</span> <span class="px">:open</span>=<span class="str">"isOpen"</span> <span class="px">title</span>=<span class="str">"Title"</span> @<span class="px">close</span>=<span class="str">"isOpen = false"</span>&gt;
+  Body text here.
+  &lt;<span class="cl">template</span> <span class="px">#footer</span>&gt;
+    &lt;<span class="cl">NeoButton</span> <span class="px">variant</span>=<span class="str">"primary"</span>&gt;OK&lt;/<span class="cl">NeoButton</span>&gt;
+  &lt;/<span class="cl">template</span>&gt;
+&lt;/<span class="cl">NeoModal</span>&gt;
+
+<span class="cm">// Svelte</span>
+<span class="kw">import</span> { <span class="cl">NeoModal</span> } <span class="kw">from</span> <span class="str">'@mariojgt/neo-svelte'</span>
+&lt;<span class="cl">NeoModal</span> <span class="px">open</span>={isOpen} <span class="px">title</span>=<span class="str">"Title"</span> <span class="px">on:close</span>={() => isOpen = <span class="kw">false</span>}&gt;
+  Body text here.
+&lt;/<span class="cl">NeoModal</span>&gt;</pre>
       </div>
     </div>
 
@@ -1861,7 +2056,18 @@ createApp(App).<span class="px">use</span>(NeoVue).mount(<span class="str">'#app
   &lt;<span class="cl">p</span>   <span class="kw">class</span>=<span class="str">"neo-item-rarity"</span>&gt;Legendary&lt;/p&gt;
 &lt;/div&gt;
 
-<span class="cm">/* Variants: neo-rarity-common | uncommon | rare | epic | legendary */</span></pre>
+<span class="cm">/* Variants: neo-rarity-common | uncommon | rare | epic | legendary */</span>
+
+<span class="cm">// React</span>
+<span class="kw">import</span> { <span class="cl">NeoRarityCard</span> } <span class="kw">from</span> <span class="str">'@mariojgt/neo-react'</span>
+&lt;<span class="cl">NeoRarityCard</span> <span class="px">name</span>=<span class="str">"Crown of Ages"</span> <span class="px">rarity</span>=<span class="str">"legendary"</span> <span class="px">icon</span>=<span class="str">"👑"</span> /&gt;
+
+<span class="cm">// Vue</span>
+&lt;<span class="cl">NeoRarityCard</span> <span class="px">name</span>=<span class="str">"Arcane Orb"</span> <span class="px">rarity</span>=<span class="str">"rare"</span> <span class="px">icon</span>=<span class="str">"🔮"</span> /&gt;
+
+<span class="cm">// Svelte</span>
+<span class="kw">import</span> { <span class="cl">NeoRarityCard</span> } <span class="kw">from</span> <span class="str">'@mariojgt/neo-svelte'</span>
+&lt;<span class="cl">NeoRarityCard</span> <span class="px">name</span>=<span class="str">"Soul Reaver"</span> <span class="px">rarity</span>=<span class="str">"epic"</span> <span class="px">icon</span>=<span class="str">"🗡️"</span> /&gt;</pre>
     </div>
 
     <!-- ── Leaderboard ── -->
@@ -1923,7 +2129,23 @@ createApp(App).<span class="px">use</span>(NeoVue).mount(<span class="str">'#app
     &lt;<span class="cl">span</span> <span class="kw">class</span>=<span class="str">"neo-lb-name"</span>&gt;mariojgt&lt;/span&gt;
     &lt;<span class="cl">span</span> <span class="kw">class</span>=<span class="str">"neo-lb-score"</span>&gt;142,830&lt;/span&gt;
   &lt;/<span class="cl">div</span>&gt;
-&lt;/<span class="cl">div</span>&gt;</pre>
+&lt;/<span class="cl">div</span>&gt;
+
+<span class="cm">// React</span>
+<span class="kw">import</span> { <span class="cl">NeoLeaderboard</span> } <span class="kw">from</span> <span class="str">'@mariojgt/neo-react'</span>
+<span class="kw">const</span> entries = [
+  { rank: 1, name: <span class="str">'mariojgt'</span>,   score: <span class="str">'142,830'</span> },
+  { rank: 2, name: <span class="str">'darkwolf99'</span>, score: <span class="str">'98,410'</span>  },
+  { rank: 3, name: <span class="str">'xkira'</span>,      score: <span class="str">'87,200'</span>  },
+]
+&lt;<span class="cl">NeoLeaderboard</span> <span class="px">entries</span>={entries} /&gt;
+
+<span class="cm">// Vue</span>
+&lt;<span class="cl">NeoLeaderboard</span> <span class="px">:entries</span>=<span class="str">"entries"</span> /&gt;
+
+<span class="cm">// Svelte</span>
+<span class="kw">import</span> { <span class="cl">NeoLeaderboard</span> } <span class="kw">from</span> <span class="str">'@mariojgt/neo-svelte'</span>
+&lt;<span class="cl">NeoLeaderboard</span> <span class="px">entries</span>={entries} /&gt;</pre>
     </div>
 
   </section>
@@ -1959,6 +2181,20 @@ createApp(App).<span class="px">use</span>(NeoVue).mount(<span class="str">'#app
     <!-- Glitch Text -->
     <div class="section-title" style="font-size:1rem;margin-bottom:1rem">Glitch Text</div>
     <div class="neo-card p-6" style="margin-bottom:2rem">
+
+<span class="cm">// React — NeoProgressBar component</span>
+<span class="kw">import</span> { <span class="cl">NeoProgressBar</span> } <span class="kw">from</span> <span class="str">'@mariojgt/neo-react'</span>
+&lt;<span class="cl">NeoProgressBar</span> <span class="px">variant</span>=<span class="str">"xp"</span> <span class="px">value</span>={62}
+  <span class="px">label</span>=<span class="str">"⚡ XP"</span> <span class="px">valueLabel</span>=<span class="str">"6,240 / 10,000"</span> <span class="px">striped</span> /&gt;
+&lt;<span class="cl">NeoProgressBar</span> <span class="px">variant</span>=<span class="str">"hp"</span> <span class="px">value</span>={68} <span class="px">label</span>=<span class="str">"♥ HP"</span> /&gt;
+&lt;<span class="cl">NeoProgressBar</span> <span class="px">variant</span>=<span class="str">"mp"</span> <span class="px">value</span>={40} <span class="px">label</span>=<span class="str">"✦ MP"</span> /&gt;
+
+<span class="cm">// Vue</span>
+&lt;<span class="cl">NeoProgressBar</span> <span class="px">variant</span>=<span class="str">"xp"</span> <span class="px">:value</span>=<span class="str">"xp"</span> <span class="px">label</span>=<span class="str">"⚡ XP"</span> <span class="px">striped</span> /&gt;
+
+<span class="cm">// Svelte</span>
+<span class="kw">import</span> { <span class="cl">NeoProgressBar</span> } <span class="kw">from</span> <span class="str">'@mariojgt/neo-svelte'</span>
+&lt;<span class="cl">NeoProgressBar</span> <span class="px">variant</span>=<span class="str">"hp"</span> <span class="px">value</span>={hp} <span class="px">label</span>=<span class="str">"♥ HP"</span> /&gt;
       <div style="padding:1.5rem 0;text-align:center;margin-bottom:1.25rem">
         <span class="neo-glitch" data-text="GAME OVER" style="font-size:clamp(2rem,6vw,3.5rem);letter-spacing:.08em">GAME OVER</span>
       </div>
@@ -2033,7 +2269,21 @@ el.classList.<span class="px">toggle</span>(<span class="str">'neo-glitch-pause'
 <span class="str">"neo-xp-fill neo-hp-fill"</span>  <span class="cm">// red HP</span>
 <span class="str">"neo-xp-fill neo-mp-fill"</span>  <span class="cm">// blue MP</span>
 <span class="str">"neo-xp-track-sm"</span>          <span class="cm">// slim variant</span>
-<span class="str">"neo-xp-track-lg"</span>          <span class="cm">// chunky variant</span></pre>
+<span class="str">"neo-xp-track-lg"</span>          <span class="cm">// chunky variant</span>
+
+<span class="cm">// React — NeoProgressBar component</span>
+<span class="kw">import</span> { <span class="cl">NeoProgressBar</span> } <span class="kw">from</span> <span class="str">'@mariojgt/neo-react'</span>
+&lt;<span class="cl">NeoProgressBar</span> <span class="px">variant</span>=<span class="str">"xp"</span> <span class="px">value</span>={62}
+  <span class="px">label</span>=<span class="str">"⚡ XP"</span> <span class="px">valueLabel</span>=<span class="str">"6,240 / 10,000"</span> <span class="px">striped</span> /&gt;
+&lt;<span class="cl">NeoProgressBar</span> <span class="px">variant</span>=<span class="str">"hp"</span> <span class="px">value</span>={68} <span class="px">label</span>=<span class="str">"♥ HP"</span> /&gt;
+&lt;<span class="cl">NeoProgressBar</span> <span class="px">variant</span>=<span class="str">"mp"</span> <span class="px">value</span>={40} <span class="px">label</span>=<span class="str">"✦ MP"</span> /&gt;
+
+<span class="cm">// Vue</span>
+&lt;<span class="cl">NeoProgressBar</span> <span class="px">variant</span>=<span class="str">"xp"</span> <span class="px">:value</span>=<span class="str">"xp"</span> <span class="px">label</span>=<span class="str">"⚡ XP"</span> <span class="px">striped</span> /&gt;
+
+<span class="cm">// Svelte</span>
+<span class="kw">import</span> { <span class="cl">NeoProgressBar</span> } <span class="kw">from</span> <span class="str">'@mariojgt/neo-svelte'</span>
+&lt;<span class="cl">NeoProgressBar</span> <span class="px">variant</span>=<span class="str">"hp"</span> <span class="px">value</span>={hp} <span class="px">label</span>=<span class="str">"♥ HP"</span> /&gt;</pre>
       </div>
     </div>
 

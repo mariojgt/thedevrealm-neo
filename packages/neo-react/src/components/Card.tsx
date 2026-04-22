@@ -49,7 +49,7 @@ NeoCard.displayName = 'NeoCard'
 
 /* ── Header Bar ──────────────────────────────────────────────────────────── */
 
-export interface HeaderBarProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface HeaderBarProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   /** Content on the left  */
   title?: React.ReactNode
   /** Content on the right */

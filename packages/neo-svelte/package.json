@@ -1,13 +1,21 @@
 {
-  "name": "@thedevrealm/neo-svelte",
+  "name": "@mariojgt/neo-svelte",
   "version": "1.0.0",
   "description": "The Dev Realm Neo-Brutalist Svelte component library.",
-  "keywords": ["neo-brutalism", "svelte", "svelte5", "components", "design-system", "thedevrealm"],
+  "keywords": [
+    "neo-brutalism",
+    "svelte",
+    "svelte5",
+    "components",
+    "design-system",
+    "thedevrealm"
+  ],
   "license": "MIT",
-  "author": "The Dev Realm",
+  "author": "mariojgt",
+  "homepage": "https://mariojgt.github.io/thedevrealm-neo/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/thedevrealm/neo"
+    "url": "https://github.com/mariojgt/thedevrealm-neo"
   },
   "type": "module",
   "svelte": "./src/index.ts",
@@ -17,15 +25,18 @@
   "exports": {
     ".": {
       "svelte": "./src/index.ts",
-      "import":  "./dist/index.js",
+      "import": "./dist/index.js",
       "require": "./dist/index.cjs",
-      "types":   "./dist/index.d.ts"
+      "types": "./dist/index.d.ts"
     }
   },
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "build": "vite build",
-    "dev":   "vite build --watch",
+    "dev": "vite build --watch",
     "clean": "rm -rf dist"
   },
   "peerDependencies": {
@@ -34,6 +45,7 @@
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^3.1.1",
     "svelte": "^4.2.18",
+    "svelte-preprocess": "^6.0.3",
     "typescript": "^5.4.5",
     "vite": "^5.3.1"
   }

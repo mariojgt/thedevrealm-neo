@@ -1,13 +1,14 @@
 {
-  "name": "@thedevrealm/neo-vue",
+  "name": "@mariojgt/neo-vue",
   "version": "1.0.0",
   "description": "The Dev Realm Neo-Brutalist Vue 3 component library.",
   "keywords": ["neo-brutalism", "vue", "vue3", "components", "design-system", "thedevrealm"],
   "license": "MIT",
-  "author": "The Dev Realm",
+  "author": "mariojgt",
+  "homepage": "https://mariojgt.github.io/thedevrealm-neo/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/thedevrealm/neo"
+    "url": "https://github.com/mariojgt/thedevrealm-neo"
   },
   "type": "module",
   "main": "./dist/index.cjs",
@@ -22,7 +23,7 @@
   },
   "files": ["dist"],
   "scripts": {
-    "build": "vite build",
+    "build": "vite build && vue-tsc --declaration --declarationDir dist --emitDeclarationOnly --noEmit false",
     "dev":   "vite build --watch",
     "clean": "rm -rf dist"
   },

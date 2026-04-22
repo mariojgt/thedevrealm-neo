@@ -2,7 +2,7 @@ import * as React from 'react'
 
 /* ── Toggle Group ────────────────────────────────────────────────────────── */
 
-export interface ToggleGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ToggleGroupProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   /** Currently active value */
   value: string
   /** Fires when a different button is clicked */
@@ -94,7 +94,7 @@ const ToggleCtx = React.createContext<ToggleCtxValue | null>(null)
 
 /* ── Tab Bar ─────────────────────────────────────────────────────────────── */
 
-export interface TabBarProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface TabBarProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   value: string
   onChange: (value: string) => void
 }
