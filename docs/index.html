@@ -390,6 +390,19 @@
     .neo-theme-preview-name   { font-size: .75rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: #fff; margin: 0 0 .2rem; }
     .neo-theme-preview-desc   { font-size: .6875rem; color: var(--neo-muted); margin: 0; }
 
+    /* ── Theme Builder swatches ────────────────────────────────────── */
+    .tb-swatch {
+      -webkit-appearance: none; appearance: none;
+      width: 36px; height: 36px; border: 3px solid var(--neo-border-color);
+      border-radius: var(--neo-radius); background: none; cursor: pointer;
+      box-shadow: 3px 3px 0 #000; padding: 0; flex-shrink: 0;
+    }
+    .tb-swatch::-webkit-color-swatch-wrapper { padding: 0; }
+    .tb-swatch::-webkit-color-swatch { border: none; border-radius: 2px; }
+    .tb-swatch::-moz-color-swatch { border: none; border-radius: 2px; }
+    .tb-hex { font-family: var(--neo-font-mono); font-size: .75rem; color: var(--neo-muted); }
+    @media (max-width: 640px) { #tb-root { grid-template-columns: 1fr !important; } }
+
     /* ══════════════════════════════════════════════════════════════════
        GAMING UTILITIES
        ══════════════════════════════════════════════════════════════════ */
@@ -790,6 +803,7 @@
       <a href="#themes">Themes</a>
       <a href="#components">Components</a>
       <a href="#gaming">Gaming ⚡</a>
+      <a href="#theme-builder">Builder 🎨</a>
       <a href="#frameworks">Frameworks</a>
       <a href="getting-started.html">Docs</a>
       <a href="https://github.com/mariojgt/thedevrealm-neo" target="_blank" rel="noopener">
@@ -1317,6 +1331,144 @@ toast.<span class="px">warning</span>(<span class="str">'Watch out'</span>, <spa
   --<span class="px">neo-accent</span>:      <span class="str">#ec4899</span>;
   --<span class="px">neo-accent-dark</span>: <span class="str">#db2777</span>;
 }</pre>
+    </div>
+  </section>
+
+  <!-- ═══ THEME BUILDER ═══ -->
+  <section class="section" id="theme-builder">
+    <div class="section-title">Theme Builder</div>
+    <p style="font-size:.875rem;color:var(--neo-muted);margin:0 0 1.75rem">
+      Tweak the tokens below — every component on this page updates in real time.
+      Hit <strong style="color:#fff">Copy CSS</strong> to grab the override block.
+    </p>
+
+    <div id="tb-root" style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+
+      <!-- Controls -->
+      <div style="display:flex;flex-direction:column;gap:1.25rem">
+
+        <div class="neo-card" style="padding:1.25rem">
+          <p style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--neo-subtle);margin-bottom:1rem">Brand Color</p>
+          <div style="display:flex;flex-direction:column;gap:.75rem">
+            <label style="font-size:.75rem;color:var(--neo-muted)">
+              Brand (main)
+              <div style="display:flex;align-items:center;gap:.75rem;margin-top:.35rem">
+                <input type="color" id="tb-brand" value="#0d9668" class="tb-swatch" title="--neo-brand">
+                <span id="tb-brand-val" class="tb-hex">#0d9668</span>
+              </div>
+            </label>
+            <label style="font-size:.75rem;color:var(--neo-muted)">
+              Brand Light
+              <div style="display:flex;align-items:center;gap:.75rem;margin-top:.35rem">
+                <input type="color" id="tb-brand-light" value="#2bb885" class="tb-swatch" title="--neo-brand-light">
+                <span id="tb-brand-light-val" class="tb-hex">#2bb885</span>
+              </div>
+            </label>
+            <label style="font-size:.75rem;color:var(--neo-muted)">
+              Brand Dark
+              <div style="display:flex;align-items:center;gap:.75rem;margin-top:.35rem">
+                <input type="color" id="tb-brand-dark" value="#047857" class="tb-swatch" title="--neo-brand-dark">
+                <span id="tb-brand-dark-val" class="tb-hex">#047857</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="neo-card" style="padding:1.25rem">
+          <p style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--neo-subtle);margin-bottom:1rem">Accent Color</p>
+          <div style="display:flex;flex-direction:column;gap:.75rem">
+            <label style="font-size:.75rem;color:var(--neo-muted)">
+              Accent
+              <div style="display:flex;align-items:center;gap:.75rem;margin-top:.35rem">
+                <input type="color" id="tb-accent" value="#e6930a" class="tb-swatch" title="--neo-accent">
+                <span id="tb-accent-val" class="tb-hex">#e6930a</span>
+              </div>
+            </label>
+            <label style="font-size:.75rem;color:var(--neo-muted)">
+              Accent Dark
+              <div style="display:flex;align-items:center;gap:.75rem;margin-top:.35rem">
+                <input type="color" id="tb-accent-dark" value="#c27706" class="tb-swatch" title="--neo-accent-dark">
+                <span id="tb-accent-dark-val" class="tb-hex">#c27706</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="neo-card" style="padding:1.25rem">
+          <p style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--neo-subtle);margin-bottom:1rem">Surfaces</p>
+          <div style="display:flex;flex-direction:column;gap:.75rem">
+            <label style="font-size:.75rem;color:var(--neo-muted)">
+              Body Background
+              <div style="display:flex;align-items:center;gap:.75rem;margin-top:.35rem">
+                <input type="color" id="tb-body-bg" value="#080d19" class="tb-swatch" title="--neo-body-bg">
+                <span id="tb-body-bg-val" class="tb-hex">#080d19</span>
+              </div>
+            </label>
+            <label style="font-size:.75rem;color:var(--neo-muted)">
+              Surface
+              <div style="display:flex;align-items:center;gap:.75rem;margin-top:.35rem">
+                <input type="color" id="tb-surface" value="#0c1222" class="tb-swatch" title="--neo-surface">
+                <span id="tb-surface-val" class="tb-hex">#0c1222</span>
+              </div>
+            </label>
+            <label style="font-size:.75rem;color:var(--neo-muted)">
+              Border Color
+              <div style="display:flex;align-items:center;gap:.75rem;margin-top:.35rem">
+                <input type="color" id="tb-border-color" value="#3a506e" class="tb-swatch" title="--neo-border-color">
+                <span id="tb-border-color-val" class="tb-hex">#3a506e</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <button class="neo-btn neo-btn-primary" onclick="tbReset()" style="align-self:flex-start">↺ Reset to Default</button>
+      </div>
+
+      <!-- Live preview -->
+      <div style="display:flex;flex-direction:column;gap:1.25rem">
+        <div class="neo-card" style="padding:1.25rem">
+          <p style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--neo-subtle);margin-bottom:1rem">Live Preview</p>
+
+          <!-- Buttons -->
+          <div style="display:flex;flex-wrap:wrap;gap:.625rem;margin-bottom:1rem">
+            <button class="neo-btn neo-btn-primary neo-btn-sm">Primary</button>
+            <button class="neo-btn neo-btn-accent neo-btn-sm">Accent</button>
+            <button class="neo-btn neo-btn-ghost neo-btn-sm">Ghost</button>
+            <button class="neo-btn neo-btn-danger neo-btn-sm">Danger</button>
+          </div>
+
+          <!-- Badges -->
+          <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem">
+            <span class="neo-badge neo-badge-success">Success</span>
+            <span class="neo-badge neo-badge-warning">Warning</span>
+            <span class="neo-badge neo-badge-error">Error</span>
+            <span class="neo-badge neo-badge-default">Default</span>
+          </div>
+
+          <!-- Mini card -->
+          <div class="neo-card-brand" style="padding:1rem">
+            <p style="font-size:.8rem;font-weight:800;color:#fff;margin-bottom:.35rem">Sample Card</p>
+            <p class="neo-text-muted" style="font-size:.75rem">Border top picks up your brand color.</p>
+            <div style="display:flex;gap:.5rem;margin-top:.75rem">
+              <span class="neo-tag neo-tag-brand">Tag</span>
+              <span class="neo-tag neo-tag-accent">Accent</span>
+            </div>
+          </div>
+
+          <!-- Alert -->
+          <div class="neo-alert neo-alert-success" style="margin-top:.875rem;padding:.625rem .875rem">
+            <span class="neo-alert__icon">✓</span>
+            <span style="font-size:.8rem">Changes apply instantly across every component.</span>
+          </div>
+        </div>
+
+        <!-- Generated CSS output -->
+        <div class="neo-card" style="padding:1.25rem;position:relative">
+          <p style="font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--neo-subtle);margin-bottom:.75rem">Generated CSS</p>
+          <pre id="tb-output" style="font-family:var(--neo-font-mono);font-size:.75rem;line-height:1.7;color:#e2e8f0;white-space:pre;overflow-x:auto;background:var(--neo-surface-lighter);padding:.875rem;border-radius:var(--neo-radius);border:2px solid var(--neo-border-color)"></pre>
+          <button class="neo-btn neo-btn-accent neo-btn-sm" id="tb-copy-btn" onclick="tbCopy()" style="margin-top:.75rem">Copy CSS</button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1989,11 +2141,19 @@ btn.addEventListener(<span class="str">'click'</span>, e => <span class="px">neo
       © 2026 The Dev Realm — MIT License
     </p>
     <div class="flex-wrap">
+      <a href="getting-started.html"
+         style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--neo-muted);text-decoration:none">
+        Docs
+      </a>
       <a href="https://github.com/mariojgt/thedevrealm-neo" target="_blank" rel="noopener"
          style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--neo-muted);text-decoration:none">
         GitHub ↗
       </a>
-      <a href="https://www.npmjs.com/search?q=%40thedevrealm" target="_blank" rel="noopener"
+      <a href="https://github.com/sponsors/mariojgt" target="_blank" rel="noopener"
+         style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#f472b6;text-decoration:none">
+        ♥ Sponsor
+      </a>
+      <a href="https://www.npmjs.com/package/@thedevrealm/neo-css" target="_blank" rel="noopener"
          style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--neo-muted);text-decoration:none">
         npm ↗
       </a>
@@ -2528,7 +2688,90 @@ btn.addEventListener(<span class="str">'click'</span>, e => <span class="px">neo
       })
       block.appendChild(btn)
     })
+
+    // ── Theme Builder ──────────────────────────────────────────────────
+    const TB_TOKENS = [
+      { id: 'tb-brand',        token: '--neo-brand',        default: '#0d9668' },
+      { id: 'tb-brand-light',  token: '--neo-brand-light',  default: '#2bb885' },
+      { id: 'tb-brand-dark',   token: '--neo-brand-dark',   default: '#047857' },
+      { id: 'tb-accent',       token: '--neo-accent',       default: '#e6930a' },
+      { id: 'tb-accent-dark',  token: '--neo-accent-dark',  default: '#c27706' },
+      { id: 'tb-body-bg',      token: '--neo-body-bg',      default: '#080d19' },
+      { id: 'tb-surface',      token: '--neo-surface',      default: '#0c1222' },
+      { id: 'tb-border-color', token: '--neo-border-color', default: '#3a506e' },
+    ]
+
+    function tbUpdateOutput() {
+      const lines = TB_TOKENS.map(t => {
+        const val = getComputedStyle(document.documentElement).getPropertyValue(t.token).trim()
+        return `  ${t.token}: ${val};`
+      })
+      const out = document.getElementById('tb-output')
+      if (out) out.textContent = `:root {\n${lines.join('\n')}\n}`
+    }
+
+    TB_TOKENS.forEach(({ id, token }) => {
+      const input = document.getElementById(id)
+      const valEl = document.getElementById(id + '-val')
+      if (!input) return
+      input.addEventListener('input', () => {
+        document.documentElement.style.setProperty(token, input.value)
+        if (valEl) valEl.textContent = input.value
+        tbUpdateOutput()
+      })
+    })
+
+    tbUpdateOutput()
   })
+
+  function tbReset() {
+    const TB_DEFAULTS = {
+      '--neo-brand':        '#0d9668',
+      '--neo-brand-light':  '#2bb885',
+      '--neo-brand-dark':   '#047857',
+      '--neo-accent':       '#e6930a',
+      '--neo-accent-dark':  '#c27706',
+      '--neo-body-bg':      '#080d19',
+      '--neo-surface':      '#0c1222',
+      '--neo-border-color': '#3a506e',
+    }
+    const TB_IDS = {
+      '--neo-brand':        'tb-brand',
+      '--neo-brand-light':  'tb-brand-light',
+      '--neo-brand-dark':   'tb-brand-dark',
+      '--neo-accent':       'tb-accent',
+      '--neo-accent-dark':  'tb-accent-dark',
+      '--neo-body-bg':      'tb-body-bg',
+      '--neo-surface':      'tb-surface',
+      '--neo-border-color': 'tb-border-color',
+    }
+    Object.entries(TB_DEFAULTS).forEach(([token, val]) => {
+      document.documentElement.style.setProperty(token, val)
+      const input = document.getElementById(TB_IDS[token])
+      const valEl = document.getElementById(TB_IDS[token] + '-val')
+      if (input) input.value = val
+      if (valEl) valEl.textContent = val
+    })
+    const out = document.getElementById('tb-output')
+    if (out) {
+      const lines = Object.entries(TB_DEFAULTS).map(([t, v]) => `  ${t}: ${v};`)
+      out.textContent = `:root {\n${lines.join('\n')}\n}`
+    }
+    // Deactivate preset theme cards
+    document.querySelectorAll('.neo-theme-preview-card').forEach(c => c.classList.remove('active-theme'))
+    document.getElementById('card-emerald')?.classList.add('active-theme')
+  }
+
+  function tbCopy() {
+    const out = document.getElementById('tb-output')
+    if (!out) return
+    navigator.clipboard.writeText(out.textContent).then(() => {
+      const btn = document.getElementById('tb-copy-btn')
+      if (!btn) return
+      btn.textContent = '✓ Copied!'
+      setTimeout(() => { btn.textContent = 'Copy CSS' }, 1800)
+    })
+  }
 </script>
 <div id="neo-screen-flash"></div>
 </body>

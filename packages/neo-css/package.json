@@ -2,22 +2,37 @@
   "name": "@thedevrealm/neo-css",
   "version": "1.0.0",
   "description": "The Dev Realm Neo-Brutalist CSS Kit — design tokens, component classes, animations.",
-  "keywords": ["neo-brutalism", "css", "design-system", "thedevrealm", "ui"],
+  "keywords": [
+    "neo-brutalism", "css", "design-system", "thedevrealm", "ui",
+    "dark-theme", "components", "animation", "tailwind-preset",
+    "react", "vue", "svelte", "nextjs", "astro"
+  ],
   "license": "MIT",
-  "author": "The Dev Realm",
+  "author": "mariojgt",
+  "homepage": "https://mariojgt.github.io/thedevrealm-neo/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/thedevrealm/neo"
+    "url": "https://github.com/mariojgt/thedevrealm-neo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mariojgt/thedevrealm-neo/issues"
   },
   "main": "dist/neo.css",
   "exports": {
-    ".": "./dist/neo.css",
-    "./tokens": "./dist/tokens.css",
-    "./components": "./dist/components.css",
-    "./animations": "./dist/animations.css"
+    ".":                    "./dist/neo.css",
+    "./dist/neo.css":       "./dist/neo.css",
+    "./dist/tokens.css":    "./dist/tokens.css",
+    "./dist/components.css":"./dist/components.css",
+    "./dist/animations.css":"./dist/animations.css",
+    "./tokens":             "./dist/tokens.css",
+    "./components":         "./dist/components.css",
+    "./animations":         "./dist/animations.css",
+    "./tailwind-preset":    "./tailwind-preset.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "tailwind-preset.js",
+    "README.md"
   ],
   "scripts": {
     "build": "node scripts/build.js",
