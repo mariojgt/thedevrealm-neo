@@ -274,6 +274,57 @@
 
     /* hero layout */
     .hero-inner { position: relative; z-index: 10; padding: 4rem 2rem; text-align: center; }
+
+    /* ── Toast ───────────────────────────────────────────────────────── */
+    #neo-toast-container {
+      position: fixed; bottom: 1.5rem; right: 1.5rem;
+      display: flex; flex-direction: column; gap: .625rem;
+      z-index: 9999; pointer-events: none;
+    }
+    .neo-toast {
+      display: flex; align-items: flex-start; gap: .75rem;
+      min-width: 280px; max-width: 380px;
+      background: var(--neo-surface-light); border-width: 3px; border-style: solid;
+      border-radius: var(--neo-radius); padding: .875rem 1rem;
+      box-shadow: 5px 5px 0 #000;
+      font-family: var(--neo-font-sans); font-size: .8125rem; color: #fff;
+      pointer-events: all;
+      animation: neo-toast-in .25s cubic-bezier(.34,1.56,.64,1) forwards;
+    }
+    .neo-toast.neo-toast-out {
+      animation: neo-toast-out .2s ease-in forwards;
+    }
+    .neo-toast-success { border-color: var(--neo-brand); }
+    .neo-toast-warning { border-color: var(--neo-accent); }
+    .neo-toast-error   { border-color: var(--neo-danger); }
+    .neo-toast-info    { border-color: var(--neo-border-color); }
+    .neo-toast-icon { font-size: 1rem; flex-shrink: 0; line-height: 1.4; }
+    .neo-toast-body { flex: 1; }
+    .neo-toast-title { font-weight: 800; text-transform: uppercase; letter-spacing: .05em; font-size: .75rem; margin-bottom: .2rem; }
+    .neo-toast-success .neo-toast-title { color: var(--neo-brand-light); }
+    .neo-toast-warning .neo-toast-title { color: var(--neo-accent); }
+    .neo-toast-error   .neo-toast-title { color: #f87171; }
+    .neo-toast-info    .neo-toast-title { color: var(--neo-muted); }
+    .neo-toast-msg { color: var(--neo-muted); line-height: 1.45; }
+    .neo-toast-close {
+      background: none; border: none; cursor: pointer;
+      color: var(--neo-subtle); font-size: 1rem; line-height: 1;
+      padding: 0; flex-shrink: 0; transition: color 100ms;
+    }
+    .neo-toast-close:hover { color: #fff; }
+    .neo-toast-progress {
+      position: absolute; bottom: 0; left: 0; height: 3px;
+      border-radius: 0 0 0 3px;
+      animation: neo-toast-progress linear forwards;
+    }
+    .neo-toast { position: relative; overflow: hidden; }
+    .neo-toast-success .neo-toast-progress { background: var(--neo-brand); }
+    .neo-toast-warning .neo-toast-progress { background: var(--neo-accent); }
+    .neo-toast-error   .neo-toast-progress { background: var(--neo-danger); }
+    .neo-toast-info    .neo-toast-progress { background: var(--neo-border-color); }
+    @keyframes neo-toast-in  { from{opacity:0;transform:translateX(20px) scale(.95)} to{opacity:1;transform:translateX(0) scale(1)} }
+    @keyframes neo-toast-out { from{opacity:1;transform:translateX(0) scale(1)}    to{opacity:0;transform:translateX(24px) scale(.9)} }
+    @keyframes neo-toast-progress { from{width:100%} to{width:0%} }
   </style>
 </head>
 <body>
@@ -292,6 +343,7 @@
       <a href="#forms">Forms</a>
       <a href="#alerts">Alerts</a>
       <a href="#animations">Animations</a>
+      <a href="#toast">Toast</a>
       <a href="#frameworks">Frameworks</a>
       <a href="https://github.com/mariojgt/thedevrealm-neo" target="_blank" rel="noopener">
         GitHub ↗
@@ -709,6 +761,52 @@ module.exports = { presets: [<span class="px">require</span>(<span class="str">'
     </div>
   </section>
 
+  <!-- ═══ TOAST ═══ -->
+  <section class="section" id="toast">
+    <div class="section-title">Toast Notifications</div>
+    <div class="neo-card p-6">
+      <span class="label-micro">Live demo — click to fire</span>
+      <div class="flex-wrap" style="margin-bottom:1.5rem">
+        <button class="neo-btn neo-btn-primary" onclick="neoToast('success','Saved!','Your changes have been saved successfully.')">
+          ✓ Success
+        </button>
+        <button class="neo-btn neo-btn-accent" onclick="neoToast('warning','Heads Up','Your subscription expires in 3 days.')">
+          ⚠ Warning
+        </button>
+        <button class="neo-btn neo-btn-danger" onclick="neoToast('error','Error','Something went wrong. Please try again.')">
+          ✕ Error
+        </button>
+        <button class="neo-btn neo-btn-ghost" onclick="neoToast('info','Pro tip','New courses drop every Tuesday.')">
+          ℹ Info
+        </button>
+        <button class="neo-btn neo-btn-ghost" style="font-size:.75rem" onclick="neoToast('success','No auto-dismiss','This one stays until you close it.',0)">
+          ∞ Persistent
+        </button>
+      </div>
+
+      <div class="code-block">
+        <pre><span class="cm">// Drop-in vanilla JS helper — zero dependencies</span>
+<span class="kw">import</span> { <span class="cl">neoToast</span> } <span class="kw">from</span> <span class="str">'@thedevrealm/neo-css/toast'</span>
+
+<span class="cm">// neoToast(variant, title, message, duration?)</span>
+<span class="px">neoToast</span>(<span class="str">'success'</span>, <span class="str">'Saved!'</span>,   <span class="str">'Changes saved.'</span>)       <span class="cm">// 4 s auto-dismiss</span>
+<span class="px">neoToast</span>(<span class="str">'warning'</span>, <span class="str">'Heads Up'</span>, <span class="str">'Expires soon.'</span>)       <span class="cm">// 4 s auto-dismiss</span>
+<span class="px">neoToast</span>(<span class="str">'error'</span>,   <span class="str">'Error'</span>,    <span class="str">'Try again.'</span>)           <span class="cm">// 4 s auto-dismiss</span>
+<span class="px">neoToast</span>(<span class="str">'info'</span>,    <span class="str">'Tip'</span>,      <span class="str">'Pro tip here.'</span>)        <span class="cm">// 4 s auto-dismiss</span>
+<span class="px">neoToast</span>(<span class="str">'success'</span>, <span class="str">'Sticky'</span>,  <span class="str">'No dismiss.'</span>, <span class="str">0</span>)       <span class="cm">// duration 0 = stays</span>
+
+<span class="cm">// React — tiny wrapper hook</span>
+<span class="kw">const</span> { toast } = <span class="px">useNeoToast</span>()
+toast.<span class="px">success</span>(<span class="str">'Saved!'</span>, <span class="str">'All good.'</span>)
+toast.<span class="px">error</span>(<span class="str">'Oops'</span>,   <span class="str">'Try again.'</span>)
+
+<span class="cm">// Vue — composable</span>
+<span class="kw">const</span> { toast } = <span class="px">useNeoToast</span>()
+toast.<span class="px">warning</span>(<span class="str">'Watch out'</span>, <span class="str">'Expires soon.'</span>)</pre>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══ FRAMEWORKS ═══ -->
   <section class="section" id="frameworks">
     <div class="section-title">Framework Examples</div>
@@ -853,18 +951,71 @@ createApp(App).<span class="px">use</span>(NeoVue).mount(<span class="str">'#app
   </div>
 </footer>
 
+<!-- ── Toast container (injected once) ─────────────────────────────── -->
+<div id="neo-toast-container" role="region" aria-live="polite" aria-label="Notifications"></div>
+
 <script>
-  // Toggle group demo
+  // ── Toggle group demo ────────────────────────────────────────────
   function toggleActive(btn) {
     const group = btn.closest('#toggle-demo')
     group.querySelectorAll('.neo-toggle-btn').forEach(b => b.classList.remove('neo-toggle-btn-active'))
     btn.classList.add('neo-toggle-btn-active')
   }
-  // Tab demo
+  // ── Tab demo ─────────────────────────────────────────────────────
   function tabActive(btn) {
     const group = btn.closest('#tab-demo')
     group.querySelectorAll('.neo-tab').forEach(b => b.classList.remove('neo-tab-active'))
     btn.classList.add('neo-tab-active')
+  }
+
+  // ── neoToast ─────────────────────────────────────────────────────
+  // neoToast(variant, title, message, duration)
+  //   variant  : 'success' | 'warning' | 'error' | 'info'
+  //   title    : string
+  //   message  : string
+  //   duration : ms until auto-dismiss (default 4000, 0 = never)
+  const TOAST_ICONS = { success: '✓', warning: '⚠', error: '✕', info: 'ℹ' }
+
+  function neoToast(variant, title, message, duration) {
+    if (typeof duration === 'undefined') duration = 4000
+    const container = document.getElementById('neo-toast-container')
+    const toast = document.createElement('div')
+    toast.className = 'neo-toast neo-toast-' + variant
+    toast.setAttribute('role', 'alert')
+
+    const icon    = TOAST_ICONS[variant] || 'ℹ'
+    const closeId = 'neo-toast-close-' + Date.now()
+
+    toast.innerHTML =
+      '<span class="neo-toast-icon" aria-hidden="true">' + icon + '</span>' +
+      '<div class="neo-toast-body">' +
+        '<div class="neo-toast-title">' + _neoEscape(title) + '</div>' +
+        '<div class="neo-toast-msg">'   + _neoEscape(message) + '</div>' +
+      '</div>' +
+      '<button class="neo-toast-close" id="' + closeId + '" aria-label="Dismiss notification">✕</button>' +
+      (duration > 0
+        ? '<div class="neo-toast-progress" style="animation-duration:' + duration + 'ms"></div>'
+        : '')
+
+    container.appendChild(toast)
+
+    function dismiss() {
+      toast.classList.add('neo-toast-out')
+      toast.addEventListener('animationend', () => toast.remove(), { once: true })
+    }
+
+    document.getElementById(closeId).addEventListener('click', dismiss)
+    if (duration > 0) setTimeout(dismiss, duration)
+  }
+
+  // Minimal XSS guard for dynamic string insertion
+  function _neoEscape(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;')
   }
 </script>
 </body>
