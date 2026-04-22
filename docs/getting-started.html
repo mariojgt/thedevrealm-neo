@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ── Primary SEO ── -->
+  <title>Getting Started — The Dev Realm Neo-Brutalist UI Kit</title>
+  <meta name="description" content="Set up @thedevrealm/neo-css in under 2 minutes. Works with plain HTML, React, Vue 3, Svelte, Next.js, Nuxt 3 and Astro. No build tools required." />
+  <meta name="keywords" content="neo brutalist css, ui kit, design system, react components, vue components, svelte, tailwind preset, open source, dark theme" />
+  <link rel="canonical" href="https://mariojgt.github.io/thedevrealm-neo/getting-started.html" />
+
+  <!-- ── Open Graph ── -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Getting Started — The Dev Realm Neo UI Kit" />
+  <meta property="og:description" content="One import. 30+ components. Works with React, Vue, Svelte, Next.js, plain HTML. MIT license." />
+  <meta property="og:url"         content="https://mariojgt.github.io/thedevrealm-neo/getting-started.html" />
+  <meta property="og:image"       content="https://mariojgt.github.io/thedevrealm-neo/og-image.svg" />
+  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name"   content="The Dev Realm" />
+
+  <!-- ── Twitter Card ── -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Getting Started — The Dev Realm Neo UI Kit" />
+  <meta name="twitter:description" content="One import. 30+ components. React, Vue, Svelte, Next.js, plain HTML. MIT." />
+  <meta name="twitter:image"       content="https://mariojgt.github.io/thedevrealm-neo/og-image.svg" />
+
+  <!-- ── Structured Data ── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Getting Started with The Dev Realm Neo UI Kit",
+    "description": "Installation and usage guide for @thedevrealm/neo-css, a Neo-Brutalist CSS design system.",
+    "url": "https://mariojgt.github.io/thedevrealm-neo/getting-started.html",
+    "author": { "@type": "Person", "name": "mariojgt" },
+    "publisher": { "@type": "Organization", "name": "The Dev Realm" },
+    "programmingLanguage": ["CSS", "JavaScript", "TypeScript"],
+    "about": { "@type": "SoftwareApplication", "name": "@thedevrealm/neo-css", "applicationCategory": "DeveloperTool", "license": "https://opensource.org/licenses/MIT" }
+  }
+  </script>
+
+  <style>
+    /* ── Base tokens ── */
+    :root {
+      --neo-brand:         #0d9668;
+      --neo-brand-light:   #2bb885;
+      --neo-brand-dark:    #047857;
+      --neo-surface:       #0c1222;
+      --neo-surface-light: #131d33;
+      --neo-surface-lighter:#1a2742;
+      --neo-body-bg:       #080d19;
+      --neo-accent:        #e6930a;
+      --neo-border-color:  #3a506e;
+      --neo-muted:         #8594b0;
+      --neo-subtle:        #4b5c7a;
+      --neo-border:        3px solid var(--neo-border-color);
+      --neo-radius:        0.375rem;
+      --neo-shadow:        5px 5px 0 #000;
+      --neo-shadow-sm:     4px 4px 0 #000;
+      --neo-font-sans:     ui-sans-serif, system-ui, -apple-system, sans-serif;
+      --neo-font-mono:     ui-monospace, 'SFMono-Regular', Consolas, monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--neo-body-bg);
+      color: #fff;
+      font-family: var(--neo-font-sans);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* ── Nav ── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--neo-surface);
+      border-bottom: var(--neo-border);
+      display: flex; align-items: center; gap: 1rem;
+      padding: 0 2rem; height: 56px;
+    }
+    .nav-brand {
+      font-size: .875rem; font-weight: 900; text-transform: uppercase;
+      letter-spacing: .1em; color: #fff; text-decoration: none;
+      display: flex; align-items: center; gap: .5rem; margin-right: auto;
+    }
+    .nav-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--neo-brand); display: inline-block; flex-shrink: 0; }
+    .nav a { font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--neo-muted); text-decoration: none; transition: color 120ms; }
+    .nav a:hover, .nav a.active { color: #fff; }
+
+    /* ── Layout ── */
+    .layout { display: grid; grid-template-columns: 240px 1fr; min-height: calc(100vh - 56px); max-width: 1200px; margin: 0 auto; }
+    @media (max-width: 768px) { .layout { grid-template-columns: 1fr; } .sidebar { display: none; } }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      border-right: var(--neo-border);
+      padding: 2rem 1rem;
+      position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto;
+    }
+    .sidebar-group { margin-bottom: 1.75rem; }
+    .sidebar-label { font-size: .6rem; font-weight: 800; text-transform: uppercase; letter-spacing: .15em; color: var(--neo-subtle); margin-bottom: .5rem; padding: 0 .5rem; }
+    .sidebar a {
+      display: block; padding: .375rem .5rem; font-size: .8125rem; font-weight: 600;
+      color: var(--neo-muted); text-decoration: none; border-radius: var(--neo-radius);
+      transition: background 100ms, color 100ms;
+    }
+    .sidebar a:hover { background: var(--neo-surface-light); color: #fff; }
+    .sidebar a.active { background: rgba(13,150,104,.15); color: var(--neo-brand-light); }
+
+    /* ── Content ── */
+    .content { padding: 3rem 2.5rem; max-width: 820px; }
+    .content h1 { font-size: 2rem; font-weight: 900; text-transform: uppercase; letter-spacing: -.02em; margin-bottom: .5rem; line-height: 1.1; }
+    .content h2 { font-size: 1.125rem; font-weight: 900; text-transform: uppercase; letter-spacing: .06em; color: #fff; margin: 2.5rem 0 1rem; padding-bottom: .5rem; border-bottom: var(--neo-border); }
+    .content h3 { font-size: .875rem; font-weight: 900; text-transform: uppercase; letter-spacing: .08em; color: var(--neo-muted); margin: 1.5rem 0 .75rem; }
+    .content p { color: var(--neo-muted); font-size: .9375rem; line-height: 1.7; margin-bottom: 1rem; }
+    .content a { color: var(--neo-brand-light); text-decoration: underline; text-underline-offset: 3px; }
+    .content ul, .content ol { color: var(--neo-muted); font-size: .9375rem; line-height: 1.7; margin-bottom: 1rem; padding-left: 1.5rem; }
+    .content li { margin-bottom: .35rem; }
+
+    /* ── Code blocks ── */
+    .code-block { position: relative; background: var(--neo-surface-light); border: var(--neo-border); border-radius: var(--neo-radius); box-shadow: var(--neo-shadow-sm); margin: .75rem 0 1.5rem; overflow: hidden; }
+    .code-lang { position: absolute; top: .5rem; left: 1rem; font-size: .6rem; font-weight: 800; text-transform: uppercase; letter-spacing: .12em; color: var(--neo-subtle); }
+    .code-block pre { padding: 2.25rem 1.25rem .875rem; font-family: var(--neo-font-mono); font-size: .8125rem; line-height: 1.7; color: #e2e8f0; overflow-x: auto; }
+    .neo-copy-btn { position: absolute; top: .5rem; right: .5rem; background: var(--neo-surface-lighter); border: 2px solid var(--neo-border-color); border-radius: var(--neo-radius); color: var(--neo-muted); font-size: .6rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; padding: .2rem .45rem; cursor: pointer; font-family: var(--neo-font-sans); transition: color 120ms, border-color 120ms; line-height: 1.4; }
+    .neo-copy-btn:hover { color: #fff; border-color: var(--neo-muted); }
+    .neo-copy-btn.copied { border-color: var(--neo-brand); color: var(--neo-brand-light); }
+    .hl-kw   { color: #7dd3fc; }  /* keyword/import */
+    .hl-str  { color: #86efac; }  /* string */
+    .hl-cm   { color: var(--neo-subtle); font-style: italic; }  /* comment */
+    .hl-tag  { color: #f9a8d4; }  /* html tag */
+    .hl-attr { color: #fde68a; }  /* attribute */
+    .hl-val  { color: #86efac; }  /* attribute value */
+    .hl-fn   { color: #c084fc; }  /* function */
+    .hl-num  { color: #fb923c; }  /* number */
+
+    /* ── Callout boxes ── */
+    .callout { display: flex; gap: .75rem; padding: .875rem 1rem; border-radius: var(--neo-radius); font-size: .875rem; line-height: 1.6; margin: 1rem 0 1.5rem; }
+    .callout-tip    { background: rgba(13,150,104,.08);  border: 2px solid rgba(13,150,104,.4);  color: #6ee7b7; }
+    .callout-warn   { background: rgba(230,147,10,.08); border: 2px solid rgba(230,147,10,.4); color: #fde68a; }
+    .callout-info   { background: rgba(58,80,110,.25);  border: 2px solid var(--neo-border-color); color: var(--neo-muted); }
+    .callout-icon   { font-size: 1rem; flex-shrink: 0; margin-top: .1rem; }
+
+    /* ── Step numbers ── */
+    .steps { counter-reset: step; list-style: none; padding: 0; }
+    .steps li { counter-increment: step; display: flex; gap: 1rem; margin-bottom: 1.75rem; }
+    .steps li::before { content: counter(step); display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: var(--neo-brand); color: #fff; font-size: .8rem; font-weight: 900; flex-shrink: 0; margin-top: .1rem; box-shadow: 3px 3px 0 #000; }
+    .steps li > div > strong { display: block; color: #fff; font-size: .9375rem; font-weight: 800; margin-bottom: .35rem; }
+    .steps li > div { flex: 1; }
+
+    /* ── Tab switcher ── */
+    .tabs { display: flex; gap: 0; margin-bottom: 0; overflow-x: auto; }
+    .tab-btn { padding: .5rem 1rem; border: var(--neo-border); border-bottom: none; background: var(--neo-surface); color: var(--neo-muted); font-family: var(--neo-font-sans); font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; cursor: pointer; transition: background 120ms, color 120ms; white-space: nowrap; }
+    .tab-btn:first-child { border-radius: var(--neo-radius) 0 0 0; }
+    .tab-btn:last-child  { border-radius: 0 var(--neo-radius) 0 0; }
+    .tab-btn + .tab-btn  { border-left: none; }
+    .tab-btn.active      { background: var(--neo-surface-light); color: #fff; }
+    .tab-panel           { display: none; }
+    .tab-panel.active    { display: block; }
+    .tab-panel > .code-block { margin-top: 0; border-top-left-radius: 0; }
+
+    /* ── Framework grid ── */
+    .fw-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: .75rem; margin-bottom: 1.5rem; }
+    .fw-card { background: var(--neo-surface-light); border: var(--neo-border); border-radius: var(--neo-radius); box-shadow: var(--neo-shadow-sm); padding: .875rem 1rem; font-size: .8rem; font-weight: 700; color: #fff; display: flex; align-items: center; gap: .5rem; cursor: pointer; transition: transform 120ms, box-shadow 120ms; text-decoration: none; }
+    .fw-card:hover { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 #000; color: var(--neo-brand-light); }
+    .fw-icon { font-size: 1.25rem; flex-shrink: 0; }
+
+    /* ── Section divider ── */
+    .section-divider { border: none; border-top: var(--neo-border); margin: 2.5rem 0; }
+
+    /* ── Component pill list ── */
+    .component-grid { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
+    .component-pill { display: inline-block; padding: .3rem .75rem; background: var(--neo-surface-light); border: 2px solid var(--neo-border-color); border-radius: var(--neo-radius); font-size: .75rem; font-weight: 700; color: var(--neo-muted); }
+    .component-pill.new { border-color: var(--neo-brand); color: var(--neo-brand-light); }
+
+    /* ── Page header sub ── */
+    .page-subtitle { color: var(--neo-muted); font-size: 1rem; margin-bottom: 2rem; line-height: 1.6; }
+    .badge-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 2rem; }
+    .badge { display: inline-flex; align-items: center; padding: .25rem .625rem; border-radius: var(--neo-radius); font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; border: 2px solid; }
+    .badge-green  { border-color: var(--neo-brand); color: var(--neo-brand-light); background: rgba(13,150,104,.08); }
+    .badge-blue   { border-color: #3b82f6; color: #93c5fd; background: rgba(59,130,246,.08); }
+    .badge-gray   { border-color: var(--neo-border-color); color: var(--neo-muted); background: transparent; }
+    .badge-orange { border-color: var(--neo-accent); color: #fbbf24; background: rgba(230,147,10,.08); }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav class="nav" aria-label="Site navigation">
+  <a class="nav-brand" href="index.html">
+    <span class="nav-dot"></span> The Dev Realm
+  </a>
+  <a href="index.html">Showcase</a>
+  <a href="getting-started.html" class="active">Docs</a>
+  <a href="https://github.com/mariojgt/thedevrealm-neo" target="_blank" rel="noopener">GitHub ↗</a>
+</nav>
+
+<div class="layout">
+  <!-- ══ SIDEBAR ══ -->
+  <aside class="sidebar" aria-label="Documentation navigation">
+    <div class="sidebar-group">
+      <p class="sidebar-label">Getting Started</p>
+      <a href="#introduction" class="active">Introduction</a>
+      <a href="#installation">Installation</a>
+      <a href="#quick-start">Quick Start</a>
+      <a href="#frameworks">Frameworks</a>
+    </div>
+    <div class="sidebar-group">
+      <p class="sidebar-label">Usage</p>
+      <a href="#tailwind">Tailwind Preset</a>
+      <a href="#tokens">Design Tokens</a>
+      <a href="#theming">Theming</a>
+    </div>
+    <div class="sidebar-group">
+      <p class="sidebar-label">Components</p>
+      <a href="#components-list">All Components</a>
+      <a href="#buttons">Buttons</a>
+      <a href="#cards">Cards</a>
+      <a href="#modal">Modal</a>
+      <a href="#accordion">Accordion</a>
+      <a href="#tooltip">Tooltip</a>
+      <a href="#skeleton">Skeleton</a>
+      <a href="#avatar">Avatar</a>
+      <a href="#kbd">Kbd Badges</a>
+      <a href="#gaming">Gaming</a>
+    </div>
+    <div class="sidebar-group">
+      <p class="sidebar-label">Links</p>
+      <a href="https://github.com/mariojgt/thedevrealm-neo" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="https://www.npmjs.com/package/@thedevrealm/neo-css" target="_blank" rel="noopener">npm ↗</a>
+      <a href="llms.txt">llms.txt ↗</a>
+    </div>
+  </aside>
+
+  <!-- ══ MAIN CONTENT ══ -->
+  <main class="content" id="main-content">
+
+    <!-- Introduction -->
+    <section id="introduction">
+      <div class="badge-row">
+        <span class="badge badge-green">MIT License</span>
+        <span class="badge badge-gray">Zero Dependencies</span>
+        <span class="badge badge-blue">30+ Components</span>
+        <span class="badge badge-orange">⚡ Gaming Ready</span>
+      </div>
+      <h1>Getting Started</h1>
+      <p class="page-subtitle">
+        <strong style="color:#fff">@thedevrealm/neo-css</strong> is a Neo-Brutalist design system with 30+ components, gaming utilities, and a Theme API.
+        Works with React, Vue, Svelte, Next.js, Nuxt, Astro, or plain HTML. No build tool required to get started.
+      </p>
+
+      <div class="callout callout-tip">
+        <span class="callout-icon">✦</span>
+        <div>Want to see it live first? Check the <a href="index.html">showcase page</a> for interactive demos of every component.</div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- Installation -->
+    <section id="installation">
+      <h2>Installation</h2>
+      <h3>Option A — CDN (no build tool)</h3>
+      <p>Add one <code>&lt;link&gt;</code> to your HTML. That's it.</p>
+      <div class="code-block">
+        <span class="code-lang">HTML</span>
+        <pre><span class="hl-tag">&lt;link</span> <span class="hl-attr">rel</span>=<span class="hl-val">"stylesheet"</span>
+  <span class="hl-attr">href</span>=<span class="hl-val">"https://cdn.jsdelivr.net/npm/@thedevrealm/neo-css@latest/dist/neo.css"</span><span class="hl-tag">&gt;</span></pre>
+      </div>
+
+      <h3>Option B — npm / pnpm / yarn</h3>
+      <div class="code-block">
+        <span class="code-lang">Shell</span>
+        <pre><span class="hl-cm"># npm</span>
+npm install @thedevrealm/neo-css
+
+<span class="hl-cm"># pnpm</span>
+pnpm add @thedevrealm/neo-css
+
+<span class="hl-cm"># yarn</span>
+yarn add @thedevrealm/neo-css</pre>
+      </div>
+
+      <p>Then import the stylesheet in your entry file:</p>
+      <div class="code-block">
+        <span class="code-lang">JS / TS</span>
+        <pre><span class="hl-kw">import</span> <span class="hl-str">'@thedevrealm/neo-css/dist/neo.css'</span></pre>
+      </div>
+
+      <h3>Sub-bundles</h3>
+      <p>Import only what you need to keep bundles small:</p>
+      <div class="code-block">
+        <span class="code-lang">JS</span>
+        <pre><span class="hl-kw">import</span> <span class="hl-str">'@thedevrealm/neo-css/dist/tokens.css'</span>     <span class="hl-cm">// CSS variables only</span>
+<span class="hl-kw">import</span> <span class="hl-str">'@thedevrealm/neo-css/dist/components.css'</span> <span class="hl-cm">// all component classes</span>
+<span class="hl-kw">import</span> <span class="hl-str">'@thedevrealm/neo-css/dist/animations.css'</span> <span class="hl-cm">// keyframes only</span></pre>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- Quick start -->
+    <section id="quick-start">
+      <h2>Quick Start — Plain HTML</h2>
+      <p>A complete working page in under 20 lines:</p>
+      <div class="code-block">
+        <span class="code-lang">HTML</span>
+        <pre><span class="hl-tag">&lt;!DOCTYPE html&gt;</span>
+<span class="hl-tag">&lt;html</span> <span class="hl-attr">lang</span>=<span class="hl-val">"en"</span><span class="hl-tag">&gt;</span>
+<span class="hl-tag">&lt;head&gt;</span>
+  <span class="hl-tag">&lt;meta</span> <span class="hl-attr">charset</span>=<span class="hl-val">"UTF-8"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;meta</span> <span class="hl-attr">name</span>=<span class="hl-val">"viewport"</span> <span class="hl-attr">content</span>=<span class="hl-val">"width=device-width, initial-scale=1"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;link</span> <span class="hl-attr">rel</span>=<span class="hl-val">"stylesheet"</span>
+    <span class="hl-attr">href</span>=<span class="hl-val">"https://cdn.jsdelivr.net/npm/@thedevrealm/neo-css@latest/dist/neo.css"</span><span class="hl-tag">&gt;</span>
+<span class="hl-tag">&lt;/head&gt;</span>
+<span class="hl-tag">&lt;body</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-noise"</span> <span class="hl-attr">style</span>=<span class="hl-val">"padding:2rem;background:var(--neo-body-bg)"</span><span class="hl-tag">&gt;</span>
+
+  <span class="hl-tag">&lt;button</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-btn neo-btn-primary"</span><span class="hl-tag">&gt;</span>Primary<span class="hl-tag">&lt;/button&gt;</span>
+  <span class="hl-tag">&lt;button</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-btn neo-btn-accent"</span><span class="hl-tag">&gt;</span>Accent<span class="hl-tag">&lt;/button&gt;</span>
+  <span class="hl-tag">&lt;button</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-btn neo-btn-ghost"</span><span class="hl-tag">&gt;</span>Ghost<span class="hl-tag">&lt;/button&gt;</span>
+
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-card"</span> <span class="hl-attr">style</span>=<span class="hl-val">"max-width:320px;padding:1.5rem;margin-top:1.5rem"</span><span class="hl-tag">&gt;</span>
+    <span class="hl-tag">&lt;h2</span> <span class="hl-attr">style</span>=<span class="hl-val">"margin-bottom:.5rem"</span><span class="hl-tag">&gt;</span>Hello Neo<span class="hl-tag">&lt;/h2&gt;</span>
+    <span class="hl-tag">&lt;p</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-text-muted"</span><span class="hl-tag">&gt;</span>Bold borders. Hard shadows. Zero apologies.<span class="hl-tag">&lt;/p&gt;</span>
+  <span class="hl-tag">&lt;/div&gt;</span>
+
+<span class="hl-tag">&lt;/body&gt;</span>
+<span class="hl-tag">&lt;/html&gt;</span></pre>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- Frameworks -->
+    <section id="frameworks">
+      <h2>Framework Setup</h2>
+
+      <div class="fw-grid">
+        <a class="fw-card" href="#fw-react">    <span class="fw-icon">⚛️</span> React</a>
+        <a class="fw-card" href="#fw-vue">      <span class="fw-icon">💚</span> Vue 3</a>
+        <a class="fw-card" href="#fw-svelte">   <span class="fw-icon">🔥</span> Svelte</a>
+        <a class="fw-card" href="#fw-next">     <span class="fw-icon">▲</span> Next.js</a>
+        <a class="fw-card" href="#fw-nuxt">     <span class="fw-icon">💚</span> Nuxt 3</a>
+        <a class="fw-card" href="#fw-astro">    <span class="fw-icon">🚀</span> Astro</a>
+      </div>
+
+      <!-- React -->
+      <h3 id="fw-react">⚛️ React (Vite)</h3>
+      <ol class="steps">
+        <li>
+          <div>
+            <strong>Install the package</strong>
+            <div class="code-block"><span class="code-lang">Shell</span><pre>npm install @thedevrealm/neo-css</pre></div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Import in your entry file</strong>
+            <div class="code-block"><span class="code-lang">main.jsx</span><pre><span class="hl-kw">import</span> <span class="hl-str">'@thedevrealm/neo-css/dist/neo.css'</span>
+<span class="hl-kw">import</span> { createRoot } <span class="hl-kw">from</span> <span class="hl-str">'react-dom/client'</span>
+<span class="hl-kw">import</span> App <span class="hl-kw">from</span> <span class="hl-str">'./App'</span>
+
+createRoot(document.getElementById(<span class="hl-str">'root'</span>)).render(<span class="hl-tag">&lt;App /&gt;</span>)</pre></div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <strong>Use classes in any component</strong>
+            <div class="code-block"><span class="code-lang">App.jsx</span><pre><span class="hl-kw">export default function</span> <span class="hl-fn">App</span>() {
+  <span class="hl-kw">return</span> (
+    <span class="hl-tag">&lt;div</span> <span class="hl-attr">className</span>=<span class="hl-val">"neo-card"</span> <span class="hl-attr">style</span>=<span class="hl-val">{{'{'}}</span><span class="hl-attr">padding</span>: <span class="hl-str">'1.5rem'</span><span class="hl-val">{'}'}</span><span class="hl-tag">&gt;</span>
+      <span class="hl-tag">&lt;button</span> <span class="hl-attr">className</span>=<span class="hl-val">"neo-btn neo-btn-primary"</span><span class="hl-tag">&gt;</span>Click me<span class="hl-tag">&lt;/button&gt;</span>
+    <span class="hl-tag">&lt;/div&gt;</span>
+  )
+}</pre></div>
+          </div>
+        </li>
+      </ol>
+
+      <!-- Next.js -->
+      <h3 id="fw-next">▲ Next.js (App Router)</h3>
+      <div class="code-block">
+        <span class="code-lang">app/layout.tsx</span>
+        <pre><span class="hl-kw">import</span> <span class="hl-str">'@thedevrealm/neo-css/dist/neo.css'</span>
+
+<span class="hl-kw">export default function</span> <span class="hl-fn">RootLayout</span>({ children }: { children: React.ReactNode }) {
+  <span class="hl-kw">return</span> (
+    <span class="hl-tag">&lt;html</span> <span class="hl-attr">lang</span>=<span class="hl-val">"en"</span><span class="hl-tag">&gt;</span>
+      <span class="hl-tag">&lt;body</span> <span class="hl-attr">className</span>=<span class="hl-val">"neo-noise"</span><span class="hl-tag">&gt;</span>{children}<span class="hl-tag">&lt;/body&gt;</span>
+    <span class="hl-tag">&lt;/html&gt;</span>
+  )
+}</pre>
+      </div>
+
+      <!-- Vue -->
+      <h3 id="fw-vue">💚 Vue 3</h3>
+      <div class="code-block">
+        <span class="code-lang">main.js</span>
+        <pre><span class="hl-kw">import</span> { createApp } <span class="hl-kw">from</span> <span class="hl-str">'vue'</span>
+<span class="hl-kw">import</span> <span class="hl-str">'@thedevrealm/neo-css/dist/neo.css'</span>
+<span class="hl-kw">import</span> App <span class="hl-kw">from</span> <span class="hl-str">'./App.vue'</span>
+
+createApp(App).mount(<span class="hl-str">'#app'</span>)</pre>
+      </div>
+
+      <!-- Nuxt -->
+      <h3 id="fw-nuxt">💚 Nuxt 3</h3>
+      <div class="code-block">
+        <span class="code-lang">nuxt.config.ts</span>
+        <pre><span class="hl-kw">export default</span> defineNuxtConfig({
+  css: [<span class="hl-str">'@thedevrealm/neo-css/dist/neo.css'</span>],
+})</pre>
+      </div>
+
+      <!-- Svelte -->
+      <h3 id="fw-svelte">🔥 Svelte / SvelteKit</h3>
+      <div class="code-block">
+        <span class="code-lang">src/routes/+layout.svelte</span>
+        <pre><span class="hl-tag">&lt;script&gt;</span>
+  <span class="hl-kw">import</span> <span class="hl-str">'@thedevrealm/neo-css/dist/neo.css'</span>
+<span class="hl-tag">&lt;/script&gt;</span>
+
+<span class="hl-tag">&lt;slot /&gt;</span></pre>
+      </div>
+
+      <!-- Astro -->
+      <h3 id="fw-astro">🚀 Astro</h3>
+      <div class="code-block">
+        <span class="code-lang">src/layouts/Base.astro</span>
+        <pre><span class="hl-tag">---</span>
+<span class="hl-kw">import</span> <span class="hl-str">'@thedevrealm/neo-css/dist/neo.css'</span>
+<span class="hl-tag">---</span>
+<span class="hl-tag">&lt;html</span> <span class="hl-attr">lang</span>=<span class="hl-val">"en"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;body</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-noise"</span><span class="hl-tag">&gt;</span>
+    <span class="hl-tag">&lt;slot /&gt;</span>
+  <span class="hl-tag">&lt;/body&gt;</span>
+<span class="hl-tag">&lt;/html&gt;</span></pre>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- Tailwind -->
+    <section id="tailwind">
+      <h2>Tailwind CSS Preset</h2>
+      <p>Use the built-in Tailwind preset to get all Neo design tokens as Tailwind utilities — no CSS import needed.</p>
+      <div class="code-block">
+        <span class="code-lang">tailwind.config.js</span>
+        <pre>module.exports = {
+  presets: [require(<span class="hl-str">'@thedevrealm/neo-css/tailwind-preset'</span>)],
+  content: [<span class="hl-str">'./src/**/*.{html,js,ts,jsx,tsx,vue,svelte}'</span>],
+}</pre>
+      </div>
+      <p>The preset exposes:</p>
+      <ul>
+        <li>Color utilities: <code>bg-brand</code>, <code>text-brand</code>, <code>border-accent</code>, <code>bg-surface</code>, <code>text-muted</code>…</li>
+        <li>Shadow utilities: <code>shadow-neo</code>, <code>shadow-neo-sm</code>, <code>shadow-neo-lg</code>, <code>shadow-neo-xl</code></li>
+        <li><code>border-3</code> width utility</li>
+        <li>All Neo animation keyframes as <code>animate-neo-*</code></li>
+      </ul>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- Tokens -->
+    <section id="tokens">
+      <h2>Design Tokens</h2>
+      <p>All values are CSS custom properties on <code>:root</code>. Override any token after the import to customise the theme.</p>
+      <div class="code-block">
+        <span class="code-lang">CSS</span>
+        <pre><span class="hl-cm">/* After importing neo.css, override any token: */</span>
+:root {
+  <span class="hl-cm">/* Brand */</span>
+  --neo-brand:          <span class="hl-num">#0d9668</span>;
+  --neo-brand-light:    <span class="hl-num">#2bb885</span>;
+  --neo-brand-dark:     <span class="hl-num">#047857</span>;
+
+  <span class="hl-cm">/* Surfaces (dark by default) */</span>
+  --neo-body-bg:          <span class="hl-num">#080d19</span>;
+  --neo-surface:          <span class="hl-num">#0c1222</span>;
+  --neo-surface-light:    <span class="hl-num">#131d33</span>;
+  --neo-surface-lighter:  <span class="hl-num">#1a2742</span>;
+
+  <span class="hl-cm">/* Accent & Borders */</span>
+  --neo-accent:       <span class="hl-num">#e6930a</span>;
+  --neo-border-color: <span class="hl-num">#3a506e</span>;
+  --neo-border:       3px solid var(--neo-border-color);
+  --neo-radius:       <span class="hl-num">0.375rem</span>;
+
+  <span class="hl-cm">/* Shadows */</span>
+  --neo-shadow:    5px 5px 0 <span class="hl-num">#000</span>;
+  --neo-shadow-sm: 4px 4px 0 <span class="hl-num">#000</span>;
+  --neo-shadow-lg: 6px 6px 0 <span class="hl-num">#000</span>;
+  --neo-shadow-xl: 8px 8px 0 <span class="hl-num">#000</span>;
+
+  <span class="hl-cm">/* Typography */</span>
+  --neo-font-sans: ui-sans-serif, system-ui, sans-serif;
+  --neo-font-mono: ui-monospace, Consolas, monospace;
+}</pre>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- Theming -->
+    <section id="theming">
+      <h2>Runtime Theming</h2>
+      <p>Switch themes at runtime by calling <code>setNeoTheme()</code> — no page reload required. Persisted in <code>sessionStorage</code>.</p>
+      <div class="code-block">
+        <span class="code-lang">JS</span>
+        <pre><span class="hl-cm">// Built-in themes</span>
+<span class="hl-fn">setNeoTheme</span>(<span class="hl-str">'emerald'</span>)   <span class="hl-cm">// default green</span>
+<span class="hl-fn">setNeoTheme</span>(<span class="hl-str">'violet'</span>)    <span class="hl-cm">// purple brand</span>
+<span class="hl-fn">setNeoTheme</span>(<span class="hl-str">'crimson'</span>)   <span class="hl-cm">// red brand</span></pre>
+      </div>
+      <p>Or define your own by setting CSS variables in a class and calling <code>document.documentElement.className = 'my-theme'</code>.</p>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- Components list -->
+    <section id="components-list">
+      <h2>All Components</h2>
+      <div class="component-grid">
+        <span class="component-pill">Buttons</span>
+        <span class="component-pill">Cards</span>
+        <span class="component-pill">Tags / Badges</span>
+        <span class="component-pill">Alerts</span>
+        <span class="component-pill">Forms / Inputs</span>
+        <span class="component-pill">Table</span>
+        <span class="component-pill">Toggle</span>
+        <span class="component-pill">Tabs</span>
+        <span class="component-pill">Divider</span>
+        <span class="component-pill">Hero</span>
+        <span class="component-pill new">Modal ✦</span>
+        <span class="component-pill new">Accordion ✦</span>
+        <span class="component-pill new">Tooltip ✦</span>
+        <span class="component-pill new">Skeleton ✦</span>
+        <span class="component-pill new">Avatar ✦</span>
+        <span class="component-pill new">Kbd Badges ✦</span>
+        <span class="component-pill new">Command Palette ✦</span>
+        <span class="component-pill new">Leaderboard ✦</span>
+        <span class="component-pill new">Rarity Cards ✦</span>
+        <span class="component-pill">Toast</span>
+        <span class="component-pill">Camera Shake</span>
+        <span class="component-pill">Glitch Text</span>
+        <span class="component-pill">XP / HP / MP Bars</span>
+        <span class="component-pill">Combo Counter</span>
+        <span class="component-pill">Particle Burst</span>
+        <span class="component-pill">Typewriter</span>
+        <span class="component-pill">Charge Button</span>
+        <span class="component-pill">Scanlines</span>
+      </div>
+      <div class="callout callout-info">
+        <span class="callout-icon">ℹ</span>
+        <div>Live demos for every component live on the <a href="index.html">showcase page</a>. HTML snippets are in the <a href="https://github.com/mariojgt/thedevrealm-neo/blob/main/packages/neo-css/README.md" target="_blank" rel="noopener">README</a>.</div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- Buttons reference -->
+    <section id="buttons">
+      <h2>Buttons</h2>
+      <div class="code-block">
+        <span class="code-lang">HTML</span>
+        <pre><span class="hl-tag">&lt;button</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-btn neo-btn-primary"</span><span class="hl-tag">&gt;</span>Primary<span class="hl-tag">&lt;/button&gt;</span>
+<span class="hl-tag">&lt;button</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-btn neo-btn-accent"</span><span class="hl-tag">&gt;</span>Accent<span class="hl-tag">&lt;/button&gt;</span>
+<span class="hl-tag">&lt;button</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-btn neo-btn-ghost"</span><span class="hl-tag">&gt;</span>Ghost<span class="hl-tag">&lt;/button&gt;</span>
+<span class="hl-tag">&lt;button</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-btn neo-btn-danger"</span><span class="hl-tag">&gt;</span>Danger<span class="hl-tag">&lt;/button&gt;</span>
+
+<span class="hl-cm">&lt;!-- Sizes --&gt;</span>
+<span class="hl-tag">&lt;button</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-btn neo-btn-primary neo-btn-sm"</span><span class="hl-tag">&gt;</span>Small<span class="hl-tag">&lt;/button&gt;</span>
+<span class="hl-tag">&lt;button</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-btn neo-btn-primary neo-btn-lg"</span><span class="hl-tag">&gt;</span>Large<span class="hl-tag">&lt;/button&gt;</span>
+
+<span class="hl-cm">&lt;!-- Disabled --&gt;</span>
+<span class="hl-tag">&lt;button</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-btn neo-btn-primary"</span> <span class="hl-attr">disabled</span><span class="hl-tag">&gt;</span>Disabled<span class="hl-tag">&lt;/button&gt;</span></pre>
+      </div>
+    </section>
+
+    <!-- Cards -->
+    <section id="cards">
+      <h2>Cards</h2>
+      <div class="code-block">
+        <span class="code-lang">HTML</span>
+        <pre><span class="hl-cm">&lt;!-- Basic card (hover lifts) --&gt;</span>
+<span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-card"</span> <span class="hl-attr">style</span>=<span class="hl-val">"padding:1.5rem"</span><span class="hl-tag">&gt;</span>Content<span class="hl-tag">&lt;/div&gt;</span>
+
+<span class="hl-cm">&lt;!-- Brand card (green top border) --&gt;</span>
+<span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-card-brand"</span> <span class="hl-attr">style</span>=<span class="hl-val">"padding:1.5rem"</span><span class="hl-tag">&gt;</span>Content<span class="hl-tag">&lt;/div&gt;</span>
+
+<span class="hl-cm">&lt;!-- Stat card --&gt;</span>
+<span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-stat-card"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;p</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-text-muted"</span><span class="hl-tag">&gt;</span>Total Users<span class="hl-tag">&lt;/p&gt;</span>
+  <span class="hl-tag">&lt;p</span> <span class="hl-attr">style</span>=<span class="hl-val">"font-size:2rem;font-weight:900"</span><span class="hl-tag">&gt;</span>12,480<span class="hl-tag">&lt;/p&gt;</span>
+<span class="hl-tag">&lt;/div&gt;</span></pre>
+      </div>
+    </section>
+
+    <!-- Modal -->
+    <section id="modal">
+      <h2>Modal</h2>
+      <div class="code-block">
+        <span class="code-lang">HTML + JS</span>
+        <pre><span class="hl-tag">&lt;button</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-btn neo-btn-primary"</span>
+  <span class="hl-attr">onclick</span>=<span class="hl-val">"neoModalOpen('my-modal')"</span><span class="hl-tag">&gt;</span>Open<span class="hl-tag">&lt;/button&gt;</span>
+
+<span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-modal-backdrop"</span> <span class="hl-attr">id</span>=<span class="hl-val">"my-modal"</span>
+     <span class="hl-attr">onclick</span>=<span class="hl-val">"if(event.target===this)neoModalClose('my-modal')"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-modal"</span><span class="hl-tag">&gt;</span>
+    <span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-modal-header"</span><span class="hl-tag">&gt;</span>
+      <span class="hl-tag">&lt;h2</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-modal-title"</span><span class="hl-tag">&gt;</span>Title<span class="hl-tag">&lt;/h2&gt;</span>
+      <span class="hl-tag">&lt;button</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-modal-close"</span>
+        <span class="hl-attr">onclick</span>=<span class="hl-val">"neoModalClose('my-modal')"</span><span class="hl-tag">&gt;</span>✕<span class="hl-tag">&lt;/button&gt;</span>
+    <span class="hl-tag">&lt;/div&gt;</span>
+    <span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-modal-body"</span><span class="hl-tag">&gt;</span>Body text here.<span class="hl-tag">&lt;/div&gt;</span>
+    <span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-modal-footer"</span><span class="hl-tag">&gt;</span>
+      <span class="hl-tag">&lt;button</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-btn neo-btn-primary"</span><span class="hl-tag">&gt;</span>Confirm<span class="hl-tag">&lt;/button&gt;</span>
+    <span class="hl-tag">&lt;/div&gt;</span>
+  <span class="hl-tag">&lt;/div&gt;</span>
+<span class="hl-tag">&lt;/div&gt;</span>
+
+<span class="hl-tag">&lt;script&gt;</span>
+<span class="hl-kw">function</span> <span class="hl-fn">neoModalOpen</span>(id) {
+  document.getElementById(id).classList.add(<span class="hl-str">'open'</span>)
+  document.body.style.overflow = <span class="hl-str">'hidden'</span>
+}
+<span class="hl-kw">function</span> <span class="hl-fn">neoModalClose</span>(id) {
+  document.getElementById(id).classList.remove(<span class="hl-str">'open'</span>)
+  document.body.style.overflow = <span class="hl-str">''</span>
+}
+<span class="hl-tag">&lt;/script&gt;</span></pre>
+      </div>
+    </section>
+
+    <!-- Accordion -->
+    <section id="accordion">
+      <h2>Accordion</h2>
+      <div class="code-block">
+        <span class="code-lang">HTML + JS</span>
+        <pre><span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-accordion"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-accordion-item open"</span><span class="hl-tag">&gt;</span>
+    <span class="hl-tag">&lt;button</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-accordion-trigger"</span> <span class="hl-attr">onclick</span>=<span class="hl-val">"neoAccordion(this)"</span><span class="hl-tag">&gt;</span>
+      Question <span class="hl-tag">&lt;span</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-accordion-chevron"</span><span class="hl-tag">&gt;</span>▼<span class="hl-tag">&lt;/span&gt;</span>
+    <span class="hl-tag">&lt;/button&gt;</span>
+    <span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-accordion-body"</span><span class="hl-tag">&gt;</span>Answer text.<span class="hl-tag">&lt;/div&gt;</span>
+  <span class="hl-tag">&lt;/div&gt;</span>
+<span class="hl-tag">&lt;/div&gt;</span>
+
+<span class="hl-tag">&lt;script&gt;</span>
+<span class="hl-kw">function</span> <span class="hl-fn">neoAccordion</span>(btn) {
+  <span class="hl-kw">const</span> item = btn.closest(<span class="hl-str">'.neo-accordion-item'</span>)
+  <span class="hl-kw">const</span> isOpen = item.classList.contains(<span class="hl-str">'open'</span>)
+  item.closest(<span class="hl-str">'.neo-accordion'</span>)
+    .querySelectorAll(<span class="hl-str">'.neo-accordion-item.open'</span>)
+    .forEach(el => el.classList.remove(<span class="hl-str">'open'</span>))
+  <span class="hl-kw">if</span> (!isOpen) item.classList.add(<span class="hl-str">'open'</span>)
+}
+<span class="hl-tag">&lt;/script&gt;</span></pre>
+      </div>
+    </section>
+
+    <!-- Tooltip -->
+    <section id="tooltip">
+      <h2>Tooltip <small style="font-size:.7em;font-weight:400;color:var(--neo-muted);text-transform:none;letter-spacing:0">— pure CSS, zero JS</small></h2>
+      <div class="code-block">
+        <span class="code-lang">HTML</span>
+        <pre><span class="hl-tag">&lt;button</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-btn neo-btn-primary"</span>
+  <span class="hl-attr">data-tip</span>=<span class="hl-val">"Creates a new project"</span><span class="hl-tag">&gt;</span>
+  New Project
+<span class="hl-tag">&lt;/button&gt;</span>
+
+<span class="hl-cm">&lt;!-- Works on any element --&gt;</span>
+<span class="hl-tag">&lt;span</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-badge neo-badge-success"</span>
+  <span class="hl-attr">data-tip</span>=<span class="hl-val">"Deployed 2 min ago"</span><span class="hl-tag">&gt;</span>Live<span class="hl-tag">&lt;/span&gt;</span></pre>
+      </div>
+    </section>
+
+    <!-- Skeleton -->
+    <section id="skeleton">
+      <h2>Skeleton Loader</h2>
+      <div class="code-block">
+        <span class="code-lang">HTML</span>
+        <pre><span class="hl-cm">&lt;!-- Sizes --&gt;</span>
+<span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-skeleton neo-skeleton-thumb"</span><span class="hl-tag">&gt;&lt;/div&gt;</span>  <span class="hl-cm">&lt;!-- image area --&gt;</span>
+<span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-skeleton neo-skeleton-title"</span><span class="hl-tag">&gt;&lt;/div&gt;</span>  <span class="hl-cm">&lt;!-- heading --&gt;</span>
+<span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-skeleton neo-skeleton-text"</span><span class="hl-tag">&gt;&lt;/div&gt;</span>   <span class="hl-cm">&lt;!-- body line --&gt;</span>
+<span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-skeleton neo-skeleton-avatar"</span><span class="hl-tag">&gt;&lt;/div&gt;</span> <span class="hl-cm">&lt;!-- circle --&gt;</span>
+<span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-skeleton neo-skeleton-btn"</span><span class="hl-tag">&gt;&lt;/div&gt;</span>   <span class="hl-cm">&lt;!-- button --&gt;</span></pre>
+      </div>
+    </section>
+
+    <!-- Avatar -->
+    <section id="avatar">
+      <h2>Avatar</h2>
+      <div class="code-block">
+        <span class="code-lang">HTML</span>
+        <pre><span class="hl-cm">&lt;!-- Sizes: sm | md | lg | xl --&gt;</span>
+<span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-avatar neo-avatar-md"</span><span class="hl-tag">&gt;</span>MJ<span class="hl-tag">&lt;/div&gt;</span>
+<span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-avatar neo-avatar-md neo-avatar-brand neo-avatar-online"</span><span class="hl-tag">&gt;</span>AB<span class="hl-tag">&lt;/div&gt;</span>
+
+<span class="hl-cm">&lt;!-- Group (overlapping) --&gt;</span>
+<span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-avatar-group"</span><span class="hl-tag">&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-avatar neo-avatar-md"</span><span class="hl-tag">&gt;</span>A<span class="hl-tag">&lt;/div&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-avatar neo-avatar-md"</span><span class="hl-tag">&gt;</span>B<span class="hl-tag">&gt;</span>C<span class="hl-tag">&lt;/div&gt;</span>
+  <span class="hl-tag">&lt;div</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-avatar neo-avatar-md"</span><span class="hl-tag">&gt;</span>+3<span class="hl-tag">&lt;/div&gt;</span>
+<span class="hl-tag">&lt;/div&gt;</span></pre>
+      </div>
+    </section>
+
+    <!-- Kbd -->
+    <section id="kbd">
+      <h2>Keyboard Badges</h2>
+      <div class="code-block">
+        <span class="code-lang">HTML</span>
+        <pre>Press <span class="hl-tag">&lt;span</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-kbd"</span><span class="hl-tag">&gt;</span>⌘ K<span class="hl-tag">&lt;/span&gt;</span> to search.
+Save with <span class="hl-tag">&lt;span</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-kbd"</span><span class="hl-tag">&gt;</span>⌃ S<span class="hl-tag">&lt;/span&gt;</span>.
+Dismiss with <span class="hl-tag">&lt;span</span> <span class="hl-attr">class</span>=<span class="hl-val">"neo-kbd"</span><span class="hl-tag">&gt;</span>Esc<span class="hl-tag">&lt;/span&gt;</span>.</pre>
+      </div>
+    </section>
+
+    <!-- Gaming -->
+    <section id="gaming">
+      <h2>Gaming Utilities</h2>
+      <div class="callout callout-warn">
+        <span class="callout-icon">⚡</span>
+        <div>Gaming utilities require the small JS helper functions from <code>neo.js</code>. Copy them from the <a href="index.html#gaming">showcase source</a> or the <a href="https://github.com/mariojgt/thedevrealm-neo" target="_blank" rel="noopener">GitHub repo</a>.</div>
+      </div>
+      <div class="component-grid">
+        <span class="component-pill">neoShake() — camera shake</span>
+        <span class="component-pill">toggleGlitch() — glitch text</span>
+        <span class="component-pill">neoAchievement() — toast</span>
+        <span class="component-pill">neoComboHit() — combo counter</span>
+        <span class="component-pill">neoParticles() — burst</span>
+        <span class="component-pill">neoFlash() — screen flash</span>
+        <span class="component-pill">neoTypewriter() — typewriter</span>
+        <span class="component-pill">startCharge() — charge button</span>
+        <span class="component-pill">XP / HP / MP bars</span>
+        <span class="component-pill">Scanlines overlay</span>
+        <span class="component-pill new">Leaderboard ✦</span>
+        <span class="component-pill new">Rarity item cards ✦</span>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <p style="color:var(--neo-subtle);font-size:.8125rem;text-align:center;padding-bottom:3rem">
+      MIT License · <a href="https://github.com/mariojgt/thedevrealm-neo" target="_blank" rel="noopener">GitHub</a> · <a href="index.html">Showcase</a> · <a href="llms.txt">llms.txt</a>
+    </p>
+  </main>
+</div>
+
+<script>
+  // Copy-to-clipboard for every code block
+  document.querySelectorAll('.code-block').forEach(block => {
+    const btn = document.createElement('button')
+    btn.className = 'neo-copy-btn'
+    btn.textContent = 'Copy'
+    btn.addEventListener('click', () => {
+      const pre = block.querySelector('pre')
+      if (!pre) return
+      navigator.clipboard.writeText(pre.innerText).then(() => {
+        btn.textContent = '✓ Copied'
+        btn.classList.add('copied')
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied') }, 1800)
+      })
+    })
+    block.appendChild(btn)
+  })
+
+  // Active sidebar link on scroll
+  const sections = document.querySelectorAll('section[id]')
+  const links    = document.querySelectorAll('.sidebar a[href^="#"]')
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id))
+      }
+    })
+  }, { rootMargin: '-20% 0px -70% 0px' })
+  sections.forEach(s => observer.observe(s))
+</script>
+
+</body>
+</html>

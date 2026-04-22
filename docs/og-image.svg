@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#080d19"/>
+      <stop offset="100%" stop-color="#0c1222"/>
+    </linearGradient>
+    <!-- Brand glow -->
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0d9668" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#080d19" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Stripe pattern -->
+    <pattern id="stripes" patternUnits="userSpaceOnUse" width="24" height="24" patternTransform="rotate(45)">
+      <rect width="3" height="24" fill="#1a2742" opacity="0.5"/>
+    </pattern>
+  </defs>
+
+  <!-- Base background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Subtle stripe texture (right half) -->
+  <rect x="600" y="0" width="600" height="630" fill="url(#stripes)" opacity="0.4"/>
+
+  <!-- Brand glow blob -->
+  <ellipse cx="580" cy="310" rx="420" ry="300" fill="url(#glow)"/>
+
+  <!-- Hard-shadow card (behind) -->
+  <rect x="88" y="88" width="520" height="280" rx="6" fill="#000" opacity="0.7"/>
+  <!-- Main card -->
+  <rect x="80" y="80" width="520" height="280" rx="6" fill="#131d33" stroke="#3a506e" stroke-width="3"/>
+  <!-- Card brand top bar -->
+  <rect x="80" y="80" width="520" height="5" rx="3" fill="#0d9668"/>
+
+  <!-- Card content: logo mark -->
+  <text x="110" y="153" font-family="ui-sans-serif,system-ui,sans-serif" font-size="52" font-weight="900" fill="#ffffff" letter-spacing="-2">THE DEV</text>
+  <text x="110" y="213" font-family="ui-sans-serif,system-ui,sans-serif" font-size="52" font-weight="900" fill="#0d9668" letter-spacing="-2">REALM</text>
+
+  <!-- Divider -->
+  <rect x="110" y="230" width="200" height="3" fill="#3a506e"/>
+
+  <!-- Tagline -->
+  <text x="110" y="272" font-family="ui-sans-serif,system-ui,sans-serif" font-size="17" font-weight="600" fill="#8594b0" letter-spacing="1">NEO-BRUTALIST UI KIT</text>
+  <text x="110" y="298" font-family="ui-sans-serif,system-ui,sans-serif" font-size="14" font-weight="400" fill="#4b5c7a" letter-spacing="0.5">React · Vue · Svelte · HTML</text>
+  <text x="110" y="322" font-family="ui-sans-serif,system-ui,sans-serif" font-size="14" font-weight="400" fill="#4b5c7a" letter-spacing="0.5">Zero dependencies · MIT license</text>
+
+  <!-- Shield / badge -->
+  <rect x="82" y="316" width="126" height="26" rx="4" fill="#0d9668" opacity="0.12" stroke="#0d9668" stroke-width="1.5"/>
+  <text x="108" y="334" font-family="ui-sans-serif,system-ui,sans-serif" font-size="11" font-weight="800" fill="#2bb885" letter-spacing="1.5">★ OPEN SOURCE</text>
+
+  <!-- Right column: feature pills / code preview -->
+  <!-- Pill row 1 -->
+  <rect x="660" y="100" width="400" height="36" rx="4" fill="#131d33" stroke="#3a506e" stroke-width="2"/>
+  <rect x="660" y="100" width="4" height="36" rx="2" fill="#0d9668"/>
+  <text x="678" y="124" font-family="ui-monospace,'SFMono-Regular',monospace" font-size="13" fill="#2bb885" font-weight="700">npm i @thedevrealm/neo-css</text>
+
+  <!-- Pill row 2: component chips -->
+  <rect x="660" y="156" width="104" height="30" rx="4" fill="#1a2742" stroke="#3a506e" stroke-width="2"/>
+  <text x="680" y="176" font-family="ui-sans-serif,system-ui,sans-serif" font-size="11" font-weight="800" fill="#ffffff" letter-spacing="1">Buttons</text>
+
+  <rect x="774" y="156" width="88" height="30" rx="4" fill="#1a2742" stroke="#3a506e" stroke-width="2"/>
+  <text x="792" y="176" font-family="ui-sans-serif,system-ui,sans-serif" font-size="11" font-weight="800" fill="#ffffff" letter-spacing="1">Cards</text>
+
+  <rect x="872" y="156" width="90" height="30" rx="4" fill="#1a2742" stroke="#3a506e" stroke-width="2"/>
+  <text x="887" y="176" font-family="ui-sans-serif,system-ui,sans-serif" font-size="11" font-weight="800" fill="#ffffff" letter-spacing="1">Modals</text>
+
+  <rect x="972" y="156" width="88" height="30" rx="4" fill="#1a2742" stroke="#3a506e" stroke-width="2"/>
+  <text x="987" y="176" font-family="ui-sans-serif,system-ui,sans-serif" font-size="11" font-weight="800" fill="#ffffff" letter-spacing="1">Toasts</text>
+
+  <!-- Pill row 3 -->
+  <rect x="660" y="196" width="94" height="30" rx="4" fill="#1a2742" stroke="#3a506e" stroke-width="2"/>
+  <text x="675" y="216" font-family="ui-sans-serif,system-ui,sans-serif" font-size="11" font-weight="800" fill="#ffffff" letter-spacing="1">Forms</text>
+
+  <rect x="764" y="196" width="96" height="30" rx="4" fill="#1a2742" stroke="#3a506e" stroke-width="2"/>
+  <text x="776" y="216" font-family="ui-sans-serif,system-ui,sans-serif" font-size="11" font-weight="800" fill="#ffffff" letter-spacing="1">Skeletons</text>
+
+  <rect x="870" y="196" width="106" height="30" rx="4" fill="#1a2742" stroke="#e6930a" stroke-width="2"/>
+  <text x="882" y="216" font-family="ui-sans-serif,system-ui,sans-serif" font-size="11" font-weight="800" fill="#e6930a" letter-spacing="1">⚡ Gaming</text>
+
+  <rect x="986" y="196" width="74" height="30" rx="4" fill="#1a2742" stroke="#3a506e" stroke-width="2"/>
+  <text x="998" y="216" font-family="ui-sans-serif,system-ui,sans-serif" font-size="11" font-weight="800" fill="#ffffff" letter-spacing="1">⌘K CMD</text>
+
+  <!-- Separator -->
+  <rect x="660" y="243" width="440" height="1" fill="#1a2742"/>
+
+  <!-- Stats row -->
+  <text x="660" y="272" font-family="ui-sans-serif,system-ui,sans-serif" font-size="28" font-weight="900" fill="#ffffff">30+</text>
+  <text x="660" y="292" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12" font-weight="600" fill="#4b5c7a" letter-spacing="1">COMPONENTS</text>
+
+  <text x="770" y="272" font-family="ui-sans-serif,system-ui,sans-serif" font-size="28" font-weight="900" fill="#ffffff">4</text>
+  <text x="770" y="292" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12" font-weight="600" fill="#4b5c7a" letter-spacing="1">FRAMEWORKS</text>
+
+  <text x="880" y="272" font-family="ui-sans-serif,system-ui,sans-serif" font-size="28" font-weight="900" fill="#0d9668">MIT</text>
+  <text x="880" y="292" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12" font-weight="600" fill="#4b5c7a" letter-spacing="1">LICENSE</text>
+
+  <text x="990" y="272" font-family="ui-sans-serif,system-ui,sans-serif" font-size="28" font-weight="900" fill="#ffffff">0</text>
+  <text x="990" y="292" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12" font-weight="600" fill="#4b5c7a" letter-spacing="1">DEPS</text>
+
+  <!-- Separator -->
+  <rect x="660" y="308" width="440" height="1" fill="#1a2742"/>
+
+  <!-- Code snippet preview -->
+  <text x="660" y="337" font-family="ui-monospace,'SFMono-Regular',monospace" font-size="12.5" fill="#3a506e">//</text>
+  <text x="682" y="337" font-family="ui-monospace,'SFMono-Regular',monospace" font-size="12.5" fill="#4b5c7a"> one import, works everywhere</text>
+  <text x="660" y="358" font-family="ui-monospace,'SFMono-Regular',monospace" font-size="13" fill="#8594b0">import </text>
+  <text x="712" y="358" font-family="ui-monospace,'SFMono-Regular',monospace" font-size="13" fill="#2bb885">'@thedevrealm/neo-css/dist/neo.css'</text>
+
+  <!-- Bottom strip -->
+  <rect x="0" y="590" width="1200" height="40" fill="#080d19"/>
+  <rect x="0" y="590" width="1200" height="2" fill="#1a2742"/>
+  <text x="600" y="614" font-family="ui-sans-serif,system-ui,sans-serif" font-size="13" font-weight="600" fill="#4b5c7a" text-anchor="middle" letter-spacing="2">MARIOJGT.GITHUB.IO/THEDEVREALM-NEO</text>
+
+  <!-- Decorative corner bolts -->
+  <circle cx="30"   cy="30"  r="5" fill="none" stroke="#1a2742" stroke-width="2"/>
+  <circle cx="1170" cy="30"  r="5" fill="none" stroke="#1a2742" stroke-width="2"/>
+  <circle cx="30"   cy="600" r="5" fill="none" stroke="#1a2742" stroke-width="2"/>
+  <circle cx="1170" cy="600" r="5" fill="none" stroke="#1a2742" stroke-width="2"/>
+</svg>

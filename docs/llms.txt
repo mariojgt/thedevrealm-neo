@@ -1,0 +1,370 @@
+# The Dev Realm — Neo-Brutalist UI Kit
+
+> This is the llms.txt file for @thedevrealm/neo-css.
+> It follows the llms.txt convention (https://llmstxt.org) so that LLMs and AI tools
+> can understand this project and assist users effectively.
+
+## Project
+
+- **Name**: @thedevrealm/neo-css (The Dev Realm Neo UI Kit)
+- **Type**: CSS design system / component library (npm package)
+- **Style**: Neo-Brutalist — bold 3px borders, hard offset box-shadows, uppercase typography, dark surfaces
+- **License**: MIT
+- **GitHub**: https://github.com/mariojgt/thedevrealm-neo
+- **npm**: https://www.npmjs.com/package/@thedevrealm/neo-css
+- **Showcase**: https://mariojgt.github.io/thedevrealm-neo/
+- **Docs**: https://mariojgt.github.io/thedevrealm-neo/getting-started.html
+
+## Packages
+
+The monorepo ships 4 packages:
+
+| Package | Description |
+|---|---|
+| @thedevrealm/neo-css | Core CSS — tokens, components, animations. Zero JS dependency. |
+| @thedevrealm/neo-react | React component wrappers |
+| @thedevrealm/neo-vue | Vue 3 component wrappers |
+| @thedevrealm/neo-svelte | Svelte component wrappers |
+
+## Installation
+
+### CDN (plain HTML — no build tool)
+```html
+<link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@thedevrealm/neo-css@latest/dist/neo.css">
+```
+
+### npm
+```bash
+npm install @thedevrealm/neo-css
+```
+
+### Import in JS (Vite / webpack / Next.js / Nuxt / Astro / SvelteKit)
+```js
+import '@thedevrealm/neo-css/dist/neo.css'
+```
+
+### Next.js App Router
+```js
+// app/layout.js
+import '@thedevrealm/neo-css/dist/neo.css'
+export default function RootLayout({ children }) {
+  return <html lang="en"><body className="neo-noise">{children}</body></html>
+}
+```
+
+### Nuxt 3
+```js
+// nuxt.config.ts
+export default defineNuxtConfig({ css: ['@thedevrealm/neo-css/dist/neo.css'] })
+```
+
+### Tailwind preset
+```js
+// tailwind.config.js
+module.exports = {
+  presets: [require('@thedevrealm/neo-css/tailwind-preset')],
+}
+```
+
+## Dist files
+
+- `dist/neo.css` — full bundle (tokens + base + all components + animations)
+- `dist/tokens.css` — CSS custom properties only
+- `dist/components.css` — all component classes (includes base helpers)
+- `dist/animations.css` — keyframe animations only
+
+## Design Tokens (CSS Custom Properties)
+
+```css
+:root {
+  --neo-brand:          #0d9668;  /* primary green */
+  --neo-brand-light:    #2bb885;
+  --neo-brand-dark:     #047857;
+  --neo-surface:        #0c1222;  /* darkest surface */
+  --neo-surface-light:  #131d33;
+  --neo-surface-lighter:#1a2742;
+  --neo-body-bg:        #080d19;
+  --neo-accent:         #e6930a;  /* orange */
+  --neo-accent-dark:    #c27706;
+  --neo-border-color:   #3a506e;
+  --neo-muted:          #8594b0;
+  --neo-subtle:         #4b5c7a;
+  --neo-white:          #ffffff;
+  --neo-black:          #000000;
+  --neo-border:         3px solid var(--neo-border-color);
+  --neo-radius:         0.375rem;
+  --neo-shadow:         5px 5px 0 #000;
+  --neo-shadow-sm:      4px 4px 0 #000;
+  --neo-shadow-lg:      6px 6px 0 #000;
+  --neo-shadow-xl:      8px 8px 0 #000;
+  --neo-font-sans:      ui-sans-serif, system-ui, sans-serif;
+  --neo-font-mono:      ui-monospace, 'SFMono-Regular', Consolas, monospace;
+}
+```
+
+## Components
+
+### Buttons
+```html
+<button class="neo-btn neo-btn-primary">Primary</button>
+<button class="neo-btn neo-btn-accent">Accent</button>
+<button class="neo-btn neo-btn-ghost">Ghost</button>
+<button class="neo-btn neo-btn-danger">Danger</button>
+<!-- Sizes: neo-btn-sm | neo-btn-md | neo-btn-lg -->
+```
+
+### Cards
+```html
+<div class="neo-card" style="padding:1.5rem">Basic card — lifts on hover</div>
+<div class="neo-card-brand" style="padding:1.5rem">Card with brand top bar</div>
+<div class="neo-stat-card">Stat / metric card</div>
+```
+
+### Badges & Tags
+```html
+<span class="neo-badge neo-badge-success">Live</span>
+<span class="neo-badge neo-badge-warning">Beta</span>
+<span class="neo-badge neo-badge-error">Error</span>
+<span class="neo-badge neo-badge-default">Default</span>
+<span class="neo-tag neo-tag-brand">Tag</span>
+<span class="neo-tag neo-tag-accent">Accent tag</span>
+```
+
+### Alerts
+```html
+<div class="neo-alert neo-alert-success">
+  <span class="neo-alert__icon">✓</span>
+  <div class="neo-alert__content">
+    <p class="neo-alert__title">Success</p>
+    Message text here.
+  </div>
+</div>
+<!-- Variants: neo-alert-success | neo-alert-warning | neo-alert-error | neo-alert-info -->
+```
+
+### Forms
+```html
+<div class="neo-field">
+  <label class="neo-label" for="name">Name</label>
+  <input class="neo-input" id="name" type="text" placeholder="Your name">
+</div>
+<select class="neo-select">
+  <option>Select option</option>
+</select>
+```
+
+### Table
+```html
+<table class="neo-table">
+  <thead><tr><th>Name</th><th>Score</th></tr></thead>
+  <tbody><tr><td>Alice</td><td>9,800</td></tr></tbody>
+</table>
+```
+
+### Accordion
+```html
+<div class="neo-accordion">
+  <div class="neo-accordion-item open">
+    <button class="neo-accordion-trigger" onclick="neoAccordion(this)">
+      Title <span class="neo-accordion-chevron">▼</span>
+    </button>
+    <div class="neo-accordion-body">Content.</div>
+  </div>
+</div>
+
+<script>
+function neoAccordion(btn) {
+  const item = btn.closest('.neo-accordion-item')
+  const isOpen = item.classList.contains('open')
+  item.closest('.neo-accordion').querySelectorAll('.neo-accordion-item.open').forEach(el => el.classList.remove('open'))
+  if (!isOpen) item.classList.add('open')
+}
+</script>
+```
+
+### Modal
+```html
+<button class="neo-btn neo-btn-primary" onclick="neoModalOpen('m1')">Open</button>
+<div class="neo-modal-backdrop" id="m1" onclick="if(event.target===this)neoModalClose('m1')">
+  <div class="neo-modal">
+    <div class="neo-modal-header">
+      <h2 class="neo-modal-title">Title</h2>
+      <button class="neo-modal-close" onclick="neoModalClose('m1')">✕</button>
+    </div>
+    <div class="neo-modal-body">Body content.</div>
+    <div class="neo-modal-footer">
+      <button class="neo-btn neo-btn-primary">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function neoModalOpen(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden' }
+function neoModalClose(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow='' }
+</script>
+```
+
+### Tooltip (pure CSS)
+```html
+<!-- Add data-tip to any element — no JS needed -->
+<button class="neo-btn neo-btn-primary" data-tip="Creates a new project">New</button>
+```
+
+### Skeleton Loader
+```html
+<div class="neo-skeleton neo-skeleton-thumb"></div>    <!-- image area -->
+<div class="neo-skeleton neo-skeleton-title"></div>   <!-- heading line -->
+<div class="neo-skeleton neo-skeleton-text"></div>    <!-- body line -->
+<div class="neo-skeleton neo-skeleton-avatar"></div>  <!-- circle -->
+<div class="neo-skeleton neo-skeleton-btn"></div>     <!-- button shape -->
+```
+
+### Avatar
+```html
+<!-- Sizes: neo-avatar-sm | md | lg | xl -->
+<div class="neo-avatar neo-avatar-md">MJ</div>
+<div class="neo-avatar neo-avatar-md neo-avatar-brand neo-avatar-online">AB</div>
+
+<!-- Group (overlapping with hover lift) -->
+<div class="neo-avatar-group">
+  <div class="neo-avatar neo-avatar-md">A</div>
+  <div class="neo-avatar neo-avatar-md">B</div>
+  <div class="neo-avatar neo-avatar-md">+3</div>
+</div>
+```
+
+### Keyboard Shortcut Badge
+```html
+Press <span class="neo-kbd">⌘ K</span> to open command palette.
+<span class="neo-kbd">Esc</span> to close.
+```
+
+### Command Palette (⌘K)
+```js
+// Open the built-in command palette
+neoCommandOpen()
+
+// Register custom commands
+neoCommandRegister([
+  { icon: '🏠', label: 'Go Home', action: () => location.href = '/' },
+  { icon: '⚡', label: 'New Game', badge: 'hot', action: startGame },
+])
+
+// Keyboard shortcut ⌘K / Ctrl+K registered automatically
+```
+
+### Toast
+```js
+neoToast('Message here', 'success')  // success | error | warning | info
+```
+
+### Leaderboard
+```html
+<div class="neo-leaderboard">
+  <div class="neo-lb-header"><span>#</span><span style="flex:1">Player</span><span>Score</span></div>
+  <div class="neo-lb-row">
+    <span class="neo-lb-rank neo-lb-rank-1">🥇</span>
+    <span class="neo-lb-name">playerone</span>
+    <span class="neo-lb-score">142,830</span>
+  </div>
+</div>
+```
+
+### Rarity Item Cards
+```html
+<!-- Variants: neo-rarity-common | uncommon | rare | epic | legendary -->
+<div class="neo-item-card neo-rarity neo-rarity-legendary">
+  <div class="neo-item-icon">👑</div>
+  <p class="neo-item-name">Crown of Ages</p>
+  <p class="neo-item-rarity">Legendary</p>
+</div>
+```
+
+### Text utilities
+```html
+<p class="neo-text-brand">Brand green</p>
+<p class="neo-text-accent">Accent orange</p>
+<p class="neo-text-muted">Muted grey</p>
+<p class="neo-text-subtle">Subtle grey</p>
+<h1 class="neo-text-gradient">Gradient heading</h1>
+```
+
+### Background / texture utilities
+```html
+<body class="neo-noise">  <!-- subtle noise texture -->
+<div class="neo-stripe-pattern">  <!-- diagonal stripes -->
+```
+
+## Gaming JS Helpers
+
+These functions are available when using the full `neo.js` from the showcase:
+
+```js
+neoShake(element, intensity, duration)  // camera shake
+toggleGlitch(element)                   // toggle glitch text effect
+neoAchievement(title, desc, icon)       // achievement toast popup
+neoComboHit(element)                    // increment combo counter
+neoComboReset(element)                  // reset combo
+neoParticles(x, y, color, count)        // particle burst at position
+neoFlash(color, duration)               // screen flash
+neoTypewriter(element, text, speed)     // typewriter animation
+startCharge(button)                     // charge button animation
+cancelCharge(button)                    // cancel charge
+```
+
+## Theming
+
+```js
+// Switch theme at runtime (persisted in sessionStorage)
+setNeoTheme('emerald')  // default green
+setNeoTheme('violet')   // purple
+setNeoTheme('crimson')  // red
+```
+
+## Source structure
+
+```
+packages/neo-css/
+  src/
+    tokens.css              — CSS custom properties
+    base.css                — reset + text utilities + noise
+    animations.css          — keyframe animations
+    components/
+      buttons.css
+      cards.css
+      tags.css
+      forms.css
+      table.css
+      toggle.css
+      alerts.css
+      decorative.css
+      kbd.css
+      tooltip.css
+      skeleton.css
+      avatar.css
+      accordion.css
+      modal.css
+      command-palette.css
+      gaming.css             — rarity cards, leaderboard
+  dist/
+    neo.css                 — full bundle
+    tokens.css
+    components.css
+    animations.css
+  scripts/build.js          — plain Node.js build script
+  tailwind-preset.js        — Tailwind CSS preset
+```
+
+## Key conventions
+
+- All classes are prefixed with `neo-` to avoid collisions
+- Modifier pattern: `neo-btn neo-btn-{variant}` — base class + modifier
+- State pattern: add `open` class to activate modals/accordions
+- Tooltip: data attribute `data-tip="…"` on any element — pure CSS, no JS
+- Responsive: uses CSS Grid with `auto-fill` — no breakpoint utility classes needed
+- Animations: add class `neo-animate-{name}` or call JS helpers for JS-driven effects
+
+---
+Last updated: 2026-04-22
+Project: https://github.com/mariojgt/thedevrealm-neo
