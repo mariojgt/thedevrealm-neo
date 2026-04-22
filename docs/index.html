@@ -325,6 +325,34 @@
     @keyframes neo-toast-in  { from{opacity:0;transform:translateX(20px) scale(.95)} to{opacity:1;transform:translateX(0) scale(1)} }
     @keyframes neo-toast-out { from{opacity:1;transform:translateX(0) scale(1)}    to{opacity:0;transform:translateX(24px) scale(.9)} }
     @keyframes neo-toast-progress { from{width:100%} to{width:0%} }
+
+    /* ── Theme switcher ──────────────────────────────────────────────── */
+    .neo-theme-switcher { display: flex; align-items: center; gap: .375rem; }
+    .neo-theme-swatch {
+      width: 22px; height: 22px; border-radius: 50%;
+      border: 3px solid transparent; cursor: pointer;
+      transition: transform 120ms ease, border-color 120ms ease;
+      padding: 0; outline: none;
+    }
+    .neo-theme-swatch:hover  { transform: scale(1.2); }
+    .neo-theme-swatch.active { border-color: #fff; transform: scale(1.15); }
+    .neo-theme-swatch-emerald { background: #0d9668; }
+    .neo-theme-swatch-violet  { background: #7c3aed; }
+    .neo-theme-swatch-crimson { background: #dc2626; }
+
+    /* Theme preview card in the section */
+    .neo-theme-preview-grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fill,minmax(260px,1fr)); margin-bottom:1.25rem; }
+    .neo-theme-preview-card {
+      border: 3px solid; border-radius: var(--neo-radius);
+      box-shadow: 5px 5px 0 #000; overflow: hidden; cursor: pointer;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+    .neo-theme-preview-card:hover  { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 #000; }
+    .neo-theme-preview-card.active-theme { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 #000; }
+    .neo-theme-preview-swatch { height: 56px; }
+    .neo-theme-preview-body   { background: var(--neo-surface-light); padding: .875rem 1rem; }
+    .neo-theme-preview-name   { font-size: .75rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: #fff; margin: 0 0 .2rem; }
+    .neo-theme-preview-desc   { font-size: .6875rem; color: var(--neo-muted); margin: 0; }
   </style>
 </head>
 <body>
@@ -336,6 +364,12 @@
       <span class="nav-brand-dot"></span>
       The Dev Realm
     </a>
+    <!-- Theme switcher -->
+    <div class="neo-theme-switcher" title="Switch theme">
+      <button class="neo-theme-swatch neo-theme-swatch-emerald active" onclick="setNeoTheme('emerald')" aria-label="Emerald theme"></button>
+      <button class="neo-theme-swatch neo-theme-swatch-violet"  onclick="setNeoTheme('violet')"  aria-label="Violet theme"></button>
+      <button class="neo-theme-swatch neo-theme-swatch-crimson" onclick="setNeoTheme('crimson')" aria-label="Crimson theme"></button>
+    </div>
     <div class="nav-links">
       <a href="#install">Install</a>
       <a href="#buttons">Buttons</a>
@@ -344,6 +378,7 @@
       <a href="#alerts">Alerts</a>
       <a href="#animations">Animations</a>
       <a href="#toast">Toast</a>
+      <a href="#themes">Themes</a>
       <a href="#frameworks">Frameworks</a>
       <a href="https://github.com/mariojgt/thedevrealm-neo" target="_blank" rel="noopener">
         GitHub ↗
@@ -807,6 +842,72 @@ toast.<span class="px">warning</span>(<span class="str">'Watch out'</span>, <spa
     </div>
   </section>
 
+  <!-- ═══ THEMES ═══ -->
+  <section class="section" id="themes">
+    <div class="section-title">Themes</div>
+    <p style="font-size:.875rem;color:var(--neo-muted);margin:0 0 1.5rem">Override CSS custom properties on <code style="font-family:var(--neo-font-mono);font-size:.8em;color:var(--neo-brand-light)">:root</code> to switch the entire palette instantly. Pick one below — every component on this page updates live.</p>
+
+    <div class="neo-theme-preview-grid" id="theme-cards">
+      <div class="neo-theme-preview-card active-theme" id="card-emerald" onclick="setNeoTheme('emerald')" style="border-color:#0d9668" title="Apply Emerald theme">
+        <div class="neo-theme-preview-swatch" style="background:linear-gradient(135deg,#0d9668,#2bb885)"></div>
+        <div class="neo-theme-preview-body">
+          <p class="neo-theme-preview-name">Emerald</p>
+          <p class="neo-theme-preview-desc">The default. Deep teal brand with amber accent.</p>
+          <div style="display:flex;gap:.375rem;margin-top:.625rem">
+            <span style="width:14px;height:14px;border-radius:50%;background:#0d9668;display:inline-block"></span>
+            <span style="width:14px;height:14px;border-radius:50%;background:#2bb885;display:inline-block"></span>
+            <span style="width:14px;height:14px;border-radius:50%;background:#e6930a;display:inline-block"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="neo-theme-preview-card" id="card-violet" onclick="setNeoTheme('violet')" style="border-color:#7c3aed" title="Apply Violet theme">
+        <div class="neo-theme-preview-swatch" style="background:linear-gradient(135deg,#7c3aed,#a855f7)"></div>
+        <div class="neo-theme-preview-body">
+          <p class="neo-theme-preview-name">Violet</p>
+          <p class="neo-theme-preview-desc">Electric purple brand with hot-pink accent.</p>
+          <div style="display:flex;gap:.375rem;margin-top:.625rem">
+            <span style="width:14px;height:14px;border-radius:50%;background:#7c3aed;display:inline-block"></span>
+            <span style="width:14px;height:14px;border-radius:50%;background:#a855f7;display:inline-block"></span>
+            <span style="width:14px;height:14px;border-radius:50%;background:#ec4899;display:inline-block"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="neo-theme-preview-card" id="card-crimson" onclick="setNeoTheme('crimson')" style="border-color:#dc2626" title="Apply Crimson theme">
+        <div class="neo-theme-preview-swatch" style="background:linear-gradient(135deg,#dc2626,#f87171)"></div>
+        <div class="neo-theme-preview-body">
+          <p class="neo-theme-preview-name">Crimson</p>
+          <p class="neo-theme-preview-desc">Bold red brand with golden-orange accent.</p>
+          <div style="display:flex;gap:.375rem;margin-top:.625rem">
+            <span style="width:14px;height:14px;border-radius:50%;background:#dc2626;display:inline-block"></span>
+            <span style="width:14px;height:14px;border-radius:50%;background:#f87171;display:inline-block"></span>
+            <span style="width:14px;height:14px;border-radius:50%;background:#f59e0b;display:inline-block"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <pre><span class="cm">// JS — zero dependencies, works everywhere</span>
+<span class="px">setNeoTheme</span>(<span class="str">'emerald'</span>)  <span class="cm">// default</span>
+<span class="px">setNeoTheme</span>(<span class="str">'violet'</span>)
+<span class="px">setNeoTheme</span>(<span class="str">'crimson'</span>)
+
+<span class="cm">// Or supply your own token overrides</span>
+<span class="px">setNeoTheme</span>({ <span class="str">'--neo-brand'</span>: <span class="str">'#0ea5e9'</span>, <span class="str">'--neo-brand-light'</span>: <span class="str">'#38bdf8'</span>, <span class="str">'--neo-brand-dark'</span>: <span class="str">'#0284c7'</span> })
+
+<span class="cm">/* CSS — override tokens directly in your stylesheet */</span>
+:root {
+  --<span class="px">neo-brand</span>:       <span class="str">#7c3aed</span>;
+  --<span class="px">neo-brand-light</span>: <span class="str">#a855f7</span>;
+  --<span class="px">neo-brand-dark</span>:  <span class="str">#6d28d9</span>;
+  --<span class="px">neo-accent</span>:      <span class="str">#ec4899</span>;
+  --<span class="px">neo-accent-dark</span>: <span class="str">#db2777</span>;
+}</pre>
+    </div>
+  </section>
+
   <!-- ═══ FRAMEWORKS ═══ -->
   <section class="section" id="frameworks">
     <div class="section-title">Framework Examples</div>
@@ -967,6 +1068,74 @@ createApp(App).<span class="px">use</span>(NeoVue).mount(<span class="str">'#app
     group.querySelectorAll('.neo-tab').forEach(b => b.classList.remove('neo-tab-active'))
     btn.classList.add('neo-tab-active')
   }
+
+  // ── setNeoTheme ───────────────────────────────────────────────────
+  // setNeoTheme(name)   — named preset: 'emerald' | 'violet' | 'crimson'
+  // setNeoTheme(tokens) — custom object of CSS variable overrides
+  const NEO_THEMES = {
+    emerald: {
+      '--neo-brand':       '#0d9668',
+      '--neo-brand-light': '#2bb885',
+      '--neo-brand-dark':  '#047857',
+      '--neo-accent':      '#e6930a',
+      '--neo-accent-dark': '#c27706',
+    },
+    violet: {
+      '--neo-brand':       '#7c3aed',
+      '--neo-brand-light': '#a855f7',
+      '--neo-brand-dark':  '#6d28d9',
+      '--neo-accent':      '#ec4899',
+      '--neo-accent-dark': '#db2777',
+    },
+    crimson: {
+      '--neo-brand':       '#dc2626',
+      '--neo-brand-light': '#f87171',
+      '--neo-brand-dark':  '#b91c1c',
+      '--neo-accent':      '#f59e0b',
+      '--neo-accent-dark': '#d97706',
+    },
+  }
+
+  function setNeoTheme(themeOrTokens) {
+    const tokens = (typeof themeOrTokens === 'string')
+      ? NEO_THEMES[themeOrTokens]
+      : themeOrTokens
+    if (!tokens) return
+    Object.entries(tokens).forEach(([k, v]) =>
+      document.documentElement.style.setProperty(k, v))
+    // Sync nav swatches
+    document.querySelectorAll('.neo-theme-swatch')
+      .forEach(el => el.classList.remove('active'))
+    const activeSwatch = document.querySelector('.neo-theme-swatch-' + themeOrTokens)
+    if (activeSwatch) activeSwatch.classList.add('active')
+    // Sync theme preview cards
+    document.querySelectorAll('.neo-theme-preview-card')
+      .forEach(el => el.classList.remove('active-theme'))
+    const activeCard = document.getElementById('card-' + themeOrTokens)
+    if (activeCard) activeCard.classList.add('active-theme')
+    // Persist selection
+    if (typeof themeOrTokens === 'string')
+      sessionStorage.setItem('neo-theme', themeOrTokens)
+    // Fire a toast so the change is visible
+    neoToast('info', themeOrTokens.charAt(0).toUpperCase() + themeOrTokens.slice(1) + ' theme', 'All tokens updated across every component.', 2500)
+  }
+
+  // Restore on page load
+  ;(function () {
+    const saved = sessionStorage.getItem('neo-theme')
+    if (saved && NEO_THEMES[saved]) {
+      Object.entries(NEO_THEMES[saved]).forEach(([k, v]) =>
+        document.documentElement.style.setProperty(k, v))
+      document.querySelectorAll('.neo-theme-swatch')
+        .forEach(el => el.classList.remove('active'))
+      const sw = document.querySelector('.neo-theme-swatch-' + saved)
+      if (sw) sw.classList.add('active')
+      document.querySelectorAll('.neo-theme-preview-card')
+        .forEach(el => el.classList.remove('active-theme'))
+      const cd = document.getElementById('card-' + saved)
+      if (cd) cd.classList.add('active-theme')
+    }
+  })()
 
   // ── neoToast ─────────────────────────────────────────────────────
   // neoToast(variant, title, message, duration)
