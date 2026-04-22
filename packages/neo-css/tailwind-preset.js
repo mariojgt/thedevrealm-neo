@@ -1,8 +1,8 @@
 /**
- * @thedevrealm/neo-css — Tailwind CSS v3/v4 Preset
+ * @mariojgt/neo-css — Tailwind CSS v3/v4 Preset
  *
  * Usage in tailwind.config.js:
- *   const neoPreset = require('@thedevrealm/neo-css/tailwind-preset')
+ *   const neoPreset = require('@mariojgt/neo-css/tailwind-preset')
  *   module.exports = { presets: [neoPreset], ... }
  */
 

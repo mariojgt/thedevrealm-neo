@@ -52,7 +52,7 @@
   <!-- Pill row 1 -->
   <rect x="660" y="100" width="400" height="36" rx="4" fill="#131d33" stroke="#3a506e" stroke-width="2"/>
   <rect x="660" y="100" width="4" height="36" rx="2" fill="#0d9668"/>
-  <text x="678" y="124" font-family="ui-monospace,'SFMono-Regular',monospace" font-size="13" fill="#2bb885" font-weight="700">npm i @thedevrealm/neo-css</text>
+  <text x="678" y="124" font-family="ui-monospace,'SFMono-Regular',monospace" font-size="13" fill="#2bb885" font-weight="700">npm i @mariojgt/neo-css</text>
 
   <!-- Pill row 2: component chips -->
   <rect x="660" y="156" width="104" height="30" rx="4" fill="#1a2742" stroke="#3a506e" stroke-width="2"/>
@@ -103,7 +103,7 @@
   <text x="660" y="337" font-family="ui-monospace,'SFMono-Regular',monospace" font-size="12.5" fill="#3a506e">//</text>
   <text x="682" y="337" font-family="ui-monospace,'SFMono-Regular',monospace" font-size="12.5" fill="#4b5c7a"> one import, works everywhere</text>
   <text x="660" y="358" font-family="ui-monospace,'SFMono-Regular',monospace" font-size="13" fill="#8594b0">import </text>
-  <text x="712" y="358" font-family="ui-monospace,'SFMono-Regular',monospace" font-size="13" fill="#2bb885">'@thedevrealm/neo-css/dist/neo.css'</text>
+  <text x="712" y="358" font-family="ui-monospace,'SFMono-Regular',monospace" font-size="13" fill="#2bb885">'@mariojgt/neo-css/dist/neo.css'</text>
 
   <!-- Bottom strip -->
   <rect x="0" y="590" width="1200" height="40" fill="#080d19"/>

@@ -31,7 +31,7 @@
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "@thedevrealm/neo-css",
+    "name": "@mariojgt/neo-css",
     "alternateName": "The Dev Realm Neo UI Kit",
     "description": "A framework-agnostic neo-brutalist design system with 30+ components for React, Vue, Svelte, Next.js and plain HTML.",
     "url": "https://mariojgt.github.io/thedevrealm-neo/",
@@ -40,7 +40,7 @@
     "license": "https://opensource.org/licenses/MIT",
     "author": { "@type": "Person", "name": "mariojgt" },
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "downloadUrl": "https://www.npmjs.com/package/@thedevrealm/neo-css",
+    "downloadUrl": "https://www.npmjs.com/package/@mariojgt/neo-css",
     "codeRepository": "https://github.com/mariojgt/thedevrealm-neo"
   }
   </script>
@@ -847,46 +847,46 @@
       <div>
         <span class="label-micro">CSS only (any framework)</span>
         <div class="install-row">
-          <div class="install-cmd"><span>$</span> npm i @thedevrealm/neo-css</div>
+          <div class="install-cmd"><span>$</span> npm i @mariojgt/neo-css</div>
         </div>
       </div>
       <div>
         <span class="label-micro">React</span>
         <div class="install-row">
-          <div class="install-cmd"><span>$</span> npm i @thedevrealm/neo-css @thedevrealm/neo-react</div>
+          <div class="install-cmd"><span>$</span> npm i @mariojgt/neo-css @mariojgt/neo-react</div>
         </div>
       </div>
       <div>
         <span class="label-micro">Vue 3</span>
         <div class="install-row">
-          <div class="install-cmd"><span>$</span> npm i @thedevrealm/neo-css @thedevrealm/neo-vue</div>
+          <div class="install-cmd"><span>$</span> npm i @mariojgt/neo-css @mariojgt/neo-vue</div>
         </div>
       </div>
       <div>
         <span class="label-micro">Svelte</span>
         <div class="install-row">
-          <div class="install-cmd"><span>$</span> npm i @thedevrealm/neo-css @thedevrealm/neo-svelte</div>
+          <div class="install-cmd"><span>$</span> npm i @mariojgt/neo-css @mariojgt/neo-svelte</div>
         </div>
       </div>
     </div>
 
     <div class="code-block">
       <pre><span class="cm">// Import the CSS once in your entry file</span>
-<span class="kw">import</span> <span class="str">'@thedevrealm/neo-css/dist/neo.css'</span>
+<span class="kw">import</span> <span class="str">'@mariojgt/neo-css/dist/neo.css'</span>
 
 <span class="cm">// React — named imports, fully tree-shakeable</span>
-<span class="kw">import</span> { <span class="cl">NeoButton</span>, <span class="cl">NeoCard</span>, <span class="cl">NeoAlert</span>, <span class="cl">NeoTag</span> } <span class="kw">from</span> <span class="str">'@thedevrealm/neo-react'</span>
+<span class="kw">import</span> { <span class="cl">NeoButton</span>, <span class="cl">NeoCard</span>, <span class="cl">NeoAlert</span>, <span class="cl">NeoTag</span> } <span class="kw">from</span> <span class="str">'@mariojgt/neo-react'</span>
 
 <span class="cm">// Vue 3 — global plugin or individual imports</span>
-<span class="kw">import</span> <span class="cl">NeoVue</span> <span class="kw">from</span> <span class="str">'@thedevrealm/neo-vue'</span>
+<span class="kw">import</span> <span class="cl">NeoVue</span> <span class="kw">from</span> <span class="str">'@mariojgt/neo-vue'</span>
 createApp(App).<span class="px">use</span>(NeoVue).mount(<span class="str">'#app'</span>)
 
 <span class="cm">// Svelte — individual component imports</span>
-<span class="kw">import</span> { <span class="cl">NeoButton</span>, <span class="cl">NeoCard</span> } <span class="kw">from</span> <span class="str">'@thedevrealm/neo-svelte'</span>
+<span class="kw">import</span> { <span class="cl">NeoButton</span>, <span class="cl">NeoCard</span> } <span class="kw">from</span> <span class="str">'@mariojgt/neo-svelte'</span>
 
 <span class="cm">// Tailwind preset</span>
 <span class="cm">// tailwind.config.js</span>
-module.exports = { presets: [<span class="px">require</span>(<span class="str">'@thedevrealm/neo-css/tailwind-preset'</span>)] }</pre>
+module.exports = { presets: [<span class="px">require</span>(<span class="str">'@mariojgt/neo-css/tailwind-preset'</span>)] }</pre>
     </div>
   </section>
 
@@ -1247,7 +1247,7 @@ module.exports = { presets: [<span class="px">require</span>(<span class="str">'
 
       <div class="code-block">
         <pre><span class="cm">// Drop-in vanilla JS helper — zero dependencies</span>
-<span class="kw">import</span> { <span class="cl">neoToast</span> } <span class="kw">from</span> <span class="str">'@thedevrealm/neo-css/toast'</span>
+<span class="kw">import</span> { <span class="cl">neoToast</span> } <span class="kw">from</span> <span class="str">'@mariojgt/neo-css/toast'</span>
 
 <span class="cm">// neoToast(variant, title, message, duration?)</span>
 <span class="px">neoToast</span>(<span class="str">'success'</span>, <span class="str">'Saved!'</span>,   <span class="str">'Changes saved.'</span>)       <span class="cm">// 4 s auto-dismiss</span>
@@ -1482,7 +1482,7 @@ toast.<span class="px">warning</span>(<span class="str">'Watch out'</span>, <spa
         <div class="neo-header-bar"><span>React</span><span class="neo-tag neo-tag-ghost" style="font-size:.65rem">TypeScript</span></div>
         <div class="code-block" style="border:none;border-radius:0;box-shadow:none">
           <pre><span class="kw">import</span> { <span class="cl">NeoButton</span>, <span class="cl">NeoCard</span>, <span class="cl">NeoAlert</span> }
-  <span class="kw">from</span> <span class="str">'@thedevrealm/neo-react'</span>
+  <span class="kw">from</span> <span class="str">'@mariojgt/neo-react'</span>
 
 <span class="kw">export default function</span> <span class="cl">Demo</span>() {
   <span class="kw">return</span> (
@@ -1504,7 +1504,7 @@ toast.<span class="px">warning</span>(<span class="str">'Watch out'</span>, <spa
         <div class="neo-header-bar"><span>Vue 3</span><span class="neo-tag neo-tag-ghost" style="font-size:.65rem">Composition API</span></div>
         <div class="code-block" style="border:none;border-radius:0;box-shadow:none">
           <pre><span class="cm">&lt;!-- main.ts --&gt;</span>
-<span class="kw">import</span> <span class="cl">NeoVue</span> <span class="kw">from</span> <span class="str">'@thedevrealm/neo-vue'</span>
+<span class="kw">import</span> <span class="cl">NeoVue</span> <span class="kw">from</span> <span class="str">'@mariojgt/neo-vue'</span>
 createApp(App).<span class="px">use</span>(NeoVue).mount(<span class="str">'#app'</span>)
 
 <span class="cm">&lt;!-- Component.vue --&gt;</span>
@@ -1528,7 +1528,7 @@ createApp(App).<span class="px">use</span>(NeoVue).mount(<span class="str">'#app
           <pre><span class="cm">&lt;!-- App.svelte --&gt;</span>
 &lt;<span class="cl">script</span>&gt;
   <span class="kw">import</span> { <span class="cl">NeoButton</span>, <span class="cl">NeoCard</span> }
-    <span class="kw">from</span> <span class="str">'@thedevrealm/neo-svelte'</span>
+    <span class="kw">from</span> <span class="str">'@mariojgt/neo-svelte'</span>
   <span class="kw">let</span> count = <span class="str">0</span>
 &lt;/<span class="cl">script</span>&gt;
 
@@ -1549,7 +1549,7 @@ createApp(App).<span class="px">use</span>(NeoVue).mount(<span class="str">'#app
         <div class="code-block" style="border:none;border-radius:0;box-shadow:none">
           <pre><span class="cm">&lt;!-- HTML --&gt;</span>
 &lt;<span class="cl">link</span> <span class="px">rel</span>=<span class="str">"stylesheet"</span>
-  <span class="px">href</span>=<span class="str">"https://unpkg.com/@thedevrealm/neo-css/dist/neo.css"</span>&gt;
+  <span class="px">href</span>=<span class="str">"https://unpkg.com/@mariojgt/neo-css/dist/neo.css"</span>&gt;
 
 &lt;<span class="cl">button</span> <span class="kw">class</span>=<span class="str">"neo-btn neo-btn-primary"</span>&gt;
   Primary
@@ -1744,7 +1744,7 @@ createApp(App).<span class="px">use</span>(NeoVue).mount(<span class="str">'#app
             <span class="neo-accordion-chevron">▼</span>
           </button>
           <div class="neo-accordion-body">
-            Yes. We ship a first-class Tailwind preset (<code style="font-family:var(--neo-font-mono);font-size:.85em">@thedevrealm/neo-css/tailwind-preset</code>) that maps all Neo design tokens to Tailwind utilities.
+            Yes. We ship a first-class Tailwind preset (<code style="font-family:var(--neo-font-mono);font-size:.85em">@mariojgt/neo-css/tailwind-preset</code>) that maps all Neo design tokens to Tailwind utilities.
           </div>
         </div>
         <div class="neo-accordion-item">
@@ -2153,7 +2153,7 @@ btn.addEventListener(<span class="str">'click'</span>, e => <span class="px">neo
          style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#f472b6;text-decoration:none">
         ♥ Sponsor
       </a>
-      <a href="https://www.npmjs.com/package/@thedevrealm/neo-css" target="_blank" rel="noopener"
+      <a href="https://www.npmjs.com/package/@mariojgt/neo-css" target="_blank" rel="noopener"
          style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--neo-muted);text-decoration:none">
         npm ↗
       </a>

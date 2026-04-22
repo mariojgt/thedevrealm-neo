@@ -1,17 +1,17 @@
 # The Dev Realm — Neo-Brutalist UI Kit
 
-> This is the llms.txt file for @thedevrealm/neo-css.
+> This is the llms.txt file for @mariojgt/neo-css.
 > It follows the llms.txt convention (https://llmstxt.org) so that LLMs and AI tools
 > can understand this project and assist users effectively.
 
 ## Project
 
-- **Name**: @thedevrealm/neo-css (The Dev Realm Neo UI Kit)
+- **Name**: @mariojgt/neo-css (The Dev Realm Neo UI Kit)
 - **Type**: CSS design system / component library (npm package)
 - **Style**: Neo-Brutalist — bold 3px borders, hard offset box-shadows, uppercase typography, dark surfaces
 - **License**: MIT
 - **GitHub**: https://github.com/mariojgt/thedevrealm-neo
-- **npm**: https://www.npmjs.com/package/@thedevrealm/neo-css
+- **npm**: https://www.npmjs.com/package/@mariojgt/neo-css
 - **Showcase**: https://mariojgt.github.io/thedevrealm-neo/
 - **Docs**: https://mariojgt.github.io/thedevrealm-neo/getting-started.html
 
@@ -21,33 +21,33 @@ The monorepo ships 4 packages:
 
 | Package | Description |
 |---|---|
-| @thedevrealm/neo-css | Core CSS — tokens, components, animations. Zero JS dependency. |
-| @thedevrealm/neo-react | React component wrappers |
-| @thedevrealm/neo-vue | Vue 3 component wrappers |
-| @thedevrealm/neo-svelte | Svelte component wrappers |
+| @mariojgt/neo-css | Core CSS — tokens, components, animations. Zero JS dependency. |
+| @mariojgt/neo-react | React component wrappers |
+| @mariojgt/neo-vue | Vue 3 component wrappers |
+| @mariojgt/neo-svelte | Svelte component wrappers |
 
 ## Installation
 
 ### CDN (plain HTML — no build tool)
 ```html
 <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@thedevrealm/neo-css@latest/dist/neo.css">
+  href="https://cdn.jsdelivr.net/npm/@mariojgt/neo-css@latest/dist/neo.css">
 ```
 
 ### npm
 ```bash
-npm install @thedevrealm/neo-css
+npm install @mariojgt/neo-css
 ```
 
 ### Import in JS (Vite / webpack / Next.js / Nuxt / Astro / SvelteKit)
 ```js
-import '@thedevrealm/neo-css/dist/neo.css'
+import '@mariojgt/neo-css/dist/neo.css'
 ```
 
 ### Next.js App Router
 ```js
 // app/layout.js
-import '@thedevrealm/neo-css/dist/neo.css'
+import '@mariojgt/neo-css/dist/neo.css'
 export default function RootLayout({ children }) {
   return <html lang="en"><body className="neo-noise">{children}</body></html>
 }
@@ -56,14 +56,14 @@ export default function RootLayout({ children }) {
 ### Nuxt 3
 ```js
 // nuxt.config.ts
-export default defineNuxtConfig({ css: ['@thedevrealm/neo-css/dist/neo.css'] })
+export default defineNuxtConfig({ css: ['@mariojgt/neo-css/dist/neo.css'] })
 ```
 
 ### Tailwind preset
 ```js
 // tailwind.config.js
 module.exports = {
-  presets: [require('@thedevrealm/neo-css/tailwind-preset')],
+  presets: [require('@mariojgt/neo-css/tailwind-preset')],
 }
 ```
 

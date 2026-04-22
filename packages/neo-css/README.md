@@ -1,4 +1,4 @@
-# @thedevrealm/neo-css
+# @mariojgt/neo-css
 
 > Core CSS kit for The Dev Realm Neo-Brutalist design system.  
 > Design tokens + component classes + animations. Zero framework dependency.
@@ -22,7 +22,7 @@ Drop one `<link>` tag into your `<head>` and you're done:
   <title>My App</title>
   <!-- Neo CSS — full bundle via jsDelivr CDN -->
   <link rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@thedevrealm/neo-css@latest/dist/neo.css">
+    href="https://cdn.jsdelivr.net/npm/@mariojgt/neo-css@latest/dist/neo.css">
 </head>
 <body class="neo-noise">
 
@@ -39,31 +39,31 @@ Drop one `<link>` tag into your `<head>` and you're done:
 ### Option B — npm / pnpm (recommended for bundler projects)
 
 ```bash
-npm install @thedevrealm/neo-css
+npm install @mariojgt/neo-css
 # or
-pnpm add @thedevrealm/neo-css
+pnpm add @mariojgt/neo-css
 ```
 
 #### Import everything (Vite / webpack / Parcel)
 
 ```js
 // main.js / main.ts
-import '@thedevrealm/neo-css/dist/neo.css'
+import '@mariojgt/neo-css/dist/neo.css'
 ```
 
 #### Import via CSS `@import`
 
 ```css
 /* styles.css */
-@import '@thedevrealm/neo-css/dist/neo.css';
+@import '@mariojgt/neo-css/dist/neo.css';
 ```
 
 #### Import sub-bundles (tree-shake what you don't need)
 
 ```js
-import '@thedevrealm/neo-css/dist/tokens.css'     // CSS custom properties only
-import '@thedevrealm/neo-css/dist/components.css' // All component classes
-import '@thedevrealm/neo-css/dist/animations.css' // Keyframes only
+import '@mariojgt/neo-css/dist/tokens.css'     // CSS custom properties only
+import '@mariojgt/neo-css/dist/components.css' // All component classes
+import '@mariojgt/neo-css/dist/animations.css' // Keyframes only
 ```
 
 ---
@@ -73,7 +73,7 @@ import '@thedevrealm/neo-css/dist/animations.css' // Keyframes only
 ```js
 // tailwind.config.js
 module.exports = {
-  presets: [require('@thedevrealm/neo-css/tailwind-preset')],
+  presets: [require('@mariojgt/neo-css/tailwind-preset')],
   content: ['./src/**/*.{html,js,ts,jsx,tsx,vue,svelte}'],
 }
 ```
@@ -92,7 +92,7 @@ The preset extends Tailwind with Neo design tokens:
 
 ```jsx
 // main.jsx
-import '@thedevrealm/neo-css/dist/neo.css'
+import '@mariojgt/neo-css/dist/neo.css'
 import { createRoot } from 'react-dom/client'
 import App from './App'
 
@@ -115,7 +115,7 @@ export function Button({ children, variant = 'primary', ...props }) {
 ```js
 // main.js
 import { createApp } from 'vue'
-import '@thedevrealm/neo-css/dist/neo.css'
+import '@mariojgt/neo-css/dist/neo.css'
 import App from './App.vue'
 
 createApp(App).mount('#app')
@@ -134,7 +134,7 @@ createApp(App).mount('#app')
 
 ```js
 // main.js
-import '@thedevrealm/neo-css/dist/neo.css'
+import '@mariojgt/neo-css/dist/neo.css'
 import App from './App.svelte'
 
 new App({ target: document.getElementById('app') })
@@ -144,7 +144,7 @@ new App({ target: document.getElementById('app') })
 
 ```js
 // app/layout.js
-import '@thedevrealm/neo-css/dist/neo.css'
+import '@mariojgt/neo-css/dist/neo.css'
 
 export default function RootLayout({ children }) {
   return (
@@ -160,7 +160,7 @@ export default function RootLayout({ children }) {
 ```js
 // nuxt.config.ts
 export default defineNuxtConfig({
-  css: ['@thedevrealm/neo-css/dist/neo.css'],
+  css: ['@mariojgt/neo-css/dist/neo.css'],
 })
 ```
 
@@ -169,7 +169,7 @@ export default defineNuxtConfig({
 ```astro
 ---
 // src/layouts/Base.astro
-import '@thedevrealm/neo-css/dist/neo.css'
+import '@mariojgt/neo-css/dist/neo.css'
 ---
 <html lang="en">
   <body class="neo-noise">
