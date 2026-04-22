@@ -498,6 +498,234 @@
     }
     .neo-btn-charge:hover::before  { width: 100%; }
     .neo-btn-charge:not(:hover)::before { width: 0; transition: none; }
+
+    /* ══════════════════════════════════════════════════════════════
+       COMPETITIVE COMPONENTS
+       ══════════════════════════════════════════════════════════════ */
+
+    /* ── Kbd / Shortcut badge ─────────────────────────────────────── */
+    .neo-kbd {
+      display: inline-flex; align-items: center; gap: .25rem;
+      padding: .2rem .45rem; font-family: var(--neo-font-mono);
+      font-size: .7rem; font-weight: 700; color: #fff;
+      background: var(--neo-surface); border: 2px solid var(--neo-border-color);
+      border-bottom-width: 4px; border-radius: var(--neo-radius);
+      box-shadow: 0 2px 0 var(--neo-border-color); vertical-align: middle;
+      white-space: nowrap; line-height: 1.4;
+    }
+
+    /* ── Tooltip ──────────────────────────────────────────────────── */
+    [data-tip] { position: relative; cursor: default; }
+    [data-tip]::after {
+      content: attr(data-tip);
+      position: absolute; bottom: calc(100% + 8px); left: 50%;
+      transform: translateX(-50%) scale(.9);
+      background: var(--neo-surface-lighter); color: #fff;
+      font-family: var(--neo-font-sans); font-size: .7rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .05em;
+      padding: .35rem .75rem; border: 2px solid var(--neo-border-color);
+      border-radius: var(--neo-radius); box-shadow: 3px 3px 0 #000;
+      white-space: nowrap; pointer-events: none;
+      opacity: 0; transition: opacity 120ms ease, transform 120ms ease;
+      z-index: 200;
+    }
+    [data-tip]:hover::after {
+      opacity: 1; transform: translateX(-50%) scale(1);
+    }
+
+    /* ── Skeleton loader ──────────────────────────────────────────── */
+    @keyframes neo-skeleton-shimmer {
+      from { background-position: -400px 0 }
+      to   { background-position:  400px 0 }
+    }
+    .neo-skeleton {
+      background: linear-gradient(90deg,
+        var(--neo-surface) 25%,
+        var(--neo-surface-lighter) 50%,
+        var(--neo-surface) 75%);
+      background-size: 800px 100%;
+      animation: neo-skeleton-shimmer 1.4s infinite linear;
+      border-radius: var(--neo-radius);
+      border: 2px solid var(--neo-border-color);
+    }
+    .neo-skeleton-text  { height: .875rem; margin-bottom: .5rem; }
+    .neo-skeleton-title { height: 1.25rem; margin-bottom: .75rem; width: 60%; }
+    .neo-skeleton-avatar { width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0; }
+    .neo-skeleton-thumb  { height: 140px; width: 100%; margin-bottom: .75rem; }
+    .neo-skeleton-btn    { height: 38px; width: 110px; }
+
+    /* ── Avatar ───────────────────────────────────────────────────── */
+    .neo-avatar {
+      display: inline-flex; align-items: center; justify-content: center;
+      border: 3px solid var(--neo-border-color); border-radius: 50%;
+      box-shadow: 3px 3px 0 #000; overflow: hidden; flex-shrink: 0;
+      font-weight: 900; text-transform: uppercase; letter-spacing: .05em;
+      background: var(--neo-surface-light); color: #fff;
+      font-family: var(--neo-font-sans); position: relative;
+    }
+    .neo-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .neo-avatar-sm  { width: 32px;  height: 32px;  font-size: .7rem; }
+    .neo-avatar-md  { width: 44px;  height: 44px;  font-size: .875rem; }
+    .neo-avatar-lg  { width: 60px;  height: 60px;  font-size: 1.125rem; }
+    .neo-avatar-xl  { width: 80px;  height: 80px;  font-size: 1.5rem; }
+    .neo-avatar-brand  { border-color: var(--neo-brand); box-shadow: 3px 3px 0 var(--neo-brand-dark); }
+    .neo-avatar-accent { border-color: var(--neo-accent); box-shadow: 3px 3px 0 var(--neo-accent-dark); }
+    .neo-avatar-group  { display: flex; }
+    .neo-avatar-group .neo-avatar { margin-left: -10px; transition: transform 120ms ease; }
+    .neo-avatar-group .neo-avatar:first-child { margin-left: 0; }
+    .neo-avatar-group .neo-avatar:hover { transform: translateY(-4px); z-index: 10; }
+    .neo-avatar-online::after {
+      content: ''; position: absolute; bottom: 1px; right: 1px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--neo-brand); border: 2px solid var(--neo-surface);
+    }
+
+    /* ── Accordion ────────────────────────────────────────────────── */
+    .neo-accordion { border: var(--neo-border); border-radius: var(--neo-radius); overflow: hidden; box-shadow: var(--neo-shadow-sm); }
+    .neo-accordion-item + .neo-accordion-item { border-top: var(--neo-border); }
+    .neo-accordion-trigger {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      gap: .75rem; padding: .875rem 1rem; background: var(--neo-surface-light);
+      border: none; color: #fff; font-family: var(--neo-font-sans);
+      font-size: .875rem; font-weight: 700; text-align: left; cursor: pointer;
+      transition: background 120ms ease;
+    }
+    .neo-accordion-trigger:hover { background: var(--neo-surface-lighter); }
+    .neo-accordion-chevron { font-size: .7rem; color: var(--neo-muted); transition: transform 200ms ease; flex-shrink: 0; }
+    .neo-accordion-item.open .neo-accordion-chevron { transform: rotate(180deg); }
+    .neo-accordion-body {
+      background: var(--neo-surface); max-height: 0; overflow: hidden;
+      transition: max-height 280ms cubic-bezier(.4,0,.2,1), padding 280ms ease;
+      padding: 0 1rem; color: var(--neo-muted); font-size: .875rem; line-height: 1.65;
+    }
+    .neo-accordion-item.open .neo-accordion-body { max-height: 400px; padding: .875rem 1rem; }
+
+    /* ── Modal ────────────────────────────────────────────────────── */
+    .neo-modal-backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,.75);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 1000; padding: 1rem;
+      opacity: 0; pointer-events: none; transition: opacity 180ms ease;
+    }
+    .neo-modal-backdrop.open { opacity: 1; pointer-events: all; }
+    .neo-modal {
+      background: var(--neo-surface-light); border: var(--neo-border);
+      border-radius: var(--neo-radius); box-shadow: 8px 8px 0 #000;
+      width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto;
+      transform: translateY(20px) scale(.97);
+      transition: transform 200ms cubic-bezier(.34,1.2,.64,1);
+    }
+    .neo-modal-backdrop.open .neo-modal { transform: translateY(0) scale(1); }
+    .neo-modal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.25rem; border-bottom: var(--neo-border);
+      background: var(--neo-surface);
+    }
+    .neo-modal-title { font-size: .875rem; font-weight: 900; text-transform: uppercase; letter-spacing: .07em; color: #fff; margin: 0; }
+    .neo-modal-close {
+      background: none; border: none; color: var(--neo-muted); font-size: 1.25rem;
+      cursor: pointer; padding: 0; line-height: 1; transition: color 120ms, transform 120ms;
+    }
+    .neo-modal-close:hover { color: #fff; transform: rotate(90deg); }
+    .neo-modal-body   { padding: 1.25rem; font-size: .875rem; color: var(--neo-muted); line-height: 1.65; }
+    .neo-modal-footer { padding: .875rem 1.25rem; border-top: var(--neo-border); display: flex; gap: .75rem; justify-content: flex-end; }
+
+    /* ── Command Palette ──────────────────────────────────────────── */
+    .neo-cmd-backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,.8);
+      display: flex; align-items: flex-start; justify-content: center;
+      padding-top: 12vh; z-index: 2000;
+      opacity: 0; pointer-events: none; transition: opacity 160ms ease;
+    }
+    .neo-cmd-backdrop.open { opacity: 1; pointer-events: all; }
+    .neo-cmd-palette {
+      background: var(--neo-surface-light); border: var(--neo-border);
+      border-radius: var(--neo-radius); box-shadow: 8px 8px 0 #000;
+      width: min(560px, calc(100vw - 2rem)); overflow: hidden;
+      transform: translateY(-12px) scale(.98);
+      transition: transform 200ms cubic-bezier(.34,1.2,.64,1);
+    }
+    .neo-cmd-backdrop.open .neo-cmd-palette { transform: translateY(0) scale(1); }
+    .neo-cmd-search-wrap { display: flex; align-items: center; gap: .75rem; padding: .875rem 1rem; border-bottom: var(--neo-border); }
+    .neo-cmd-icon { font-size: 1rem; color: var(--neo-muted); flex-shrink: 0; }
+    .neo-cmd-input {
+      flex: 1; background: none; border: none; outline: none;
+      font-family: var(--neo-font-sans); font-size: .9375rem; color: #fff;
+      font-weight: 600;
+    }
+    .neo-cmd-input::placeholder { color: var(--neo-subtle); font-weight: 400; }
+    .neo-cmd-hint { font-size: .6875rem; color: var(--neo-subtle); margin-left: auto; }
+    .neo-cmd-list { max-height: 340px; overflow-y: auto; padding: .375rem 0; }
+    .neo-cmd-group-label { padding: .35rem 1rem; font-size: .6rem; font-weight: 800; text-transform: uppercase; letter-spacing: .15em; color: var(--neo-subtle); }
+    .neo-cmd-item {
+      display: flex; align-items: center; gap: .75rem; padding: .625rem 1rem;
+      cursor: pointer; font-size: .875rem; color: var(--neo-muted);
+      transition: background 80ms, color 80ms;
+    }
+    .neo-cmd-item:hover, .neo-cmd-item.selected {
+      background: var(--neo-surface-lighter); color: #fff;
+    }
+    .neo-cmd-item-icon { font-size: .875rem; width: 1.25rem; text-align: center; flex-shrink: 0; }
+    .neo-cmd-item-label { flex: 1; font-weight: 600; }
+    .neo-cmd-item-badge { font-size: .6rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--neo-accent); }
+    .neo-cmd-empty { padding: 2rem 1rem; text-align: center; font-size: .875rem; color: var(--neo-subtle); }
+    .neo-cmd-footer { padding: .5rem 1rem; border-top: var(--neo-border); display: flex; gap: 1rem; font-size: .7rem; color: var(--neo-subtle); background: var(--neo-surface); }
+
+    /* ── Rarity item card (gaming) ────────────────────────────────── */
+    .neo-rarity { --rarity-color: var(--neo-border-color); }
+    .neo-rarity-common    { --rarity-color: #6b7280; }
+    .neo-rarity-uncommon  { --rarity-color: #22c55e; }
+    .neo-rarity-rare      { --rarity-color: #3b82f6; }
+    .neo-rarity-epic      { --rarity-color: #a855f7; }
+    .neo-rarity-legendary { --rarity-color: #f59e0b; }
+    .neo-item-card {
+      background: var(--neo-surface-light);
+      border: 3px solid var(--rarity-color); border-top-width: 5px;
+      border-radius: var(--neo-radius); box-shadow: 5px 5px 0 #000;
+      padding: 1rem; text-align: center; cursor: pointer;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+      position: relative; overflow: hidden;
+    }
+    .neo-item-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--rarity-color) 12%, transparent), transparent 70%);
+      pointer-events: none;
+    }
+    .neo-item-card:hover { transform: translate(-2px,-3px); box-shadow: 7px 8px 0 #000; }
+    .neo-item-icon { font-size: 2.25rem; line-height: 1; margin-bottom: .5rem; filter: drop-shadow(0 0 8px var(--rarity-color)); }
+    .neo-item-name { font-size: .8rem; font-weight: 900; text-transform: uppercase; letter-spacing: .07em; color: #fff; margin: 0 0 .25rem; }
+    .neo-item-rarity { font-size: .6rem; font-weight: 800; text-transform: uppercase; letter-spacing: .15em; color: var(--rarity-color); }
+
+    /* ── Leaderboard ──────────────────────────────────────────────── */
+    .neo-leaderboard { border: var(--neo-border); border-radius: var(--neo-radius); overflow: hidden; box-shadow: var(--neo-shadow-sm); }
+    .neo-lb-header { display: flex; align-items: center; gap: .75rem; padding: .625rem 1rem; background: var(--neo-surface); border-bottom: var(--neo-border); font-size: .6875rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--neo-muted); }
+    .neo-lb-row {
+      display: flex; align-items: center; gap: .875rem; padding: .75rem 1rem;
+      background: var(--neo-surface-light); border-bottom: 1px solid rgba(58,80,110,.25);
+      transition: background 100ms;
+    }
+    .neo-lb-row:last-child { border-bottom: none; }
+    .neo-lb-row:hover { background: var(--neo-surface-lighter); }
+    .neo-lb-rank { font-size: .875rem; font-weight: 900; font-family: var(--neo-font-mono); color: var(--neo-subtle); width: 1.75rem; text-align: right; flex-shrink: 0; }
+    .neo-lb-rank-1 { color: #f59e0b; }
+    .neo-lb-rank-2 { color: #9ca3af; }
+    .neo-lb-rank-3 { color: #b45309; }
+    .neo-lb-name  { flex: 1; font-size: .875rem; font-weight: 700; color: #fff; }
+    .neo-lb-score { font-family: var(--neo-font-mono); font-size: .875rem; font-weight: 700; color: var(--neo-brand-light); }
+
+    /* ── Copy to clipboard on code blocks ────────────────────────── */
+    .code-block        { position: relative; }
+    .neo-copy-btn {
+      position: absolute; top: .625rem; right: .625rem;
+      background: var(--neo-surface-lighter); border: 2px solid var(--neo-border-color);
+      border-radius: var(--neo-radius); color: var(--neo-muted); font-size: .65rem;
+      font-weight: 800; text-transform: uppercase; letter-spacing: .08em;
+      padding: .25rem .5rem; cursor: pointer; font-family: var(--neo-font-sans);
+      transition: background 120ms, color 120ms, border-color 120ms;
+      line-height: 1.4; z-index: 5;
+    }
+    .neo-copy-btn:hover   { background: var(--neo-surface-lighter); color: #fff; border-color: var(--neo-muted); }
+    .neo-copy-btn.copied  { border-color: var(--neo-brand); color: var(--neo-brand-light); }
   </style>
 </head>
 <body>
@@ -524,6 +752,7 @@
       <a href="#animations">Animations</a>
       <a href="#toast">Toast</a>
       <a href="#themes">Themes</a>
+      <a href="#components">Components</a>
       <a href="#gaming">Gaming ⚡</a>
       <a href="#frameworks">Frameworks</a>
       <a href="https://github.com/mariojgt/thedevrealm-neo" target="_blank" rel="noopener">
@@ -1179,6 +1408,338 @@ createApp(App).<span class="px">use</span>(NeoVue).mount(<span class="str">'#app
 
 </div>
 
+<!-- ═══ COMPONENTS SECTION ═══ -->
+<div class="page-wrap" style="padding-top:0">
+  <section class="section" id="components">
+    <div class="section-title">Components</div>
+    <p style="font-size:.875rem;color:var(--neo-muted);margin:0 0 2rem">The building blocks that put this kit on the same level as shadcn, DaisyUI, and Radix.</p>
+
+    <!-- ── Kbd Badges ── -->
+    <div class="section-title" style="font-size:1rem;margin-bottom:1rem">Keyboard Shortcuts</div>
+    <div class="neo-card p-6" style="margin-bottom:2rem">
+      <div class="flex-wrap" style="margin-bottom:1.25rem">
+        <span class="neo-kbd">⌘</span>
+        <span class="neo-kbd">⌘ K</span>
+        <span class="neo-kbd">⌃ ⇧ P</span>
+        <span class="neo-kbd">Esc</span>
+        <span class="neo-kbd">↵ Enter</span>
+        <span style="font-size:.875rem;color:var(--neo-muted)">
+          Press <span class="neo-kbd">⌘ K</span> to open the command palette
+        </span>
+      </div>
+      <div class="code-block">
+        <pre>&lt;<span class="cl">span</span> <span class="kw">class</span>=<span class="str">"neo-kbd"</span>&gt;⌘ K&lt;/span&gt;
+&lt;<span class="cl">span</span> <span class="kw">class</span>=<span class="str">"neo-kbd"</span>&gt;⌃ ⇧ P&lt;/span&gt;
+&lt;<span class="cl">span</span> <span class="kw">class</span>=<span class="str">"neo-kbd"</span>&gt;Esc&lt;/span&gt;</pre>
+      </div>
+    </div>
+
+    <!-- ── Tooltip ── -->
+    <div class="section-title" style="font-size:1rem;margin-bottom:1rem">Tooltips</div>
+    <div class="neo-card p-6" style="margin-bottom:2rem">
+      <div class="flex-wrap" style="margin-bottom:1.25rem;padding-top:.75rem">
+        <button class="neo-btn neo-btn-primary" data-tip="Creates a new project">New Project</button>
+        <button class="neo-btn neo-btn-ghost"   data-tip="Keyboard: ⌘ S">Save</button>
+        <button class="neo-btn neo-btn-danger"  data-tip="This cannot be undone!">Delete</button>
+        <span class="neo-badge neo-badge-success" data-tip="Verified developer" style="cursor:default">✓ Verified</span>
+      </div>
+      <div class="code-block">
+        <pre><span class="cm">&lt;!-- Pure CSS — add data-tip to any element --&gt;</span>
+&lt;<span class="cl">button</span> <span class="kw">class</span>=<span class="str">"neo-btn neo-btn-primary"</span>
+  <span class="px">data-tip</span>=<span class="str">"Creates a new project"</span>&gt;
+  New Project
+&lt;/button&gt;</pre>
+      </div>
+    </div>
+
+    <!-- ── Skeleton ── -->
+    <div class="section-title" style="font-size:1rem;margin-bottom:1rem">Skeleton Loaders</div>
+    <div class="neo-card p-6" style="margin-bottom:2rem">
+      <div class="grid-2" style="margin-bottom:1.25rem">
+        <!-- Card skeleton -->
+        <div>
+          <span class="label-micro">Card skeleton</span>
+          <div style="border:var(--neo-border);border-radius:var(--neo-radius);background:var(--neo-surface-light);overflow:hidden;box-shadow:var(--neo-shadow-sm)">
+            <div class="neo-skeleton neo-skeleton-thumb" style="border-radius:0;border:none;border-bottom:var(--neo-border)"></div>
+            <div style="padding:1rem">
+              <div class="neo-skeleton neo-skeleton-title"></div>
+              <div class="neo-skeleton neo-skeleton-text" style="width:90%"></div>
+              <div class="neo-skeleton neo-skeleton-text" style="width:70%"></div>
+              <div class="neo-skeleton neo-skeleton-btn" style="margin-top:.75rem"></div>
+            </div>
+          </div>
+        </div>
+        <!-- List skeleton -->
+        <div>
+          <span class="label-micro">List skeleton</span>
+          <div style="display:flex;flex-direction:column;gap:.75rem">
+            <div style="display:flex;align-items:center;gap:.75rem">
+              <div class="neo-skeleton neo-skeleton-avatar"></div>
+              <div style="flex:1">
+                <div class="neo-skeleton neo-skeleton-text" style="width:55%"></div>
+                <div class="neo-skeleton neo-skeleton-text" style="width:80%;margin-bottom:0"></div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:.75rem">
+              <div class="neo-skeleton neo-skeleton-avatar"></div>
+              <div style="flex:1">
+                <div class="neo-skeleton neo-skeleton-text" style="width:40%"></div>
+                <div class="neo-skeleton neo-skeleton-text" style="width:65%;margin-bottom:0"></div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:.75rem">
+              <div class="neo-skeleton neo-skeleton-avatar"></div>
+              <div style="flex:1">
+                <div class="neo-skeleton neo-skeleton-text" style="width:70%"></div>
+                <div class="neo-skeleton neo-skeleton-text" style="width:50%;margin-bottom:0"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="code-block">
+        <pre><span class="cm">&lt;!-- Shimmer skeleton — pure CSS --&gt;</span>
+&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-skeleton neo-skeleton-thumb"</span>&gt;&lt;/div&gt;
+&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-skeleton neo-skeleton-title"</span>&gt;&lt;/div&gt;
+&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-skeleton neo-skeleton-text"</span>&gt;&lt;/div&gt;
+&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-skeleton neo-skeleton-avatar"</span>&gt;&lt;/div&gt;
+&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-skeleton neo-skeleton-btn"</span>&gt;&lt;/div&gt;</pre>
+      </div>
+    </div>
+
+    <!-- ── Avatar ── -->
+    <div class="section-title" style="font-size:1rem;margin-bottom:1rem">Avatars</div>
+    <div class="neo-card p-6" style="margin-bottom:2rem">
+      <span class="label-micro">Sizes &amp; variants</span>
+      <div class="flex-wrap" style="align-items:center;margin-bottom:1.25rem">
+        <div class="neo-avatar neo-avatar-sm">MJ</div>
+        <div class="neo-avatar neo-avatar-md neo-avatar-brand neo-avatar-online">DK</div>
+        <div class="neo-avatar neo-avatar-lg neo-avatar-accent">AB</div>
+        <div class="neo-avatar neo-avatar-xl" style="font-size:1.5rem">🎮</div>
+      </div>
+      <span class="label-micro" style="margin-top:.5rem">Avatar group</span>
+      <div class="neo-avatar-group" style="margin-bottom:1.25rem">
+        <div class="neo-avatar neo-avatar-md" style="background:var(--neo-brand)">MJ</div>
+        <div class="neo-avatar neo-avatar-md" style="background:#7c3aed">AB</div>
+        <div class="neo-avatar neo-avatar-md" style="background:#dc2626">KC</div>
+        <div class="neo-avatar neo-avatar-md" style="background:var(--neo-accent)">+4</div>
+      </div>
+      <div class="code-block">
+        <pre>&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-avatar neo-avatar-md neo-avatar-brand neo-avatar-online"</span>&gt;MJ&lt;/div&gt;
+
+<span class="cm">&lt;!-- Group --&gt;</span>
+&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-avatar-group"</span>&gt;
+  &lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-avatar neo-avatar-md"</span>&gt;MJ&lt;/div&gt;
+  &lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-avatar neo-avatar-md"</span>&gt;AB&lt;/div&gt;
+  &lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-avatar neo-avatar-md"</span>&gt;+4&lt;/div&gt;
+&lt;/div&gt;</pre>
+      </div>
+    </div>
+
+    <!-- ── Accordion ── -->
+    <div class="section-title" style="font-size:1rem;margin-bottom:1rem">Accordion</div>
+    <div style="margin-bottom:2rem">
+      <div class="neo-accordion">
+        <div class="neo-accordion-item open">
+          <button class="neo-accordion-trigger" onclick="neoAccordion(this)">
+            What is The Dev Realm UI Kit?
+            <span class="neo-accordion-chevron">▼</span>
+          </button>
+          <div class="neo-accordion-body">
+            A Neo-Brutalist design system built for developers who want bold, opinionated UI without compromising on DX. Works with React, Vue, Svelte and plain HTML/CSS.
+          </div>
+        </div>
+        <div class="neo-accordion-item">
+          <button class="neo-accordion-trigger" onclick="neoAccordion(this)">
+            Does it work with Tailwind CSS?
+            <span class="neo-accordion-chevron">▼</span>
+          </button>
+          <div class="neo-accordion-body">
+            Yes. We ship a first-class Tailwind preset (<code style="font-family:var(--neo-font-mono);font-size:.85em">@thedevrealm/neo-css/tailwind-preset</code>) that maps all Neo design tokens to Tailwind utilities.
+          </div>
+        </div>
+        <div class="neo-accordion-item">
+          <button class="neo-accordion-trigger" onclick="neoAccordion(this)">
+            Is it free?
+            <span class="neo-accordion-chevron">▼</span>
+          </button>
+          <div class="neo-accordion-body">
+            100% MIT licensed. Use it in personal projects, commercial products, games — whatever you want.
+          </div>
+        </div>
+      </div>
+      <div class="code-block" style="margin-top:.75rem">
+        <pre>&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-accordion"</span>&gt;
+  &lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-accordion-item open"</span>&gt;
+    &lt;<span class="cl">button</span> <span class="kw">class</span>=<span class="str">"neo-accordion-trigger"</span> <span class="px">onclick</span>=<span class="str">"neoAccordion(this)"</span>&gt;
+      Title &lt;<span class="cl">span</span> <span class="kw">class</span>=<span class="str">"neo-accordion-chevron"</span>&gt;▼&lt;/span&gt;
+    &lt;/<span class="cl">button</span>&gt;
+    &lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-accordion-body"</span>&gt;Content here.&lt;/div&gt;
+  &lt;/<span class="cl">div</span>&gt;
+&lt;/<span class="cl">div</span>&gt;</pre>
+      </div>
+    </div>
+
+    <!-- ── Modal ── -->
+    <div class="section-title" style="font-size:1rem;margin-bottom:1rem">Modal</div>
+    <div class="neo-card p-6" style="margin-bottom:2rem">
+      <div class="flex-wrap" style="margin-bottom:1.25rem">
+        <button class="neo-btn neo-btn-primary" onclick="neoModalOpen('demo-modal')">Open Modal</button>
+        <button class="neo-btn neo-btn-danger"  onclick="neoModalOpen('danger-modal')">Danger Modal</button>
+      </div>
+      <div class="code-block">
+        <pre><span class="cm">&lt;!-- Trigger --&gt;</span>
+&lt;<span class="cl">button</span> <span class="px">onclick</span>=<span class="str">"neoModalOpen('my-modal')"</span>&gt;Open&lt;/button&gt;
+
+<span class="cm">&lt;!-- Modal HTML --&gt;</span>
+&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-modal-backdrop"</span> <span class="px">id</span>=<span class="str">"my-modal"</span>&gt;
+  &lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-modal"</span>&gt;
+    &lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-modal-header"</span>&gt;
+      &lt;<span class="cl">h2</span> <span class="kw">class</span>=<span class="str">"neo-modal-title"</span>&gt;Title&lt;/h2&gt;
+      &lt;<span class="cl">button</span> <span class="kw">class</span>=<span class="str">"neo-modal-close"</span>
+        <span class="px">onclick</span>=<span class="str">"neoModalClose('my-modal')"</span>&gt;✕&lt;/button&gt;
+    &lt;/<span class="cl">div</span>&gt;
+    &lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-modal-body"</span>&gt;Body text...&lt;/div&gt;
+    &lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-modal-footer"</span>&gt;
+      &lt;<span class="cl">button</span> <span class="kw">class</span>=<span class="str">"neo-btn neo-btn-primary"</span>&gt;Confirm&lt;/button&gt;
+    &lt;/<span class="cl">div</span>&gt;
+  &lt;/<span class="cl">div</span>&gt;
+&lt;/<span class="cl">div</span>&gt;
+
+<span class="cm">// JS</span>
+<span class="px">neoModalOpen</span>(<span class="str">'my-modal'</span>)
+<span class="px">neoModalClose</span>(<span class="str">'my-modal'</span>)</pre>
+      </div>
+    </div>
+
+    <!-- ── Command Palette ── -->
+    <div class="section-title" style="font-size:1rem;margin-bottom:1rem">Command Palette</div>
+    <div class="neo-card p-6" style="margin-bottom:2rem">
+      <div class="flex-wrap" style="margin-bottom:1.25rem">
+        <button class="neo-btn neo-btn-ghost" onclick="neoCommandOpen()">
+          Open Palette
+          <span class="neo-kbd" style="margin-left:.25rem">⌘ K</span>
+        </button>
+      </div>
+      <div class="code-block">
+        <pre><span class="cm">// Open with JS or keyboard shortcut</span>
+<span class="px">neoCommandOpen</span>()
+
+<span class="cm">// Register custom commands</span>
+<span class="px">neoCommandRegister</span>([
+  { icon: <span class="str">'🏠'</span>, label: <span class="str">'Go Home'</span>, action: () => location.href = <span class="str">'/'</span> },
+  { icon: <span class="str">'⚡'</span>, label: <span class="str">'New Game'</span>, badge: <span class="str">'hot'</span>, action: startGame },
+  { icon: <span class="str">'⚙'</span>, label: <span class="str">'Settings'</span>, action: openSettings },
+])
+
+<span class="cm">// Keyboard shortcut built-in: ⌘K or Ctrl+K</span></pre>
+      </div>
+    </div>
+
+    <!-- ── Rarity Item Cards ── -->
+    <div class="section-title" style="font-size:1rem;margin-bottom:1rem">Rarity Item Cards</div>
+    <div class="grid-4" style="margin-bottom:1.25rem">
+      <div class="neo-item-card neo-rarity neo-rarity-common">
+        <div class="neo-item-icon">⚔️</div>
+        <p class="neo-item-name">Iron Sword</p>
+        <p class="neo-item-rarity">Common</p>
+      </div>
+      <div class="neo-item-card neo-rarity neo-rarity-uncommon">
+        <div class="neo-item-icon">🛡️</div>
+        <p class="neo-item-name">Forest Shield</p>
+        <p class="neo-item-rarity">Uncommon</p>
+      </div>
+      <div class="neo-item-card neo-rarity neo-rarity-rare">
+        <div class="neo-item-icon">🔮</div>
+        <p class="neo-item-name">Arcane Orb</p>
+        <p class="neo-item-rarity">Rare</p>
+      </div>
+      <div class="neo-item-card neo-rarity neo-rarity-epic">
+        <div class="neo-item-icon">🗡️</div>
+        <p class="neo-item-name">Soul Reaver</p>
+        <p class="neo-item-rarity">Epic</p>
+      </div>
+      <div class="neo-item-card neo-rarity neo-rarity-legendary">
+        <div class="neo-item-icon">👑</div>
+        <p class="neo-item-name">Crown of Ages</p>
+        <p class="neo-item-rarity">Legendary</p>
+      </div>
+    </div>
+    <div class="code-block" style="margin-bottom:2rem">
+      <pre>&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-item-card neo-rarity neo-rarity-legendary"</span>&gt;
+  &lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-item-icon"</span>&gt;👑&lt;/div&gt;
+  &lt;<span class="cl">p</span>   <span class="kw">class</span>=<span class="str">"neo-item-name"</span>&gt;Crown of Ages&lt;/p&gt;
+  &lt;<span class="cl">p</span>   <span class="kw">class</span>=<span class="str">"neo-item-rarity"</span>&gt;Legendary&lt;/p&gt;
+&lt;/div&gt;
+
+<span class="cm">/* Variants: neo-rarity-common | uncommon | rare | epic | legendary */</span></pre>
+    </div>
+
+    <!-- ── Leaderboard ── -->
+    <div class="section-title" style="font-size:1rem;margin-bottom:1rem">Leaderboard</div>
+    <div style="max-width:480px;margin-bottom:2rem">
+      <div class="neo-leaderboard">
+        <div class="neo-lb-header">
+          <span style="width:1.75rem;text-align:right">#</span>
+          <span style="flex:1">Player</span>
+          <span>Score</span>
+        </div>
+        <div class="neo-lb-row">
+          <span class="neo-lb-rank neo-lb-rank-1">🥇</span>
+          <div style="display:flex;align-items:center;gap:.625rem;flex:1">
+            <div class="neo-avatar neo-avatar-sm" style="background:var(--neo-brand)">MJ</div>
+            <span class="neo-lb-name">mariojgt</span>
+          </div>
+          <span class="neo-lb-score">142,830</span>
+        </div>
+        <div class="neo-lb-row">
+          <span class="neo-lb-rank neo-lb-rank-2">🥈</span>
+          <div style="display:flex;align-items:center;gap:.625rem;flex:1">
+            <div class="neo-avatar neo-avatar-sm" style="background:#7c3aed">DK</div>
+            <span class="neo-lb-name">darkwolf99</span>
+          </div>
+          <span class="neo-lb-score">98,410</span>
+        </div>
+        <div class="neo-lb-row">
+          <span class="neo-lb-rank neo-lb-rank-3">🥉</span>
+          <div style="display:flex;align-items:center;gap:.625rem;flex:1">
+            <div class="neo-avatar neo-avatar-sm" style="background:#dc2626">XK</div>
+            <span class="neo-lb-name">xkira</span>
+          </div>
+          <span class="neo-lb-score">87,200</span>
+        </div>
+        <div class="neo-lb-row">
+          <span class="neo-lb-rank">4</span>
+          <div style="display:flex;align-items:center;gap:.625rem;flex:1">
+            <div class="neo-avatar neo-avatar-sm" style="background:var(--neo-accent)">SC</div>
+            <span class="neo-lb-name">speedchaser</span>
+          </div>
+          <span class="neo-lb-score">71,540</span>
+        </div>
+        <div class="neo-lb-row">
+          <span class="neo-lb-rank">5</span>
+          <div style="display:flex;align-items:center;gap:.625rem;flex:1">
+            <div class="neo-avatar neo-avatar-sm neo-avatar-online" style="background:var(--neo-border-color)">NX</div>
+            <span class="neo-lb-name">nexusplayer</span>
+          </div>
+          <span class="neo-lb-score">64,000</span>
+        </div>
+      </div>
+    </div>
+    <div class="code-block" style="margin-bottom:2rem">
+      <pre>&lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-leaderboard"</span>&gt;
+  &lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-lb-header"</span>&gt;...header...&lt;/<span class="cl">div</span>&gt;
+  &lt;<span class="cl">div</span> <span class="kw">class</span>=<span class="str">"neo-lb-row"</span>&gt;
+    &lt;<span class="cl">span</span> <span class="kw">class</span>=<span class="str">"neo-lb-rank neo-lb-rank-1"</span>&gt;🥇&lt;/span&gt;
+    &lt;<span class="cl">span</span> <span class="kw">class</span>=<span class="str">"neo-lb-name"</span>&gt;mariojgt&lt;/span&gt;
+    &lt;<span class="cl">span</span> <span class="kw">class</span>=<span class="str">"neo-lb-score"</span>&gt;142,830&lt;/span&gt;
+  &lt;/<span class="cl">div</span>&gt;
+&lt;/<span class="cl">div</span>&gt;</pre>
+    </div>
+
+  </section>
+</div>
+
 <!-- ═══ GAMING SECTION ═══ -->
 <div class="page-wrap" style="padding-top:0">
   <section class="section" id="gaming">
@@ -1405,6 +1966,56 @@ btn.addEventListener(<span class="str">'click'</span>, e => <span class="px">neo
 
 <!-- ── Toast container (injected once) ─────────────────────────────── -->
 <div id="neo-toast-container" role="region" aria-live="polite" aria-label="Notifications"></div>
+
+<!-- ═══ MODALS ═══ -->
+<div class="neo-modal-backdrop" id="demo-modal" onclick="if(event.target===this)neoModalClose('demo-modal')">
+  <div class="neo-modal">
+    <div class="neo-modal-header">
+      <h2 class="neo-modal-title">Neo Brutalist Modal</h2>
+      <button class="neo-modal-close" onclick="neoModalClose('demo-modal')">✕</button>
+    </div>
+    <div class="neo-modal-body">
+      <p>This is a fully keyboard-accessible modal with a backdrop blur, spring animation, and a close button. Click outside or press <span class="neo-kbd">Esc</span> to dismiss.</p>
+    </div>
+    <div class="neo-modal-footer">
+      <button class="neo-btn neo-btn-ghost" onclick="neoModalClose('demo-modal')">Cancel</button>
+      <button class="neo-btn neo-btn-primary" onclick="neoModalClose('demo-modal');neoToast('Action confirmed!','success')">Confirm</button>
+    </div>
+  </div>
+</div>
+
+<div class="neo-modal-backdrop" id="danger-modal" onclick="if(event.target===this)neoModalClose('danger-modal')">
+  <div class="neo-modal">
+    <div class="neo-modal-header" style="background:rgba(220,38,38,.12)">
+      <h2 class="neo-modal-title" style="color:#f87171">⚠ Danger Zone</h2>
+      <button class="neo-modal-close" onclick="neoModalClose('danger-modal')">✕</button>
+    </div>
+    <div class="neo-modal-body">
+      <p>This action is <strong style="color:#f87171">irreversible</strong>. Are you sure you want to delete this item permanently?</p>
+    </div>
+    <div class="neo-modal-footer">
+      <button class="neo-btn neo-btn-ghost" onclick="neoModalClose('danger-modal')">Cancel</button>
+      <button class="neo-btn neo-btn-danger" onclick="neoModalClose('danger-modal');neoToast('Item deleted','error')">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ COMMAND PALETTE ═══ -->
+<div class="neo-cmd-backdrop" id="neo-cmd-backdrop" onclick="if(event.target===this)neoCommandClose()" role="dialog" aria-label="Command Palette">
+  <div class="neo-cmd-palette">
+    <div class="neo-cmd-search-wrap">
+      <span class="neo-cmd-icon">⌘</span>
+      <input class="neo-cmd-input" id="neo-cmd-input" type="text" placeholder="Type a command or search…" oninput="neoCommandFilter(this.value)" onkeydown="neoCommandKey(event)" autocomplete="off" spellcheck="false">
+      <span class="neo-cmd-hint"><span class="neo-kbd">Esc</span></span>
+    </div>
+    <div class="neo-cmd-list" id="neo-cmd-list"></div>
+    <div class="neo-cmd-footer">
+      <span><span class="neo-kbd">↑↓</span> navigate</span>
+      <span><span class="neo-kbd">↵</span> select</span>
+      <span><span class="neo-kbd">Esc</span> close</span>
+    </div>
+  </div>
+</div>
 
 <script>
   // ── Toggle group demo ────────────────────────────────────────────
@@ -1714,6 +2325,173 @@ btn.addEventListener(<span class="str">'click'</span>, e => <span class="px">neo
   function cancelCharge(btn) {
     clearTimeout(_chargeTimer)
   }
+
+  /* ══════════════════════════════════════════════════════════════
+     COMPETITIVE COMPONENTS — JS
+     ══════════════════════════════════════════════════════════════ */
+
+  /* ── Accordion ───────────────────────────────────────────────── */
+  function neoAccordion(btn) {
+    const item = btn.closest('.neo-accordion-item')
+    const isOpen = item.classList.contains('open')
+    // Close siblings in same accordion
+    item.closest('.neo-accordion').querySelectorAll('.neo-accordion-item.open')
+      .forEach(el => el.classList.remove('open'))
+    if (!isOpen) item.classList.add('open')
+  }
+
+  /* ── Modal ───────────────────────────────────────────────────── */
+  function neoModalOpen(id) {
+    const el = document.getElementById(id)
+    if (!el) return
+    el.classList.add('open')
+    document.body.style.overflow = 'hidden'
+    el.addEventListener('keydown', _neoModalKey)
+    // Focus first focusable child
+    const focusable = el.querySelector('button,input,[tabindex]')
+    if (focusable) focusable.focus()
+  }
+
+  function neoModalClose(id) {
+    const el = document.getElementById(id)
+    if (!el) return
+    el.classList.remove('open')
+    document.body.style.overflow = ''
+    el.removeEventListener('keydown', _neoModalKey)
+  }
+
+  function _neoModalKey(e) {
+    if (e.key === 'Escape') {
+      const backdrop = e.currentTarget
+      backdrop.classList.remove('open')
+      document.body.style.overflow = ''
+    }
+  }
+
+  /* ── Command Palette ─────────────────────────────────────────── */
+  const _neoCmdItems = [
+    { icon: '🏠', label: 'Go to Homepage',    group: 'Navigation', action: () => window.scrollTo({top:0,behavior:'smooth'}) },
+    { icon: '🎨', label: 'Switch to Emerald', group: 'Themes',     action: () => setNeoTheme('emerald') },
+    { icon: '🎨', label: 'Switch to Violet',  group: 'Themes',     action: () => setNeoTheme('violet') },
+    { icon: '🎨', label: 'Switch to Crimson', group: 'Themes',     action: () => setNeoTheme('crimson') },
+    { icon: '⚡', label: 'Jump to Gaming',    group: 'Navigation', action: () => document.getElementById('gaming').scrollIntoView({behavior:'smooth'}) },
+    { icon: '📦', label: 'Jump to Components',group: 'Navigation', action: () => document.getElementById('components').scrollIntoView({behavior:'smooth'}) },
+    { icon: '📋', label: 'Show Install Guide',group: 'Docs',       action: () => document.getElementById('install').scrollIntoView({behavior:'smooth'}) },
+    { icon: '🔔', label: 'Fire a Toast',       group: 'Demo',       badge: 'demo', action: () => neoToast('Command fired! 🚀','success') },
+    { icon: '📖', label: 'Open GitHub Repo',   group: 'Links',      action: () => window.open('https://github.com/mariojgt/thedevrealm-neo','_blank') },
+  ]
+  let _neoCmdFiltered = [..._neoCmdItems]
+  let _neoCmdIndex    = 0
+
+  function neoCommandRegister(items) {
+    items.forEach(i => _neoCmdItems.push(i))
+    _neoCmdFiltered = [..._neoCmdItems]
+  }
+
+  function neoCommandOpen() {
+    const backdrop = document.getElementById('neo-cmd-backdrop')
+    backdrop.classList.add('open')
+    document.body.style.overflow = 'hidden'
+    const input = document.getElementById('neo-cmd-input')
+    input.value = ''
+    _neoCmdFiltered = [..._neoCmdItems]
+    _neoCmdIndex    = 0
+    _neoCmdRender()
+    setTimeout(() => input.focus(), 60)
+  }
+
+  function neoCommandClose() {
+    document.getElementById('neo-cmd-backdrop').classList.remove('open')
+    document.body.style.overflow = ''
+  }
+
+  function neoCommandFilter(q) {
+    const lq = q.toLowerCase()
+    _neoCmdFiltered = lq
+      ? _neoCmdItems.filter(i => i.label.toLowerCase().includes(lq) || (i.group||'').toLowerCase().includes(lq))
+      : [..._neoCmdItems]
+    _neoCmdIndex = 0
+    _neoCmdRender()
+  }
+
+  function neoCommandKey(e) {
+    if (e.key === 'Escape')    { neoCommandClose(); return }
+    if (e.key === 'ArrowDown') { e.preventDefault(); _neoCmdIndex = Math.min(_neoCmdIndex + 1, _neoCmdFiltered.length - 1); _neoCmdRender(); return }
+    if (e.key === 'ArrowUp')   { e.preventDefault(); _neoCmdIndex = Math.max(_neoCmdIndex - 1, 0); _neoCmdRender(); return }
+    if (e.key === 'Enter')     { e.preventDefault(); _neoCmdExec(_neoCmdIndex); return }
+  }
+
+  function _neoCmdExec(idx) {
+    const item = _neoCmdFiltered[idx]
+    if (!item) return
+    neoCommandClose()
+    item.action()
+  }
+
+  function _neoCmdRender() {
+    const list = document.getElementById('neo-cmd-list')
+    if (!_neoCmdFiltered.length) {
+      list.innerHTML = '<div class="neo-cmd-empty">No results found.</div>'
+      return
+    }
+    // Group items
+    const groups = {}
+    _neoCmdFiltered.forEach((item, i) => {
+      const g = item.group || 'General'
+      if (!groups[g]) groups[g] = []
+      groups[g].push({ ...item, _idx: i })
+    })
+    let html = ''
+    Object.entries(groups).forEach(([group, items]) => {
+      html += `<div class="neo-cmd-group-label">${_neoEscape(group)}</div>`
+      items.forEach(item => {
+        const sel = item._idx === _neoCmdIndex ? ' selected' : ''
+        const badge = item.badge ? `<span class="neo-cmd-item-badge">${_neoEscape(item.badge)}</span>` : ''
+        html += `<div class="neo-cmd-item${sel}" onclick="_neoCmdExec(${item._idx})" onmouseenter="neoCommandHover(${item._idx})">
+          <span class="neo-cmd-item-icon">${_neoEscape(item.icon||'')}</span>
+          <span class="neo-cmd-item-label">${_neoEscape(item.label)}</span>
+          ${badge}
+        </div>`
+      })
+    })
+    list.innerHTML = html
+    // Scroll selected into view
+    const sel = list.querySelector('.selected')
+    if (sel) sel.scrollIntoView({ block: 'nearest' })
+  }
+
+  function neoCommandHover(idx) {
+    _neoCmdIndex = idx
+    _neoCmdRender()
+  }
+
+  // Register keyboard shortcut ⌘K / Ctrl+K globally
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault()
+      const bd = document.getElementById('neo-cmd-backdrop')
+      bd.classList.contains('open') ? neoCommandClose() : neoCommandOpen()
+    }
+  })
+
+  /* ── Copy-to-clipboard on code blocks ────────────────────────── */
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.code-block').forEach(block => {
+      const btn = document.createElement('button')
+      btn.className = 'neo-copy-btn'
+      btn.textContent = 'Copy'
+      btn.addEventListener('click', () => {
+        const pre = block.querySelector('pre')
+        if (!pre) return
+        navigator.clipboard.writeText(pre.innerText).then(() => {
+          btn.textContent = '✓ Copied'
+          btn.classList.add('copied')
+          setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied') }, 1800)
+        })
+      })
+      block.appendChild(btn)
+    })
+  })
 </script>
 <div id="neo-screen-flash"></div>
 </body>
